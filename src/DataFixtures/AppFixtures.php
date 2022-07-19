@@ -48,13 +48,13 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {   
-         $this->truncate();
-       
-         $faker = Faker\Factory::create('fr_FR');
+        $this->truncate();
+    
+        $faker = Faker\Factory::create('fr_FR');
 
-         $typesListEntity = [];
-         $typesList = ["Expèrience hôtelière", "Dégustation de spiritueux", "Diner", "Expèrience atypique"];
-        
+        $typesListEntity = [];
+        $typesList = ["Expèrience hôtelière", "Dégustation de spiritueux", "Diner", "Expèrience atypique"];
+    
 
         foreach ($typesList as $typeName) {
             $type = new Type;
@@ -69,51 +69,51 @@ class AppFixtures extends Fixture
         //Users
         $usersList= [];
          // ------------userUser-----------
-         $user = new User;                     
-         $user->setFirstname($faker->firstname());
-         $user->setLastname($faker->lastname());
-         $user->setEmail("user@user.com");
-         $plaintextPassword = "user";
-         $hashedPassword = $this->passwordHasher->hashPassword(
-             $user,
-             $plaintextPassword
-         );
-         $user->setPassword($hashedPassword);
-         $user->setRoles(['ROLE_USER']);
-         $usersList[] = $user;
-         $manager->persist($user);
+        $user = new User;                     
+        $user->setFirstname($faker->firstname());
+        $user->setLastname($faker->lastname());
+        $user->setEmail("user@user.com");
+        $plaintextPassword = "user";
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $user,
+            $plaintextPassword
+        );
+        $user->setPassword($hashedPassword);
+        $user->setRoles(['ROLE_USER']);
+        $usersList[] = $user;
+        $manager->persist($user);
  
     // ------------userAdmin-----------
  
-         $userAdmin = new User();
-         $userAdmin->setFirstname($faker->firstname());
-         $userAdmin->setLastname($faker->lastname());
-         $userAdmin->setEmail("admin@admin.com");
-         $plaintextPassword = "admin";
-         $hashedPassword = $this->passwordHasher->hashPassword(
-             $userAdmin,
-             $plaintextPassword
-         );
-         $userAdmin->setPassword($hashedPassword);
-         $userAdmin->setRoles(['ROLE_ADMIN']);
-         $usersList[] = $userAdmin;
-         $manager->persist($userAdmin);
+        $userAdmin = new User();
+        $userAdmin->setFirstname($faker->firstname());
+        $userAdmin->setLastname($faker->lastname());
+        $userAdmin->setEmail("admin@admin.com");
+        $plaintextPassword = "admin";
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $userAdmin,
+            $plaintextPassword
+        );
+        $userAdmin->setPassword($hashedPassword);
+        $userAdmin->setRoles(['ROLE_ADMIN']);
+        $usersList[] = $userAdmin;
+        $manager->persist($userAdmin);
     
     // ------------userPro-----------
  
-         $userPro= new User();
-         $userPro->setFirstname($faker->firstname());
-         $userPro->setLastname($faker->lastname());
-         $userPro->setEmail("pro@pro.com");
-         $plaintextPassword = "pro";
-         $hashedPassword = $this->passwordHasher->hashPassword(
-             $userPro,
-             $plaintextPassword
-         );
-         $userPro->setPassword($hashedPassword);
-         $userPro->setRoles(['ROLE_PRO']);
-         $usersList[] = $userPro;
-         $manager->persist($userPro);
+        $userPro= new User();
+        $userPro->setFirstname($faker->firstname());
+        $userPro->setLastname($faker->lastname());
+        $userPro->setEmail("pro@pro.com");
+        $plaintextPassword = "pro";
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $userPro,
+            $plaintextPassword
+        );
+        $userPro->setPassword($hashedPassword);
+        $userPro->setRoles(['ROLE_PRO']);
+        $usersList[] = $userPro;
+        $manager->persist($userPro);
 
 
         //Establishments
@@ -142,47 +142,47 @@ class AppFixtures extends Fixture
         } 
         
         //Packages     
-         $packagesList = [];
+        $packagesList = [];
  
-         for ($i=1; $i<30; $i++) {
+        for ($i=1; $i<30; $i++) {
  
     
-             $package = new Package();
- 
-             $package->setName($faker->name());
-             $package->setPicture('https://picsum.photos/id/'.mt_rand(1,100).'/450/300');
-             $package->setPrice(rand(5,100));
-             $package->setDescription($faker->realText(100));
-             $package->setDate($faker->dateTimeBetween('-1 week','+4 week'));
-             $package->setEstablishment($establishmentsList[mt_rand(0,count($establishmentsList)-1)]);
-             
-             $n= mt_rand(1,4);
+            $package = new Package();
 
-             for ($z=1; $z<=$n; $z++){
+            $package->setName($faker->name());
+            $package->setPicture('https://picsum.photos/id/'.mt_rand(1,100).'/450/300');
+            $package->setPrice(rand(5,100));
+            $package->setDescription($faker->realText(100));
+            $package->setDate($faker->dateTimeBetween('-1 week','+4 week'));
+            $package->setEstablishment($establishmentsList[mt_rand(0,count($establishmentsList)-1)]);
+            
+            $n= mt_rand(1,4);
+
+            for ($z=1; $z<=$n; $z++){
                 $package->addType($typesListEntity[mt_rand(0,count($typesListEntity)-1)]);
-             }
+            }
             
 
-             
-             $packagesList[] = $package;
-             
- 
-             $manager->persist($package);
-         }
+            
+            $packagesList[] = $package;
+            
+
+            $manager->persist($package);
+        }
 
         // Book
-         $booksList = [];
+        $booksList = [];
 
-         for ($m=1;$m<101;$m++){
-             $book = new Book();            
-             $book->setUser($usersList[0]);
-             $book->setStatus(rand(0,2));  
-             $book->setPrice(rand(5,100));           
-             $package = $packagesList[mt_rand(0,count($packagesList)-1)];
-             $book->setPackages($package);
-             $booksList[]= $book;
-             $manager->persist($book);
-         }
+        for ($m=1;$m<101;$m++){
+        $book = new Book();            
+        $book->setUser($usersList[0]);
+        $book->setStatus(rand(0,2));  
+        $book->setPrice(rand(5,100));           
+        $package = $packagesList[mt_rand(0,count($packagesList)-1)];
+        $book->setPackages($package);
+        $booksList[]= $book;
+        $manager->persist($book);
+        }
          
         //# Tag
 
