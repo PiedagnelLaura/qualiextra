@@ -26,7 +26,7 @@ Dupliquer le fichier env.test et le renommer en env.local
 Vérifier votre version de mysql ou mariadb en éxécutant cette commande : `mysql -V`
 
 Insérer cette ligne : 
-`DATABASE_URL="mysql://identifiant:motdepasse@127.0.0.1:3306/qualiextra?serverVersion=mariadb-10.3.25&charset=utf8mb4`
+`DATABASE_URL="mysql://identifiant:motdepasse@127.0.0.1:3306/qualiextra?serverVersion=mariadb-10.3.25&charset=utf8mb4"
 
 Changer l'identifiant et le mot de passe avec les vôtres de la chaîne de connection .
 
