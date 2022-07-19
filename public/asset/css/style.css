@@ -1,0 +1,42 @@
+.body-color{
+    background-color: #F6F0E9;
+}
+
+/* Header*/
+
+.nav-color {
+    background-color: #121629;
+}
+
+.nav-lien {
+    color: #F6F0E9;
+}
+
+.nav-lien:hover {
+    color: #7A8C73;
+}
+
+/*Footer*/
+
+.footer-color {
+    background-color: #121629;
+}
+
+.footer-bloc {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-list {
+    list-style: none;
+    padding-right: 2em;
+}
+
+.footer-lien {
+    color: #F6F0E9;
+    text-decoration: none;
+}
+
+.footer-lien:hover {
+    color: #7A8C73;
+}

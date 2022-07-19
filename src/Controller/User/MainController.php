@@ -18,7 +18,7 @@ class MainController extends AbstractController
 
 
         return $this->render(
-            'User/main/index.html.twig', 
+            'User/main/home.html.twig', 
             ['packageList' => $packageList]
         );
     }

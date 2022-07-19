@@ -4,6 +4,8 @@
 
 {% block body %}
 
+{% include "User/partials/header.html.twig" %}
+
     {% for package in packageList %}
 
     <img src="{{package.picture}}" >
@@ -11,5 +13,7 @@
     <p>{{package.description}}</p>
 
     {% endfor %}
+
+{% include "User/partials/footer.html.twig" %}
 
 {% endblock %}
