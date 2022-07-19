@@ -12,6 +12,7 @@ main {
 .top-section {
     position: sticky;
     top: 0;
+    width: 100%;
     background-color: #f6f0e9;
     z-index: 1;
 }
@@ -24,7 +25,7 @@ h1 {
 
 #map {
     margin: 20px 0;
-    height: 400px;
+    height: 300px;
     z-index: 0;
     
 }
@@ -110,6 +111,7 @@ input[type="checkbox"]:checked {
 /* ---------LIST OF RESTAURANT FORMATTING------- */
 
 
+
 .restaurant {
     background-color: #83907c;
     color: #f6f0e9;
@@ -137,8 +139,8 @@ a {
     padding: 20px;
     background-color: #131629;
     color: #f6f0e9;z-index: 10;
-   
     position: relative;
+    bottom: 0px;
     width: 100%;   
 }
 
@@ -152,7 +154,28 @@ a {
 
 @media screen and (min-width: 1024px) {
     main {
-        max-width: 80%;
+        
         margin: auto;
+        display: flex;
+        flex-direction: row-reverse;   
     }
+    
+
+    #map {
+        height: 75vh;
+    }
+
+    .bottom-section {
+        width: 30%;
+        margin-right: 70vw;
+        max-height: 75vh;
+    }
+
+    .top-section {
+        position: fixed;
+        width: 60%;
+        right: 10vw;
+    }
+
+   
 }
