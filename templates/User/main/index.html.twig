@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qualiextra{% endblock %}
+
+{% block body %}
+
+    {% for package in packageList %}
+
+    <img src="{{package.picture}}" >
+    <h1>{{package.name}}</h1>
+    <p>{{package.description}}</p>
+
+    {% endfor %}
+
+{% endblock %}
