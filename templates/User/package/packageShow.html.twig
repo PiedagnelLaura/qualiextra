@@ -42,20 +42,16 @@
                 <h3>Coordonnées de l'établissement</h3>
                 <p class="address_package--address">
                     <ul>
-                    {# {{ dump(establishment) }} #}
-                    {% for establishment in package %}
-                        <li>{{establishment.name}}</li> 
-                        <li>{{establishment.adresse}}</li>
-                        <li>Téléphone : {{establishment.phone}}</li>
-                        <li>E-mail : {{establishment.email}}</li>
-                    {% endfor %}
+
+                        <li>{{package.establishment.name}}</li> 
+                        <li>{{package.establishment.address}}</li>
+                        <li>Téléphone : {{package.establishment.phone}}</li>
+                        <li>E-mail : {{package.establishment.email}}</li>
+
                     </ul>
                 </p>
-
             </div>
-            
         </section>
-
         <div class="container--formBook_package">
             <h4>Si vous le souhaitez, vous pouvez me laisser un message :</h4>
             <form action="" method="post">

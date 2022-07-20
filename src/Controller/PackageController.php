@@ -31,11 +31,9 @@ class PackageController extends AbstractController
     {
         // Alternative pour accéder au Repository de l'entité Post on se sert de ManagerRegistry pour récupéré le repository
         $PackageRepository = $doctrine->getRepository(Package::class);
-        $EstablishmentRepository = $doctrine->getRepository(Establishment::class);
 
         $package = $PackageRepository->find($id);
-        $establishment = $EstablishmentRepository->find($id);
-
+        
         // Post not found ?
         if ($package === null) {
             throw $this->createNotFoundException('Package don\'t find');
@@ -43,7 +41,7 @@ class PackageController extends AbstractController
 
         return $this->render('User/package/packageShow.html.twig', [
             'package' => $package,
-            'establishment' => $establishment
+            
         ]);
     }
 }
