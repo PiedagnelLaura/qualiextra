@@ -44,3 +44,71 @@
 .footer-lien:hover {
     color: #7A8C73;
 }
+
+
+/*Detail package page*/
+
+.container{
+    width: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+    color: #131629;
+    display: block;
+}
+
+.container-fluid{
+    margin: auto;
+}
+
+.title_package,
+.container--map_package,
+.container--package_picture,
+.container--description_package,
+.container--validity_package,
+.container--address_package,
+.container--formBook_package{
+    padding: 2%;
+    width: 100%;
+}
+
+.title_package{
+    text-align: center;
+    
+}
+
+
+.container--map_package{
+    justify-content: center;
+}
+
+.container--package_picture{
+    width: calc(100%/2);
+    display: flex;
+    
+}
+
+.container--description_package{
+    width: 50em;
+}
+
+
+.container--validity_address{
+    display: flex;
+    margin-left: 12%;
+    
+}
+
+
+
+.container--validity_package,
+.container--address_package{
+    width: calc(100%/2);
+    border: 6px solid #7A8C73;
+    margin: 2% 2%;
+}
+
+.container--formBook_package{
+    border: 6px solid #7A8C73 ;
+    margin: 5% 8% 8% 11%;
+}
+

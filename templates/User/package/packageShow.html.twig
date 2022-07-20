@@ -1,49 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PackageController!{% endblock %}
+{% block title %} {{package.name}} {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% include "User/partials/header.html.twig" %}
 
-<body>
-    <main>
+    <main class="container">
         <section class="container-fluid">
-            <h1>Titre du package</h1>
+            <h1 class="title_package">{{package.name}}</h1>
 
-            <div>
+            <div class="container--map_package">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.062338256993!2d2.3470435508708123!3d48.83794960999873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671ec84e10bf1%3A0x32a625634401eeb7!2sH%C3%B4tel%20Monte%20Cristo%20Paris!5e0!3m2!1sfr!2sfr!4v1658297449813!5m2!1sfr!2sfr"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    width="900" height="250" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
-            <div>
-                <img src="https://picsum.photos/id/75/450/300" width="50%" alt="">
-                <img src="https://picsum.photos/id/76/450/300" width="50%" alt="">
+            <div class="container--package_picture">
+                <img src="{{package.picture}}"  alt="{{package.picture}}">
+                <img src="{{package.picture}}"  alt="{{package.picture}}">
             </div>
 
-            <div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia illum ut, excepturi alias laboriosam
-                    voluptates fugiat maiores dicta magni et?
+            <div class="container--description_package">
+                <p>{{package.description}}
+                </p>
+                <p>
+                    <img src="{{ asset('/asset/image-package/euro.png') }}" alt="price image">  {{package.price}}
                 </p>
             </div>
 
-            <section>
-                <div>
-                    <h3>horaire et jour d'ouverture</h3>
-
+            <section class="container--validity_address">
+                <div class="container--validity_package">
+                    <h3>Date de validité</h3>
+                        <ul>
+                            <li>{{package.date|date('d/m/Y')}}</li>
+                        </ul>
                 </div>
 
-                <div>
-                    <h3>coordonnées de l'établissement</h3>
+                <div class="container--address_package">
+                    <h3>Coordonnées de l'établissement</h3>
+                    <p class="address_package--address">
+                        <ul>
+                        {% for establishment in package %}
+                            <li>{{package.name}}</li> 
+                            <li>{{package.adresse}}</li>
+                            <li>Téléphone : {{package.phone}}</li>
+                            <li>E-mail : {{package.email}}</li>
+                        {% endfor %}
+                        </ul>
+                    </p>
+
                 </div>
                 
             </section>
 
-            <div class="">
+            <div class="container--formBook_package">
                 <h4>Si vous le souhaitez, vous pouvez me laisser un message :</h4>
                 <form action="" method="post">
                     <fieldset class="">
@@ -67,5 +78,5 @@
 
         </section>
     </main>
-</body>
+{% include "User/partials/footer.html.twig" %}
 {% endblock %}

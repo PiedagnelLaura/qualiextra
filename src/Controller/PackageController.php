@@ -37,7 +37,7 @@ class PackageController extends AbstractController
             throw $this->createNotFoundException('Package don\'t find');
         }
 
-        return $this->render('package/packageShow.html.twig', [
+        return $this->render('User/package/packageShow.html.twig', [
             'package' => $package,
         ]);
     }
