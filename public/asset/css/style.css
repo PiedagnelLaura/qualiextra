@@ -16,6 +16,23 @@
     color: #7A8C73;
 }
 
+.navbar-toggler-color {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba(246,240,233,0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+}
+
+/*Main*/
+
+    /**Card**/
+.main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 35em;
+    margin: 3em;
+}
+
 /*Footer*/
 
 .footer-color {
