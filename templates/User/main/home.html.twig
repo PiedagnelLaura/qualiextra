@@ -13,6 +13,7 @@
             {% for type in typeList %}
 
             <div class="bloc-type">
+                <div class="icon-{{type.name|slug|lower}} bloc-icon"></div>
                 <a href="#{{type.name|slug|lower}}" class="lien-type">
                 {{type.name}}
                 </a>

@@ -23,6 +23,30 @@
 /*Main*/
 
     /** Nav Filtre Type **/
+
+.icon-experience-hoteliere {
+    background: url("../icon/hotel-solid.svg") no-repeat;
+}
+
+.icon-degustation-de-spiritueux {
+    background: url("../icon/wine-glass-solid.svg") no-repeat;
+}
+
+.icon-diner {
+    background: url("../icon/utensils-solid.svg") no-repeat;
+}
+
+.icon-experience-atypique {
+    background: url("../icon/mountain-sun-solid.svg") no-repeat;
+}
+
+.bloc-icon {
+    display: block;
+    padding: 8px;
+    align-self: center;
+    margin-right: 7px;
+}
+
 .filtre-type {
     display: flex;
     justify-content: space-evenly;
@@ -32,7 +56,8 @@
 .bloc-type {
     color: #121629;
     border-radius: 30px;
-    padding: 4px 6px 4px 6px;
+    padding: 4px 6px;
+    display: flex;
 }
 
 .bloc-type:hover {
