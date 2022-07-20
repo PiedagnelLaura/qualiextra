@@ -22,15 +22,59 @@
 
 /*Main*/
 
-    /**Card**/
+    /** Nav Filtre Type **/
+.filtre-type {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em;
+}
+
+.bloc-type {
+    color: #121629;
+    border-radius: 30px;
+    padding: 4px 6px 4px 6px;
+    border: solid 1px #7A8C73;
+}
+
+.bloc-type:hover {
+    background-color: #7A8C73;
+}
+
+.lien-type {
+    text-decoration: none;
+    color: #121629;
+}
+
+.lien-type:hover {
+    color: #121629;
+}
+
+@media screen and (max-width: 720px) {
+
+.filtre {
+    display: none;
+}
+}
+
+
+
+
+
+    /** Card **/
 .bloc-container {
     justify-content: center;
 }
 
 .card {
-    width: 35em;
-    margin: 3em;
+    width: 25em;
+    margin: 1em;
+    padding: 0;
 }
+
+    
+
+
+
 
 /*Footer*/
 
