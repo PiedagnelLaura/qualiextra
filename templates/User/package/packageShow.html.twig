@@ -6,22 +6,22 @@
 {% include "User/partials/header.html.twig" %}
 
 <main class="container-fluid">
-    <section class="container">
+    <section class="row">
         <h1 class="title_package">{{package.name}}</h1>
 
-        <div class="container--map_package ">
+        <div class="container--map_package col-12">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.062338256993!2d2.3470435508708123!3d48.83794960999873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671ec84e10bf1%3A0x32a625634401eeb7!2sH%C3%B4tel%20Monte%20Cristo%20Paris!5e0!3m2!1sfr!2sfr!4v1658297449813!5m2!1sfr!2sfr"
                 width="900" height="250" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
-        <div class="container--package_picture ">
-            <img src="{{package.picture}}"  alt="{{package.picture}}">
-            <img src="{{package.picture}}"  alt="{{package.picture}}">
+        <div class="container--package_picture col-sm-4 col-md-12">
+
+                <img src="{{package.picture}}"  alt="{{package.picture}}">
         </div>
 
-        <div class="container--description_package ">
+        <div class="container--description_package col-12 col-md-10">
             <p>{{package.description}}
             </p>
             <p>
@@ -31,15 +31,15 @@
             </p>
         </div>
 
-        <section class="container--validity_address ">
-            <div class="container--validity_package">
+        <section class="container--validity_address row">
+            <div class="container--validity_package col-12 col-md-4">
                 <h3>Date de validité</h3>
                     
                     <p>{{package.date|date('d/m/Y')}}</p>
                     
             </div>
 
-            <div class="container--address_package">
+            <div class="container--address_package col col-md-4">
                 <h3>Contacter l'établissement</h3>
                 <div class="address_package--address">
                         <p>{{package.establishment.name}}</p> 
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </section>
-        <div class="container--formBook_package sm">
+        <div class="container--formBook_package col-8">
             <h3> Réservation </h3>
             <form action="" method="post">
                 <fieldset class="formBook_package--names">

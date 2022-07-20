@@ -55,15 +55,15 @@ h3{
     padding: 1%;
 }
 
-.container{
+/* .container{
     width: 100%;
-    margin-left: 2%;
+    margin-left: 6%;
     margin-right: 2%;
     color: #131629;
     display: block;
     font-size: 26px;
-    display: block;
-}
+
+} */
 
 /* .container-fluid{
     margin: auto;
@@ -77,7 +77,7 @@ h3{
 .container--address_package,
 .container--formBook_package{
     padding: 2%;
-    width: 100%;
+    
 }
 
 .title_package{
@@ -94,17 +94,20 @@ h3{
 .container--package_picture{
     display: flex;
     justify-content: center;
-    margin-left: 13%;
     
 }
 
+.carousel-item{
+    justify-content: center;
+}
 
 .container--package_picture img {
     padding: 2%;
+    width: auto;
     
 }
 .container--description_package{
-    width: 100%;
+    margin: auto;
     background-color:  #7A8C73;
     border: 6px outset #7A8C73;
 
@@ -118,18 +121,19 @@ h3{
 
 .container--validity_address{
     display: flex;
-    align-items :flex-start
+    align-items :flex-start;
+    justify-content: center;
 }
 
 
 .container--validity_package{
-    width: 50%;
+
     border: 6px outset #7A8C73;
     margin: 2% 2%;
     text-align: center;
 }
 .container--address_package{
-    width: 50%;
+
     border: 6px outset #7A8C73;
     margin: 2% 2%;
     text-align: center;
@@ -137,7 +141,12 @@ h3{
 
 }
 
-/****** Button contact ***********/
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* Button contact  */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .button {    
     position: relative; 
     padding: 2% 2%;
@@ -202,13 +211,16 @@ top: 0;
 height: 100%;
 }
 
-/*****************booking's form ******************************/
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* booking's form  */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .container--formBook_package{
     border: 6px outset #7A8C73 ;
     border-radius: 10px;
-    margin: 5% 8% 8% 11%;
     justify-content: center;
+    margin: auto;
+    margin-bottom: 6%;
 }
 
 .container--formBook_package h3{
@@ -221,7 +233,6 @@ form{
     flex-wrap: nowrap;
     align-content: stretch;
     justify-content: center;
-    align-items: center;
     margin: 2%;
 
 }
@@ -230,6 +241,7 @@ form{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 4%;
 }
 
 .input-book{
@@ -238,17 +250,18 @@ form{
 }
 
 .formBook_package--form_date{
-    margin-top: 2%;
-    
-    
+
+    margin: auto;
+
 }
 
 
 .formBook_package--form_date div{
-    width: 37%;
+    width: 55%;
     margin: auto;
     justify-content: center;
-    margin-top: 2%;
+    margin-top: 6%;
+    
 }
 
 
