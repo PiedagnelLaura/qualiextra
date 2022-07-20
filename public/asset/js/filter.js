@@ -11,6 +11,13 @@ const filter = {
         for( const styleCheckbox of stylesCheckboxList) {
             styleCheckbox.addEventListener('click', filter.handleClickStyle);
         }
+
+        // we put a listener on the checkboxes tag
+        const tagsCheckboxList = document.querySelectorAll('.tag-checkbox');
+        for( const tagCheckbox of tagsCheckboxList) {
+            tagCheckbox.addEventListener('change', filter.handleChangeTag);
+        }
+        
     },
 
     /**
@@ -61,6 +68,47 @@ const filter = {
            }
             
         }
+    },
+
+    /**
+     * when you select a checkbox, you filter the list of restaurants
+     */
+     handleChangeTag: function () {
+        const tagsCheckboxList = document.querySelectorAll('.tag-checkbox');
+        let listTagsChecked = [];
+        for( const tagCheckbox of tagsCheckboxList) {
+            if (tagCheckbox.checked) {
+                listTagsChecked.push(tagCheckbox.id);
+            }
+            
+        }
+        
+        // we get the list of restaurants
+        let restaurantList = document.querySelectorAll('.establishment');
+        
+        for( const restaurant of restaurantList) {
+            // For each restaurant, we retrieve the tags associated with it
+           let  tagsOfRestaurant = restaurant.dataset.tag;
+           //console.log(tagsOfRestaurant);
+           restaurantTagArray = tagsOfRestaurant.split(" ");
+           //console.log(restaurantTagArray);
+
+           let counter = 0;
+           for (let i=0; i< restaurantTagArray.length -1; i++) {
+                if (listTagsChecked.includes(restaurantTagArray[i])) {
+                    counter++;
+                   
+                }
+           }
+           console.log(counter);
+           if (counter !=0) {
+            restaurant.classList.remove("d-none");
+           }
+           else {
+            restaurant.classList.add("d-none");
+           }  
+        }
     }
 };
+
 

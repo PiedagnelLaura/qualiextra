@@ -41,10 +41,10 @@
 
 						</div>
 						<div class="select-filter">
-							<p>Les plus</p>
+							<p>Equipements</p>
 							{% for tag in listTag %}
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" id="{{tag.name}}" checked>
+									<input class="form-check-input tag-checkbox" type="checkbox" value="" id="{{tag.name}}" checked>
 									<label class="form-check-label" for="flexCheckChecked">
 										{{tag.name}}
 									</label>
@@ -85,10 +85,15 @@
 				</aside>
 				<div class="establishmentList">
 					{% for establishment in listEstablishment %}
-						<a class="establishment" data-name="{{establishment.style.name}}" href="#">
+					
+					
+						<a class="establishment" data-name="{{establishment.style.name}}" data-tag="{% for tag in establishment.getTags() %}{{tag.name}} {% endfor %}" href="#">
 							<div class="restaurant">
 								<h3>{{establishment.name}}</h3>
 								<p>{{establishment.address}}</p>
+								{% for tag in establishment.getTags() %}
+								<p>{{tag.name}} </p>
+								{% endfor %}
 							</div>
 						</a>
 					{% else %}
