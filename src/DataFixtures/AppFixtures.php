@@ -8,6 +8,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 use App\Entity\Package;
+use App\Entity\Style;
 use App\Entity\Type;
 use App\Entity\User;
 use App\Entity\Tag;
@@ -115,6 +116,34 @@ class AppFixtures extends Fixture
         $usersList[] = $userPro;
         $manager->persist($userPro);
 
+        //Styles
+        $stylesList= [];
+        //--------japanese style-------
+        $stylejapanese = new Style();
+        $stylejapanese->setName('japonnais');
+        $stylesList[]= $stylejapanese;
+        $manager->persist($stylejapanese);
+        //--------french style-------
+        $stylefrench = new Style();
+        $stylefrench->setName('français');
+        $stylesList[]= $stylefrench;
+        $manager->persist($stylefrench);
+        //--------italian style-------
+        $styleitalian = new Style();
+        $styleitalian->setName('italien');
+        $stylesList[]= $styleitalian;
+        $manager->persist($styleitalian);
+        //--------indian style-------
+        $styleindian = new Style();
+        $styleindian->setName('indien');
+        $stylesList[]= $styleindian;
+        $manager->persist($styleindian);
+        //--------vietnamian style-------
+        $stylevietnamian = new Style();
+        $stylevietnamian->setName('vietnamien');
+        $stylesList[]= $stylevietnamian;
+        $manager->persist($stylevietnamian);
+
 
         //Establishments
         $establishmentsList= [];
@@ -128,7 +157,7 @@ class AppFixtures extends Fixture
         $establishment->setEmail($faker->email());
         $establishment->setPrice(rand(5,100));
         $establishment->setWebsite($faker->url());   
-        $style = ( mt_rand(1,2) === 1 ) ? "français" : "japonnais";    
+        $style = $stylesList[mt_rand(0,count($stylesList)-1)];   
         $establishment->setStyle($style);
         $establishment->setDescription($faker->realText(100));
         $establishment->setUser($usersList[2]);
