@@ -6,16 +6,11 @@ const filter = {
         const iconCloseElmt = document.querySelector('#filter-close');
         iconCloseElmt.addEventListener('click', filter.handleClickClose);
 
-        // we put a listener on the checkboxes style
-        const stylesCheckboxList = document.querySelectorAll('.style-checkbox');
-        for( const styleCheckbox of stylesCheckboxList) {
-            styleCheckbox.addEventListener('click', filter.handleClickStyle);
-        }
-
-        // we put a listener on the checkboxes tag
-        const tagsCheckboxList = document.querySelectorAll('.tag-checkbox');
-        for( const tagCheckbox of tagsCheckboxList) {
-            tagCheckbox.addEventListener('change', filter.handleChangeTag);
+        
+        // we put a listener on the checkboxes filters
+        const filtersCheckboxList = document.querySelectorAll('.checkbox-filters');
+        for( const filterCheckbox of filtersCheckboxList) {
+            filterCheckbox.addEventListener('change', filter.handleChangefilter);
         }
         
     },
@@ -43,42 +38,15 @@ const filter = {
     /**
      * when you select a checkbox, you filter the list of restaurants
      */
-    handleClickStyle: function (evt) {
-        // the style associated with the check box
-        let style =evt.target.id;
+     handleChangefilter: function () {
 
-        //we look if the checkbox is checked or not
-        let checkedBool =evt.target.checked;
-
-        // we get the list of restaurants
-        let restaurantList = document.querySelectorAll('.establishment');
-        
-        for( const restaurant of restaurantList) {
-            // For each restaurant, we retrieve the style associated with it
-           let  styleOfRestaurant = restaurant.dataset.name;
-
-           // if the box is not checked, we remove the restaurant from the list
-           if (checkedBool ==false && styleOfRestaurant === style) {
-            restaurant.classList.add("d-none");
-           }
-
-           // if the box is checked, we put the restaurant in the list
-           if (checkedBool ==true && styleOfRestaurant === style) {
-            restaurant.classList.remove("d-none");
-           }
-            
-        }
-    },
-
-    /**
-     * when you select a checkbox, you filter the list of restaurants
-     */
-     handleChangeTag: function () {
-        const tagsCheckboxList = document.querySelectorAll('.tag-checkbox');
-        let listTagsChecked = [];
-        for( const tagCheckbox of tagsCheckboxList) {
-            if (tagCheckbox.checked) {
-                listTagsChecked.push(tagCheckbox.id);
+        // we get the list of filters
+        const filtersCheckboxList = document.querySelectorAll('.checkbox-filters');
+        let listFiltersChecked = [];
+        for( const filterCheckbox of filtersCheckboxList) {
+            if (filterCheckbox.checked) {
+                // if a filter is checked, it is added in a table
+                listFiltersChecked.push(filterCheckbox.id);
             }
             
         }
@@ -87,21 +55,23 @@ const filter = {
         let restaurantList = document.querySelectorAll('.establishment');
         
         for( const restaurant of restaurantList) {
-            // For each restaurant, we retrieve the tags associated with it
-           let  tagsOfRestaurant = restaurant.dataset.tag;
-           //console.log(tagsOfRestaurant);
-           restaurantTagArray = tagsOfRestaurant.split(" ");
-           //console.log(restaurantTagArray);
+            // For each restaurant, we retrieve the filters associated with it
+           let  filtersOfRestaurant = restaurant.dataset.name;
+           
+           // and put them in a table
+           restaurantFilterArray = filtersOfRestaurant.split(" ");
+           
 
            let counter = 0;
-           for (let i=0; i< restaurantTagArray.length -1; i++) {
-                if (listTagsChecked.includes(restaurantTagArray[i])) {
-                    counter++;
-                   
+           for (let i=0; i< restaurantFilterArray.length ; i++) {
+                // if the restaurant filter is one of the checked filters, the counter is incremented
+                if (listFiltersChecked.includes(restaurantFilterArray[i])) {
+                    counter++; 
                 }
            }
-           console.log(counter);
-           if (counter !=0) {
+          
+           // if the counter is equal to the number of checked filters, the restaurant is displayed
+           if (counter ==listFiltersChecked.length) {
             restaurant.classList.remove("d-none");
            }
            else {
