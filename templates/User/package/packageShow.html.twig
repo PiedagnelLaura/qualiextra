@@ -6,7 +6,7 @@
 {% include "User/partials/header.html.twig" %}
 
 <main class="container">
-    <section class="container-fluid">
+    <section class="container-fluid ">
         <h1 class="title_package">{{package.name}}</h1>
 
         <div class="container--map_package">
@@ -16,7 +16,7 @@
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
-        <div class="container--package_picture">
+        <div class="container--package_picture ">
             <img src="{{package.picture}}"  alt="{{package.picture}}">
             <img src="{{package.picture}}"  alt="{{package.picture}}">
         </div>
@@ -25,8 +25,9 @@
             <p>{{package.description}}
             </p>
             <p>
-                <img src="{{ asset('/asset/image-package/euro.png') }}" alt="price image">  
-                {{package.price}}
+                {{package.price}} €
+                {# <img src="{{ asset('/asset/image-package/euro.png') }}" alt="price image">   #}
+                
             </p>
         </div>
 
@@ -39,36 +40,41 @@
             </div>
 
             <div class="container--address_package">
-                <h3>Coordonnées de l'établissement</h3>
-                <p class="address_package--address">
-                    <ul>
+                <h3>Contacter l'établissement</h3>
+                <div class="address_package--address">
+                        <p>{{package.establishment.name}}</p> 
+                        <p>{{package.establishment.address}}</p>
+                        <p href="tel:+33{{package.establishment.phone}}">Téléphone : {{package.establishment.phone}}</p>
+                        <p>E-mail : {{package.establishment.email}}</p>
+                        <a class="address_package--address button" href="mailto:{{package.establishment.email}}"><div class="button from-center">Nous contacter</div></a>
 
-                        <li>{{package.establishment.name}}</li> 
-                        <li>{{package.establishment.address}}</li>
-                        <li>Téléphone : {{package.establishment.phone}}</li>
-                        <li>E-mail : {{package.establishment.email}}</li>
-
-                    </ul>
-                </p>
+                </div>
             </div>
         </section>
         <div class="container--formBook_package">
-            <h4>Si vous le souhaitez, vous pouvez me laisser un message :</h4>
+            <h3> Réservation </h3>
             <form action="" method="post">
-                <fieldset class="">
-                    <label class="" for="lastname"> Nom</label>
-                    <input type="text" name="lastname" id="lastname" placeholder="Prénom" require>
-                    <label class="" for="firstname">Prénom</label>
-                    <input type="text" name="firstname" id="firstname" placeholder="Prénom" require> <br>
-                    <label class="" for="email"> E-mail</label>
-                    <input type="email" name="email" id="email" placeholder="@ E-mail" require>
+                <fieldset class="formBook_package--names">
+                    <div class="input-book">
+                        <label class="" for="lastname"> Nom</label>
+                        <input type="text" name="lastname" id="lastname" placeholder="Nom" require>
+                    </div>   
+                    <div class="input-book">
+                        <label class="" for="firstname">Prénom</label>
+                        <input type="text" name="firstname" id="firstname" placeholder="Prénom" require> <br>
+                    </div>      
+                    <div class="input-book">    
+                        <label class="" for="email"> E-mail</label>
+                        <input type="email" name="email" id="email" placeholder="@ E-mail" require>
+                    </div>  
+
                 </fieldset>
 
-                <fieldset class="">
-                    <label class="" for="message">La date de réservation</label> <br>
+                <fieldset class="formBook_package--form_date">
+                    <label class="" for="date">La date de réservation</label> 
                     <input type="date" name="date" id="date" placeholder="date">
                     <br>
-                    <button type="submit"> Envoyer</button>
+                    <div class="button from-center" type="submit"> Envoyer</div>
                 </fieldset>
 
             </form>
