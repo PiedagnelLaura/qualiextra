@@ -5,78 +5,80 @@
 {% block body %}
 {% include "User/partials/header.html.twig" %}
 
-    <main class="container">
-        <section class="container-fluid">
-            <h1 class="title_package">{{package.name}}</h1>
+<main class="container">
+    <section class="container-fluid">
+        <h1 class="title_package">{{package.name}}</h1>
 
-            <div class="container--map_package">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.062338256993!2d2.3470435508708123!3d48.83794960999873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671ec84e10bf1%3A0x32a625634401eeb7!2sH%C3%B4tel%20Monte%20Cristo%20Paris!5e0!3m2!1sfr!2sfr!4v1658297449813!5m2!1sfr!2sfr"
-                    width="900" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="container--map_package">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.062338256993!2d2.3470435508708123!3d48.83794960999873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671ec84e10bf1%3A0x32a625634401eeb7!2sH%C3%B4tel%20Monte%20Cristo%20Paris!5e0!3m2!1sfr!2sfr!4v1658297449813!5m2!1sfr!2sfr"
+                width="900" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="container--package_picture">
+            <img src="{{package.picture}}"  alt="{{package.picture}}">
+            <img src="{{package.picture}}"  alt="{{package.picture}}">
+        </div>
+
+        <div class="container--description_package">
+            <p>{{package.description}}
+            </p>
+            <p>
+                <img src="{{ asset('/asset/image-package/euro.png') }}" alt="price image">  
+                {{package.price}}
+            </p>
+        </div>
+
+        <section class="container--validity_address">
+            <div class="container--validity_package">
+                <h3>Date de validité</h3>
+                    
+                    <p>{{package.date|date('d/m/Y')}}</p>
+                    
             </div>
 
-            <div class="container--package_picture">
-                <img src="{{package.picture}}"  alt="{{package.picture}}">
-                <img src="{{package.picture}}"  alt="{{package.picture}}">
-            </div>
-
-            <div class="container--description_package">
-                <p>{{package.description}}
+            <div class="container--address_package">
+                <h3>Coordonnées de l'établissement</h3>
+                <p class="address_package--address">
+                    <ul>
+                    {# {{ dump(establishment) }} #}
+                    {% for establishment in package %}
+                        <li>{{establishment.name}}</li> 
+                        <li>{{establishment.adresse}}</li>
+                        <li>Téléphone : {{establishment.phone}}</li>
+                        <li>E-mail : {{establishment.email}}</li>
+                    {% endfor %}
+                    </ul>
                 </p>
-                <p>
-                    <img src="{{ asset('/asset/image-package/euro.png') }}" alt="price image">  {{package.price}}
-                </p>
+
             </div>
-
-            <section class="container--validity_address">
-                <div class="container--validity_package">
-                    <h3>Date de validité</h3>
-                        <ul>
-                            <li>{{package.date|date('d/m/Y')}}</li>
-                        </ul>
-                </div>
-
-                <div class="container--address_package">
-                    <h3>Coordonnées de l'établissement</h3>
-                    <p class="address_package--address">
-                        <ul>
-                        {% for establishment in package %}
-                            <li>{{package.name}}</li> 
-                            <li>{{package.adresse}}</li>
-                            <li>Téléphone : {{package.phone}}</li>
-                            <li>E-mail : {{package.email}}</li>
-                        {% endfor %}
-                        </ul>
-                    </p>
-
-                </div>
-                
-            </section>
-
-            <div class="container--formBook_package">
-                <h4>Si vous le souhaitez, vous pouvez me laisser un message :</h4>
-                <form action="" method="post">
-                    <fieldset class="">
-                        <label class="" for="lastname"> Nom</label>
-                        <input type="text" name="lastname" id="lastname" placeholder="Prénom" require>
-                        <label class="" for="firstname">Prénom</label>
-                        <input type="text" name="firstname" id="firstname" placeholder="Prénom" require> <br>
-                        <label class="" for="email"> E-mail</label>
-                        <input type="email" name="email" id="email" placeholder="@ E-mail" require>
-                    </fieldset>
-
-                    <fieldset class="">
-                        <label class="" for="message">La date de réservation</label> <br>
-                        <input type="date" name="date" id="date" placeholder="date">
-                        <br>
-                        <button type="submit"> Envoyer</button>
-                    </fieldset>
-
-                </form>
-            </div>
-
+            
         </section>
-    </main>
+
+        <div class="container--formBook_package">
+            <h4>Si vous le souhaitez, vous pouvez me laisser un message :</h4>
+            <form action="" method="post">
+                <fieldset class="">
+                    <label class="" for="lastname"> Nom</label>
+                    <input type="text" name="lastname" id="lastname" placeholder="Prénom" require>
+                    <label class="" for="firstname">Prénom</label>
+                    <input type="text" name="firstname" id="firstname" placeholder="Prénom" require> <br>
+                    <label class="" for="email"> E-mail</label>
+                    <input type="email" name="email" id="email" placeholder="@ E-mail" require>
+                </fieldset>
+
+                <fieldset class="">
+                    <label class="" for="message">La date de réservation</label> <br>
+                    <input type="date" name="date" id="date" placeholder="date">
+                    <br>
+                    <button type="submit"> Envoyer</button>
+                </fieldset>
+
+            </form>
+        </div>
+
+    </section>
+</main>
 {% include "User/partials/footer.html.twig" %}
 {% endblock %}

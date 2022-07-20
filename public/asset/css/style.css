@@ -54,6 +54,7 @@
     margin-right: 2%;
     color: #131629;
     display: block;
+    font-size: 26px;
 }
 
 .container-fluid{
@@ -87,10 +88,19 @@
     
 }
 
+.container--package_picture img {
+    padding: 2%;
+}
 .container--description_package{
-    width: 50em;
+    width: 34em;
+    background-color:  #7A8C73;
+
 }
 
+.container--description_package img{
+    padding: 1%;
+    
+}
 
 .container--validity_address{
     display: flex;
@@ -105,6 +115,7 @@
     width: calc(100%/2);
     border: 6px solid #7A8C73;
     margin: 2% 2%;
+    list-style: none;
 }
 
 .container--formBook_package{
