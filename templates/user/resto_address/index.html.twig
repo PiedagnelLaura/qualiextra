@@ -30,33 +30,26 @@
 					<div class="filter-checkbox">
 						<div class="select-filter">
 							<p>Style</p>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="japonais" checked>
-								<label class="form-check-label" for="flexCheckChecked">
-									japonais
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="italien" checked>
-								<label class="form-check-label" for="flexCheckChecked">
-									italien
-								</label>
-							</div>
+							{% for style in listStyle %}
+								<div class="form-check">
+									<input class="form-check-input style-checkbox" type="checkbox" value="" id="{{style.name}}" name="{{style.name}}" checked>
+									<label class="form-check-label" for="flexCheckChecked">
+										{{style.name}}
+									</label>
+								</div>
+							{% endfor %}
+
 						</div>
 						<div class="select-filter">
 							<p>Les plus</p>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="rooftop" checked>
-								<label class="form-check-label" for="flexCheckChecked">
-									rooftop
-								</label>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="piscine" checked>
-								<label class="form-check-label" for="flexCheckChecked">
-									piscine
-								</label>
-							</div>
+							{% for tag in listTag %}
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="{{tag.name}}" checked>
+									<label class="form-check-label" for="flexCheckChecked">
+										{{tag.name}}
+									</label>
+								</div>
+							{% endfor %}
 						</div>
 					</div>
 
@@ -84,7 +77,7 @@
 					<p>Adresse</p>
 					<img src="#" alt="">
 					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab dolore impedit aut voluptas?
-											Reprehenderit quo pariatur accusantium voluptatum! Ad, atque dolorum quos corporis iusto commodi cupiditate vel necessitatibus cum asperiores!</p>
+																	Reprehenderit quo pariatur accusantium voluptatum! Ad, atque dolorum quos corporis iusto commodi cupiditate vel necessitatibus cum asperiores!</p>
 					<h4>Horraires</h4>
 					<p>Lundi à Vendredi</p>
 					<h4>Contact</h4>
@@ -92,7 +85,7 @@
 				</aside>
 				<div class="establishmentList">
 					{% for establishment in listEstablishment %}
-						<a class="establishment" href="#">
+						<a class="establishment" data-name="{{establishment.style.name}}" href="#">
 							<div class="restaurant">
 								<h3>{{establishment.name}}</h3>
 								<p>{{establishment.address}}</p>
