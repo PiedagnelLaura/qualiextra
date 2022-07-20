@@ -71,21 +71,39 @@
     padding: 0;
 }
 
-.package-detail:hover {
-    
-}
 
 @media screen and (max-width: 540px) {
 
 .card {
     width: 100%;
+    position: relative;
 }
 }
 
+
+
 .package-detail {
-    background-color: #325564;
+    background-color: rgba(50, 85, 100, 0.8);
     color: #F6F0E9;
+    position: absolute;
+    bottom: 0;
+    height: 35%;
+    padding: 6px;
+    
 }
+
+@media screen and (min-width: 720px) {
+
+.card:hover .card-body {
+    display: block;
+}
+.card-body {
+    display: none;
+}
+
+}
+
+
 
 
 
