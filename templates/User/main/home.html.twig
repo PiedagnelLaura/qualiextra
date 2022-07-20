@@ -9,34 +9,36 @@
     <main class="container-fluid" >
 
         <div class="filtre-type filtre">
+
             {% for type in typeList %}
+
             <div class="bloc-type">
-            
                 <a href="#" class="lien-type">
                 {{type.name}}
                 </a>
-            
-            
             </div>
+
             {% endfor %}
         </div>
+
         <div class="row bloc-container">
+
             {% for package in packageList %}
+
             <div class="card col-xs-1 col-sm-2 col-md-3">
-                <img src="{{package.picture}}" class="card-img-top" alt="...">
+
+                <a href="#" class="">
+                    <img src="{{package.picture}}" class="card-img-top" alt="...">
+                </a>
+
+                <div class="card-body package-detail">
+                    <h5 class="">{{package.name}}</h5>
+                    <p class="">{{package.description}}</p>
+                </div>
             </div>
-    <!--
-    <h1>{{package.name}}</h1>
-    <p>{{package.description}}</p> -->
+    
             {% endfor %}
         </div>
-
-        
-
-        
-
-
-
     
     </main>
 

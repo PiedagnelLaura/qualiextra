@@ -71,6 +71,28 @@
     padding: 0;
 }
 
+.package-detail:hover {
+    
+}
+
+@media screen and (max-width: 540px) {
+
+.card {
+    width: 100%;
+}
+}
+
+.package-detail {
+    background-color: #325564;
+    color: #F6F0E9;
+}
+
+
+
+
+
+
+
     
 
 
