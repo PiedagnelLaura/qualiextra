@@ -131,7 +131,9 @@ h1 {
     align-items: center;
 }
 
-
+.options-list {
+    text-align: left;
+}
 
 .filter-checkbox {
     display: flex;
@@ -143,7 +145,16 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-    background: #131629;
+    background-color: #131629;
+}
+
+input[type="radio"] {
+    background-color: #83907c;
+    
+}
+
+input[type="radio"]:checked {
+    background-color: #131629;
 }
 
 .select-price {
@@ -151,6 +162,8 @@ input[type="checkbox"]:checked {
     height: 40px;
     margin: 20px;
     text-align: center;
+    background-color: #83907c;
+    color: #f6f0e9;
 }
 
 

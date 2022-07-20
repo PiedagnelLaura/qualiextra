@@ -33,8 +33,8 @@
 						<div class="select-filter">
 							<p>Style</p>
 							{% for style in listStyle %}
-								<div class="form-check">
-									<input class="form-check-input checkbox-filters" type="checkbox" value="" id="{{style.name}}" name="{{style.name}}">
+								<div class="form-check options-list">
+									<input class="form-check-input checkbox-filters" type="radio" value="" id="{{style.name}}" name="style">
 									<label class="form-check-label" for="flexCheckChecked">
 										{{style.name}}
 									</label>
@@ -45,7 +45,7 @@
 						<div class="select-filter">
 							<p>Equipements</p>
 							{% for tag in listTag %}
-								<div class="form-check">
+								<div class="form-check options-list">
 									<input class="form-check-input checkbox-filters" type="checkbox" value="" id="{{tag.name}}">
 									<label class="form-check-label" for="flexCheckChecked">
 										{{tag.name}}
