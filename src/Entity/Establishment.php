@@ -45,11 +45,6 @@ class Establishment
     private $website;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $style;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $openingHour;
@@ -91,6 +86,12 @@ class Establishment
      * @ORM\Column(type="float", nullable=true)
      */
     private $price;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Style::class, inversedBy="establishments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $style;
 
     public function __construct()
     {
@@ -163,17 +164,7 @@ class Establishment
         return $this;
     }
 
-    public function getStyle(): ?string
-    {
-        return $this->style;
-    }
-
-    public function setStyle(string $style): self
-    {
-        $this->style = $style;
-
-        return $this;
-    }
+   
 
     public function getOpeningHour(): ?\DateTimeInterface
     {
@@ -302,6 +293,18 @@ class Establishment
     public function setPrice(?float $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getStyle(): ?Style
+    {
+        return $this->style;
+    }
+
+    public function setStyle(?Style $style): self
+    {
+        $this->style = $style;
 
         return $this;
     }
