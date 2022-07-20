@@ -39,14 +39,6 @@ class PackageRepository extends ServiceEntityRepository
         }
     }
 
-    public function packageListOrderByType() {
-        return $this->createQueryBuilder('package_id3')
-        ->from('package_type', 'p_t')
-        ->orderBy('type_id', 'ASC')
-        ->getQuery()
-        ->getResult();
-    }
-
 //    /**
 //     * @return Package[] Returns an array of Package objects
 //     */

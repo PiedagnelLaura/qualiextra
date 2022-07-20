@@ -33,11 +33,10 @@
     color: #121629;
     border-radius: 30px;
     padding: 4px 6px 4px 6px;
-    border: solid 1px #7A8C73;
 }
 
 .bloc-type:hover {
-    background-color: #7A8C73;
+    box-shadow: 0px 0px 25px 10px rgb(0 0 0 / 20%);
 }
 
 .lien-type {
@@ -63,6 +62,8 @@
     /** Card **/
 .bloc-container {
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .card {

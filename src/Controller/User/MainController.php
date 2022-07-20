@@ -13,16 +13,14 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="home", methods={"GET"})
      */
-    public function home(PackageRepository $packageRepository, TypeRepository $typeRepository): Response
-    {
-        $packageList = $packageRepository->findAll();
+    public function home(TypeRepository $typeRepository): Response
+    {  
         $typeList = $typeRepository->findAll();
-
+        
 
         return $this->render(
             'User/main/home.html.twig', 
             [
-                'packageList' => $packageList,
                 'typeList' => $typeList,
             ]
         );
