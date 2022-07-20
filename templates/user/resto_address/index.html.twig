@@ -5,105 +5,111 @@
 
 {% block body %}
 	<main>
-    
-		<section class="top-section">
+
+		<h1>Les Bonnes Adresses</h1>
+
+		<div class="title-filter">
+
+			<h2>Liste des restaurants</h2>
+			<button id="filter" class="btn mb-2">Filtrer et trier</button>
 
 
-			<h1>Les Bonnes Adresses</h1>
+		</div>
 
-			<div class="title-filter">
+		<div class="contener">
 
-				<h2>Liste des restaurants</h2>
-				<button id="filter" class="btn mb-2">Filtrer et trier</button>
+			<section class="top-section">
 
 
-			</div>
-			<div class="filter-case d-none">
-				<div class="close">
-					<i id="filter-close" class="fa-solid fa-xmark"></i>
-				</div>
+				<div class="filter-case d-none">
+					<div class="close">
+						<i id="filter-close" class="fa-solid fa-xmark"></i>
+					</div>
 
-				<h3>Filtrer et trier</h3>
-				<div class="filter-checkbox">
-					<div class="select-filter">
-						<p>Style</p>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="japonais" checked>
-							<label class="form-check-label" for="flexCheckChecked">
-								japonais
-							</label>
+					<h3>Filtrer et trier</h3>
+					<div class="filter-checkbox">
+						<div class="select-filter">
+							<p>Style</p>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="japonais" checked>
+								<label class="form-check-label" for="flexCheckChecked">
+									japonais
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="italien" checked>
+								<label class="form-check-label" for="flexCheckChecked">
+									italien
+								</label>
+							</div>
 						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="italien" checked>
-							<label class="form-check-label" for="flexCheckChecked">
-								italien
-							</label>
+						<div class="select-filter">
+							<p>Les plus</p>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="rooftop" checked>
+								<label class="form-check-label" for="flexCheckChecked">
+									rooftop
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="piscine" checked>
+								<label class="form-check-label" for="flexCheckChecked">
+									piscine
+								</label>
+							</div>
 						</div>
 					</div>
-					<div class="select-filter">
-						<p>Les plus</p>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="rooftop" checked>
-							<label class="form-check-label" for="flexCheckChecked">
-								rooftop
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="piscine" checked>
-							<label class="form-check-label" for="flexCheckChecked">
-								piscine
-							</label>
-						</div>
+
+
+					<select class="form-select select-price" aria-label=" select">
+						<option selected>Prix</option>
+						<option value="1">Croissant</option>
+						<option value="2">Décroissant</option>
+					</select>
+
+				</div>
+
+				<div id="map"></div>
+
+
+			</section>
+
+
+			<section class="bottom-section">
+				<aside class="details d-none">
+					<div class="closed">
+						<i id="details-close" class="fa-solid fa-xmark"></i>
 					</div>
+					<h3>Nom de l'établissement</h3>
+					<p>Adresse</p>
+					<img src="#" alt="">
+					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab dolore impedit aut voluptas?
+											Reprehenderit quo pariatur accusantium voluptatum! Ad, atque dolorum quos corporis iusto commodi cupiditate vel necessitatibus cum asperiores!</p>
+					<h4>Horraires</h4>
+					<p>Lundi à Vendredi</p>
+					<h4>Contact</h4>
+					<p>02 00 00 00 00</p>
+				</aside>
+				<div class="establishmentList">
+					{% for establishment in listEstablishment %}
+						<a class="establishment" href="#">
+							<div class="restaurant">
+								<h3>{{establishment.name}}</h3>
+								<p>{{establishment.address}}</p>
+							</div>
+						</a>
+					{% else %}
+
+						<em>Aucun établissement ne correspond à vos recherches</em>
+
+					{% endfor %}
 				</div>
 
 
-				<select class="form-select select-price" aria-label=" select">
-					<option selected>Prix</option>
-					<option value="1">Croissant</option>
-					<option value="2">Décroissant</option>
-				</select>
+			</section>
 
-			</div>
+		</div>
 
-			<div id="map"></div>
-
-
-		</section>
-
-
-		<section class ="bottom-section">
-			<aside class="details d-none">
-				<div class="closed">
-					<i id="details-close" class="fa-solid fa-xmark"></i>
-				</div>
-				<h3>Nom de l'établissement</h3>
-				<p>Adresse</p>
-				<img src="#" alt="">
-				<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab dolore impedit aut voluptas?
-					Reprehenderit quo pariatur accusantium voluptatum! Ad, atque dolorum quos corporis iusto commodi cupiditate vel necessitatibus cum asperiores!</p>
-				<h4>Horraires</h4>
-				<p>Lundi à Vendredi</p>
-				<h4>Contact</h4>
-				<p>02 00 00 00 00</p>
-			</aside>
-			<div class="establishmentList">
-				{% for establishment in listEstablishment %}
-					<a class="establishment" href="#">
-						<div class="restaurant">
-							<h3>{{establishment.name}}</h3>
-							<p>{{establishment.address}}</p>
-						</div>
-					</a>
-				{% else %}
-
-					<em>Aucun établissement ne correspond à vos recherches</em>
-
-				{% endfor %}
-			</div>
-
-
-		</section>
 
 	</main>
 

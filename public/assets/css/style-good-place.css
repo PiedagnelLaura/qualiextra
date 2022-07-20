@@ -10,8 +10,7 @@ main {
 }
 
 .top-section {
-    position: sticky;
-    top: 0;
+    
     width: 100%;
     background-color: #f6f0e9;
     z-index: 1;
@@ -25,9 +24,13 @@ h1 {
 
 #map {
     margin: 20px 0;
-    height: 300px;
+    height: 270px;
     z-index: 0;
     
+}
+
+.title-filter h2{
+    font-size: 1.3em;
 }
 
 
@@ -39,6 +42,7 @@ h1 {
     border-color: #315565;
     color: #f6f0e9;
     padding: 6px 10px;
+    font-size: 0.8em;
 }
 
 #filter:hover {
@@ -55,9 +59,9 @@ h1 {
     background-color: rgba(49, 85, 101, 0.9);
     color: #f6f0e9;
     width: 80%;
-    top:60%;
+    top:7%;
     left: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, 30%); 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -131,6 +135,11 @@ a {
     text-decoration: none;
 }
 
+.establishmentList {
+    height: 50vh;
+    overflow-y: scroll;
+}
+
 /* ---------RESTAURANT'S DETAILS FORMATTING------- */
 
 .details {
@@ -153,29 +162,49 @@ a {
 
 
 @media screen and (min-width: 1024px) {
+
     main {
-        
+        width: 80%;
+        margin: auto;
+    }
+    .contener {
         margin: auto;
         display: flex;
         flex-direction: row-reverse;   
     }
+    .bottom-section {
+        width: 40%;
+    }
     
 
     #map {
-        height: 75vh;
+        height: 80vh;
+        
     }
 
-    .bottom-section {
-        width: 30%;
-        margin-right: 70vw;
-        max-height: 75vh;
+    .details {
+        margin: 20px 0;
+        height: 80vh;
     }
 
-    .top-section {
-        position: fixed;
-        width: 60%;
-        right: 10vw;
+    .filter-case {
+        width: 25%;
+        left: 100%;
+        transform: translate(-100%, 30%); 
     }
+
+    .establishmentList {
+        height: 80vh;
+    }
+
+    .title-filter h2{
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+  
+
+    
 
    
 }
