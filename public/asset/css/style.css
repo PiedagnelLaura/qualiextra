@@ -78,9 +78,7 @@ h1 {
     
 }
 
-.title-filter h2{
-    font-size: 1.3em;
-}
+
 
 
 /* ---------FILTER FORMATTING------- */
@@ -132,6 +130,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
 }
+
 
 
 .filter-checkbox {
@@ -251,10 +250,5 @@ a {
         font-size: 2em;
         font-weight: bold;
     }
-
-  
-
-    
-
    
 }

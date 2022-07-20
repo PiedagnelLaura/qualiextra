@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Les Bonnes Adresses
 {% endblock %}
 
 {% block body %}
+	{% include "User/partials/header.html.twig" %}
 	<main>
 
 		<h1>Les Bonnes Adresses</h1>
@@ -32,7 +34,7 @@
 							<p>Style</p>
 							{% for style in listStyle %}
 								<div class="form-check">
-									<input class="form-check-input checkbox-filters" type="checkbox" value="" id="{{style.name}}" name="{{style.name}}" >
+									<input class="form-check-input checkbox-filters" type="checkbox" value="" id="{{style.name}}" name="{{style.name}}">
 									<label class="form-check-label" for="flexCheckChecked">
 										{{style.name}}
 									</label>
@@ -44,7 +46,7 @@
 							<p>Equipements</p>
 							{% for tag in listTag %}
 								<div class="form-check">
-									<input class="form-check-input checkbox-filters" type="checkbox" value="" id="{{tag.name}}" >
+									<input class="form-check-input checkbox-filters" type="checkbox" value="" id="{{tag.name}}">
 									<label class="form-check-label" for="flexCheckChecked">
 										{{tag.name}}
 									</label>
@@ -69,32 +71,44 @@
 
 
 			<section class="bottom-section">
-				<aside class="details d-none">
-					<div class="closed">
-						<i id="details-close" class="fa-solid fa-xmark"></i>
-					</div>
-					<h3>Nom de l'établissement</h3>
-					<p>Adresse</p>
-					<img src="#" alt="">
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab dolore impedit aut voluptas?
-																	Reprehenderit quo pariatur accusantium voluptatum! Ad, atque dolorum quos corporis iusto commodi cupiditate vel necessitatibus cum asperiores!</p>
-					<h4>Horraires</h4>
-					<p>Lundi à Vendredi</p>
-					<h4>Contact</h4>
-					<p>02 00 00 00 00</p>
-				</aside>
+				{% for establishment in listEstablishment %}
+
+
+					<aside class="details d-none" id="{{establishment.id}}">
+						<div class="closed">
+							<i id="details-close" class="fa-solid fa-xmark"></i>
+						</div>
+						<h3>{{establishment.name}}</h3>
+						<p>{{establishment.address}}</p>
+
+						<img src="{{establishment.picture}}" class="img-fluid">
+						<h4>Style :
+							{{establishment.style.name}}</h4>
+						<h4>
+							Equipements :
+
+							{% for tag in establishment.getTags() %}
+								{{tag.name}}
+							{% endfor %}
+						</h4>
+
+						<p>{{establishment.description}}</p>
+						<h4>Packages proposés par l'établissement</h4>
+						{% for packages in establishment.getPackages() %}
+
+							<a href="#">
+								{{packages.name}}</a>
+						{% endfor %}
+						<h4>Contact</h4>
+						<p>{{establishment.phone}}</p>
+					</aside>
+				{% endfor %}
 				<div class="establishmentList">
 					{% for establishment in listEstablishment %}
-					
-					
-						<a class="establishment" data-name="{% for tag in establishment.getTags() %}{{tag.name}} {% endfor %}{{establishment.style.name}}" href="#">
+						<a class="establishment" data-number="{{establishment.id}}" data-name="{% for tag in establishment.getTags() %}{{tag.name}} {% endfor %}{{establishment.style.name}}" href="#">
 							<div class="restaurant">
 								<h3>{{establishment.name}}</h3>
 								<p>{{establishment.address}}</p>
-								{% for tag in establishment.getTags() %}
-								<p>{{tag.name}} </p>
-								{% endfor %}
-								<p>{{establishment.style.name}} </p>
 							</div>
 						</a>
 					{% else %}
@@ -111,5 +125,5 @@
 
 
 	</main>
-
+	{% include "User/partials/footer.html.twig" %}
 {% endblock %}
