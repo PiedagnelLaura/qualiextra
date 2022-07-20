@@ -23,9 +23,8 @@
 /*Main*/
 
     /**Card**/
-.main {
-    display: flex;
-    flex-wrap: wrap;
+.bloc-container {
+    justify-content: center;
 }
 
 .card {
