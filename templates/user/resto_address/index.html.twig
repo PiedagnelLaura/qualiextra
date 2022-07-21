@@ -64,14 +64,14 @@
 
 				</div>
 
-				<div id="map"></div>
+				<div id="map-establishment"></div>
 
 
 			</section>
 
 
 			<section class="bottom-section">
-			
+
 				{% for establishment in listEstablishment %}
 
 
@@ -127,4 +127,12 @@
 
 	</main>
 	{% include "User/partials/footer.html.twig" %}
+	{% block javascripts %}
+		<script src="{{ asset('asset/js/app.js') }}"></script>
+		<script src="{{ asset('asset/js/map.js') }}"></script>
+		<script src="{{ asset('asset/js/filter.js') }}"></script>
+		<script src="{{ asset('asset/js/coordinate.js') }}"></script>
+		<script src="{{ asset('asset/js/establishmentDetails.js') }}"></script>
+	{% endblock %}
+
 {% endblock %}

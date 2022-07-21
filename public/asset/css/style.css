@@ -71,7 +71,7 @@ h1 {
     padding-top: 10px;
 }
 
-#map {
+#map-establishment {
     margin: 20px 0;
     height: 270px;
     z-index: 0;
@@ -239,7 +239,7 @@ a {
     }
     
 
-    #map {
+    #map-establishment {
         height: 80vh;
         
     }
