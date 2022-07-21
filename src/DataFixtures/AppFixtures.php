@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\DataFixtures\Provider\AddressProvider;
 use App\Entity\Book;
 use App\Entity\Establishment;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -50,6 +51,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {   
          $this->truncate();
+         $addressProvider = new AddressProvider;
        
          $faker = Faker\Factory::create('fr_FR');
 
@@ -151,7 +153,7 @@ class AppFixtures extends Fixture
         for ($j=1; $j<30; $j++)   {
         $establishment = new Establishment();
         $establishment->setName($faker->name());
-        $establishment->setAddress($faker->address());
+        $establishment->setAddress($addressProvider->getRandomAddress().' 75000 PARIS');
         $establishment->setPicture('https://picsum.photos/id/'.mt_rand(1,100).'/450/300');
         $establishment->setPhone($faker->phoneNumber());
         $establishment->setEmail($faker->email());
