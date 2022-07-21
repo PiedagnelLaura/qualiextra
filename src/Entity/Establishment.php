@@ -93,6 +93,16 @@ class Establishment
      */
     private $style;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longitudes;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latitudes;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -305,6 +315,30 @@ class Establishment
     public function setStyle(?Style $style): self
     {
         $this->style = $style;
+
+        return $this;
+    }
+
+    public function getLongitudes(): ?float
+    {
+        return $this->longitudes;
+    }
+
+    public function setLongitudes(?float $longitudes): self
+    {
+        $this->longitudes = $longitudes;
+
+        return $this;
+    }
+
+    public function getLatitudes(): ?float
+    {
+        return $this->latitudes;
+    }
+
+    public function setLatitudes(?float $latitudes): self
+    {
+        $this->latitudes = $latitudes;
 
         return $this;
     }

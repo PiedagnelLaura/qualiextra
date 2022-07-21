@@ -13,6 +13,7 @@ use App\Entity\Style;
 use App\Entity\Type;
 use App\Entity\User;
 use App\Entity\Tag;
+use App\Services\Geocodage;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\DBAL\Connection;
 
@@ -20,15 +21,17 @@ class AppFixtures extends Fixture
 {
     private $connection;
     private $passwordHasher;
+    private $geocodage;
 
     /**
      *
      * @param UserPasswordHasherInterface $hasher
      */
-    public function __construct(Connection $connection, UserPasswordHasherInterface $hasher)
+    public function __construct(Connection $connection, UserPasswordHasherInterface $hasher, Geocodage $geocodage)
     {
         $this->connection = $connection;
         $this->passwordHasher = $hasher;
+        $this->geocodage = $geocodage;
     }
 
     private function truncate()
@@ -163,6 +166,14 @@ class AppFixtures extends Fixture
         $establishment->setStyle($style);
         $establishment->setDescription($faker->realText(100));
         $establishment->setUser($usersList[2]);
+        $establishmentAddress = $establishment->getAddress();
+        $coordinates = $this->geocodage->geocoding($establishmentAddress);
+        $lat = $coordinates['lat'];
+        $long = $coordinates['lng'];
+        
+        $establishment->setLatitudes($lat);
+        $establishment->setLongitudes($long);
+       
 
 
         $establishmentsList[] = $establishment;

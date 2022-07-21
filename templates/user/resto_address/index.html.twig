@@ -71,7 +71,7 @@
 
 
 			<section class="bottom-section">
-			{{dump(coordinatesEstablishments)}}
+			
 				{% for establishment in listEstablishment %}
 
 
@@ -106,7 +106,7 @@
 				{% endfor %}
 				<div class="establishmentList">
 					{% for establishment in listEstablishment %}
-						<a class="establishment" data-number="{{establishment.id}}" data-name="{% for tag in establishment.getTags() %}{{tag.name}} {% endfor %}{{establishment.style.name}}" href="#">
+						<a class="establishment" data-long="{{establishment.longitudes}}" data-lat="{{establishment.latitudes}}" data-number="{{establishment.id}}" data-name="{% for tag in establishment.getTags() %}{{tag.name}} {% endfor %}{{establishment.style.name}}" href="#">
 							<div class="restaurant">
 								<h3>{{establishment.name}}</h3>
 								<p>{{establishment.address}}</p>

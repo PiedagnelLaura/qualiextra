@@ -3,6 +3,7 @@ const app = {
   
         filter.init();
         establishmentDetails.init(); 
+        coordinate.init();
     }
 };
 

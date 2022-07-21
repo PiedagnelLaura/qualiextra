@@ -12,6 +12,7 @@ const filter = {
         for (const filterCheckbox of filtersCheckboxList) {
             filterCheckbox.addEventListener('change', filter.handleChangefilter);
         }
+        
 
     },
 
