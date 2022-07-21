@@ -5,6 +5,19 @@
 {% block body %}
 {% include "User/partials/header.html.twig" %}
 
+{#Ajout du flash message pour le client#}
+
+{% for message in app.flashes('success-book') %}
+
+    <div  class="alert alert-success">
+        {{message}}
+    </div>
+
+{% endfor %}
+
+{#Fin du flash message pour le client#}
+
+
 <main class="container-fluid row">
 
     <section class="wrap-img">
@@ -51,45 +64,26 @@
                 <div class="address_package--address">
                         <p>{{package.establishment.name}}</p> 
                         <p>{{package.establishment.address}}</p>
-                        <p href="tel:+33{{package.establishment.phone}}">Téléphone : {{package.establishment.phone}}</p>
-                        <p>E-mail : {{package.establishment.email}}</p>
                         <p>Site web : {{package.establishment.website}}</p>
                         <a class="address_package--address button" href="mailto:{{package.establishment.email}}"><div class="button from-center">Nous contacter</div></a>
                 </div>
             </div>
     </section>
 
-    <section class=" col-sm-4 col-md-12 col-lg-12">
+    <section class="wrap-book">
+    
+    <form method="post" id="form-book">
+        <div class="book-input">
+            <label class="label-form-book" for="date">Votre date de réservation</label>
+            <input type="date" class="form-control" required name="date" id="date" placeholder="date">
+        </div>
 
-            <div class="container--formBook_package">
-                <h3> Réservation </h3>
-                <form action="" method="post">
-                    <fieldset class="formBook_package--names">
-                        <div class="input-book">
-                            <label class="" for="lastname"> Nom</label>
-                            <input type="text" name="lastname" id="lastname" placeholder="Nom" require>
-                        </div>   
-                        <div class="input-book">
-                            <label class="" for="firstname">Prénom</label>
-                            <input type="text" name="firstname" id="firstname" placeholder="Prénom" require> <br>
-                        </div>      
-                        <div class="input-book">    
-                            <label class="" for="email"> E-mail</label>
-                            <input type="email" name="email" id="email" placeholder="@ E-mail" require>
-                        </div>  
-
-                    </fieldset>
-
-                    <fieldset class="formBook_package--form_date">
-                        <label class="" for="date">La date de réservation</label> 
-                        <input type="date" name="date" id="date" placeholder="date">
-                        <br>
-                        <div class="button from-center" type="submit"> Envoyer</div>
-                    </fieldset>
-
-                </form>
-            </div>
+        <a class="button from-center btnReservation" type="submit"> Réserver
+        <input type="submit" class="hidde-btn-form"> </a>
+    </form>
+        
     </section>
+
 
 </main>
 {% include "User/partials/footer.html.twig" %}
