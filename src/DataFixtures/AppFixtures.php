@@ -32,9 +32,9 @@ class AppFixtures extends Fixture
 
     private function truncate()
     {
-       
+
         $this->connection->executeQuery('SET foreign_key_checks = 0');
-        
+
         $this->connection->executeQuery('TRUNCATE TABLE book');
         $this->connection->executeQuery('TRUNCATE TABLE establishment');
         $this->connection->executeQuery('TRUNCATE TABLE package');
@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
         $this->connection->executeQuery('TRUNCATE TABLE tag_establishment');
         $this->connection->executeQuery('TRUNCATE TABLE type');
         $this->connection->executeQuery('TRUNCATE TABLE user');
-     
+
         $this->connection->executeQuery('SET foreign_key_checks = 1');
     }
 
@@ -61,12 +61,11 @@ class AppFixtures extends Fixture
             $type = new Type;
 
             $type->setName($typeName);
-            $typesListEntity[]= $type;
+            $typesListEntity[] = $type;
 
             $manager->persist($type);
-            
         }
-     
+
         //Users
         $usersList= [];
          // ------------userUser-----------
@@ -117,84 +116,83 @@ class AppFixtures extends Fixture
         $manager->persist($userPro);
 
         //Styles
-        $stylesList= [];
+        $stylesList = [];
         //--------japanese style-------
         $stylejapanese = new Style();
         $stylejapanese->setName('japonnais');
-        $stylesList[]= $stylejapanese;
+        $stylesList[] = $stylejapanese;
         $manager->persist($stylejapanese);
         //--------french style-------
         $stylefrench = new Style();
         $stylefrench->setName('français');
-        $stylesList[]= $stylefrench;
+        $stylesList[] = $stylefrench;
         $manager->persist($stylefrench);
         //--------italian style-------
         $styleitalian = new Style();
         $styleitalian->setName('italien');
-        $stylesList[]= $styleitalian;
+        $stylesList[] = $styleitalian;
         $manager->persist($styleitalian);
         //--------indian style-------
         $styleindian = new Style();
         $styleindian->setName('indien');
-        $stylesList[]= $styleindian;
+        $stylesList[] = $styleindian;
         $manager->persist($styleindian);
         //--------vietnamian style-------
         $stylevietnamian = new Style();
         $stylevietnamian->setName('vietnamien');
-        $stylesList[]= $stylevietnamian;
+        $stylesList[] = $stylevietnamian;
         $manager->persist($stylevietnamian);
 
 
         //Establishments
-        $establishmentsList= [];
-        
-        for ($j=1; $j<30; $j++)   {
-        $establishment = new Establishment();
-        $establishment->setName($faker->name());
-        $establishment->setAddress($faker->address());
-        $establishment->setPicture('https://picsum.photos/id/'.mt_rand(1,100).'/450/300');
-        $establishment->setPhone($faker->phoneNumber());
-        $establishment->setEmail($faker->email());
-        $establishment->setPrice(rand(5,100));
-        $establishment->setWebsite($faker->url());   
-        $style = $stylesList[mt_rand(0,count($stylesList)-1)];   
-        $establishment->setStyle($style);
-        $establishment->setDescription($faker->realText(100));
-        $establishment->setUser($usersList[2]);
+        $establishmentsList = [];
+
+        for ($j = 1; $j < 30; $j++) {
+            $establishment = new Establishment();
+            $establishment->setName($faker->name());
+            $establishment->setAddress($faker->address());
+            $establishment->setPicture('https://picsum.photos/id/' . mt_rand(1, 100) . '/450/300');
+            $establishment->setPhone($faker->phoneNumber());
+            $establishment->setEmail($faker->email());
+            $establishment->setPrice(rand(5, 100));
+            $establishment->setWebsite($faker->url());
+            $style = $stylesList[mt_rand(0, count($stylesList) - 1)];
+            $establishment->setStyle($style);
+            $establishment->setDescription($faker->realText(100));
+            $establishment->setUser($usersList[2]);
 
 
-        $establishmentsList[] = $establishment;
-             
- 
-        $manager->persist($establishment);
+            $establishmentsList[] = $establishment;
 
-        } 
-        
+
+            $manager->persist($establishment);
+        }
+
         //Packages     
         $packagesList = [];
- 
-        for ($i=1; $i<30; $i++) {
- 
-    
+
+        for ($i = 1; $i < 30; $i++) {
+
+
             $package = new Package();
 
             $package->setName($faker->name());
-            $package->setPicture('https://picsum.photos/id/'.mt_rand(1,100).'/450/300');
-            $package->setPrice(rand(5,100));
+            $package->setPicture('https://picsum.photos/id/' . mt_rand(1, 100) . '/450/300');
+            $package->setPrice(rand(5, 100));
             $package->setDescription($faker->realText(100));
-            $package->setDate($faker->dateTimeBetween('-1 week','+4 week'));
-            $package->setEstablishment($establishmentsList[mt_rand(0,count($establishmentsList)-1)]);
-            
-            $n= mt_rand(1,4);
+            $package->setDate($faker->dateTimeBetween('-1 week', '+4 week'));
+            $package->setEstablishment($establishmentsList[mt_rand(0, count($establishmentsList) - 1)]);
 
-            for ($z=1; $z<=$n; $z++){
-                $package->addType($typesListEntity[mt_rand(0,count($typesListEntity)-1)]);
+            $n = mt_rand(1, 4);
+
+            for ($z = 1; $z <= $n; $z++) {
+                $package->addType($typesListEntity[mt_rand(0, count($typesListEntity) - 1)]);
             }
-            
 
-            
+
+
             $packagesList[] = $package;
-            
+
 
             $manager->persist($package);
         }
@@ -202,42 +200,40 @@ class AppFixtures extends Fixture
         // Book
         $booksList = [];
 
-        for ($m=1;$m<101;$m++){
-        $book = new Book();            
-        $book->setUser($usersList[0]);
-        $book->setStatus(rand(0,2));  
-        $book->setPrice(rand(5,100));           
-        $package = $packagesList[mt_rand(0,count($packagesList)-1)];
-        $book->setPackages($package);
-        $booksList[]= $book;
-        $manager->persist($book);
+        for ($m = 1; $m < 101; $m++) {
+            $book = new Book();
+            $book->setUser($usersList[0]);
+            $book->setStatus(rand(0, 2));
+            $book->setPrice(rand(5, 100));
+            $package = $packagesList[mt_rand(0, count($packagesList) - 1)];
+            $book->setPackages($package);
+            $booksList[] = $book;
+            $manager->persist($book);
         }
-         
+
         //# Tag
 
-        $tagList= [];
-        
-        for ($i=1; $i<5; $i++)   {
+        $tagList = [];
+
+        for ($i = 1; $i < 5; $i++) {
 
             $tag = new Tag();
             $tag->setName($faker->word());
-        
+
             $tagList[] = $tag;
-                
+
             $manager->persist($tag);
+        }
+        foreach ($establishmentsList as $key => $establishment) {
 
-        } 
-        foreach($establishmentsList as $key => $establishment)
-        {
-            
-            $nbMaxtags = mt_rand(1,4);
-            for ($n=1; $n<=$nbMaxtags; $n++) {
+            $nbMaxtags = mt_rand(1, 4);
+            for ($n = 1; $n <= $nbMaxtags; $n++) {
 
-                $establishment->addTag( $tagList[ mt_rand(0, count($tagList) - 1) ] );
+                $establishment->addTag($tagList[mt_rand(0, count($tagList) - 1)]);
                 $manager->persist($establishment);
             }
         }
-  
+
 
         $manager->flush();
     }
