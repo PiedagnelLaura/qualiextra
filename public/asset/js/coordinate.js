@@ -25,15 +25,28 @@ const coordinate = {
 
                 let latEstablishment = establishment.dataset.lat;
                 let longEstablishment = establishment.dataset.long;
+                let establishmentNumber = establishment.dataset.number;
                 
                 // for each establishment, we add a marker on the map
                 let marker = L.marker([latEstablishment, longEstablishment]).addTo(map);
     
                 // we add a popup when we click on the marker
-                marker.bindPopup('');
+                let establishmentName = establishment.querySelector('h3').textContent;
+                let message = '<h5>'+establishmentName+'</h5>'
+                marker.bindPopup(message);
+
+                // we add classes to markers
+                L.DomUtil.addClass(marker._icon, "markerIcon");
+                L.DomUtil.addClass(marker._icon, establishmentNumber);
 
                 coordinate.markerList.push(marker); 
             }
+        }
+
+        // we put eventListener on the markers
+        const markersElmt = document.querySelectorAll('.markerIcon');
+        for (const markerElmt of markersElmt) {
+            markerElmt.addEventListener('click', establishmentDetails.handleClickMarker);
         }
 
     },
