@@ -53,93 +53,110 @@ h3{
     font-weight: bold;
     font-size: 32px;
     padding: 1%;
-}
-
-/* .container{
-    width: 100%;
-    margin-left: 6%;
-    margin-right: 2%;
-    color: #131629;
-    display: block;
-    font-size: 26px;
-
-} */
-
-/* .container-fluid{
-    margin: auto;
-} */
-
-.title_package,
-.container--map_package,
-.container--package_picture,
-.container--description_package,
-.container--validity_package,
-.container--address_package,
-.container--formBook_package{
-    padding: 2%;
-    
-}
-
-.title_package{
     text-align: center;
-    
 }
 
+.row{
+    margin-right: 0;
+    margin-left: 0;
 
-.container--map_package{
-    justify-content: center;
+}
+
+.container--title_package{
     display: flex;
+    justify-content: center;
+    margin: 4% 0%;
+    
+
 }
 
-.container--package_picture{
-    display: flex;
-    justify-content: center;
-    
+.container--title_package h1{
+    border-bottom: 6px outset #7A8C73;
+    color:#315565 ;  
+    font-weight: bold;
+    font-size: 60px;
 }
+
+.wrap-img{
+    display: flex;
+    margin-top: 4%;
+    border: 6px outset #7A8C73;
+    padding: 20px;
+}
+
+.container--img {
+    text-align: center;
+}
+
 
 .carousel-item{
     justify-content: center;
 }
 
-.container--package_picture img {
-    padding: 2%;
-    width: auto;
+.package_picture {
+    width: 80%;
     
 }
 .container--description_package{
-    margin: auto;
-    background-color:  #7A8C73;
     border: 6px outset #7A8C73;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
 
+}
+
+.description_package p{
+    text-align: center;
+}
+
+
+.validity_price{
+    display: flex;
+    justify-content: space-around;
+    height: 30%;
+    background: linear-gradient(#7A8C73, #315565 );
+    padding-top: 4%;
+}
+
+
+.validity_price p{
+    color: #121629;
+    width: 45%;
+    text-align: center;
+}
+
+.validity-span{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 60px;
 }
 
 .container--description_package img{
     width: 32px;
     font-weight: bold;
-
+    height: 100%;
 }
 
-.container--validity_address{
+.container--address{
     display: flex;
-    align-items :flex-start;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin-bottom: 4%;
 }
 
 
-.container--validity_package{
-
-    border: 6px outset #7A8C73;
-    margin: 2% 2%;
-    text-align: center;
-}
 .container--address_package{
 
     border: 6px outset #7A8C73;
-    margin: 2% 2%;
     text-align: center;
     display : inline-block;
-
 }
+
 
 
 
@@ -219,7 +236,7 @@ height: 100%;
     border: 6px outset #7A8C73 ;
     border-radius: 10px;
     justify-content: center;
-    margin: auto;
+    width: 100%;
     margin-bottom: 6%;
 }
 
@@ -250,9 +267,7 @@ form{
 }
 
 .formBook_package--form_date{
-
     margin: auto;
-
 }
 
 
