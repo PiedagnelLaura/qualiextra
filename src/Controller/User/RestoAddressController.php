@@ -24,16 +24,26 @@ class RestoAddressController extends AbstractController
         $listEstablishment = $establishmentRepository->findAll();
         $listTag = $tagRepository->findAll();
         $listStyle = $styleRepository->findAll();
-        $establishment = $listEstablishment[2];
-        $establishmentAdress = $establishment->getAddress();       
-        $coordonnees = $geocodage->geocoding($establishmentAdress);
+      
+        $coordinatesEstablishments = [];
+        for ($i=0;$i<count($listEstablishment);$i++)  {
+            
+            $establishment = $listEstablishment[$i];
+            $establishmentAdress = $establishment->getAddress();
+            
+            $coordinates = $geocodage->geocoding($establishmentAdress);
+            
+            $coordinatesEstablishments[] = $coordinates;
+            
+        }     
+       //dd($coordinatesEstablishments);
         
         
         return $this->render('user/resto_address/index.html.twig', [
             'listEstablishment' => $listEstablishment,
             'listTag' => $listTag,
             'listStyle' => $listStyle,
-            'coordonnees'=>$coordonnees
+            'coordinatesEstablishments'=>$coordinatesEstablishments
         ]);
     }
 }
