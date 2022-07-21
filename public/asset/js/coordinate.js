@@ -2,6 +2,7 @@ const coordinate = {
     init: function () {
         console.log('coucou');
         const listEstablisment = document.querySelectorAll('.establishment');
+   
         for (let establishment of listEstablisment) {
 
 
@@ -13,6 +14,18 @@ const coordinate = {
 
             // we add a popup when we click on the marker
             marker.bindPopup('');
+            console.log(marker);
+
+           
         }
-    }
+      
+
+        map.on('click', function () {
+            map.removeLayer(marker);
+          });
+
+
+    },
+
+    
 }
