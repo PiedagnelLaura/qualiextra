@@ -10,14 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PackageController extends AbstractController
 {
-
-
-
-
-
-
-    
-
     /**
      * Show one package by id
      * 
