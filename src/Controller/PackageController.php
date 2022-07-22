@@ -28,7 +28,7 @@ class PackageController extends AbstractController
     /**
      * Show one package by id
      *
-     * @Route("/packages/{id}", name="app_package-show", requirements={"id"="\d+"}, methods={"GET"})
+     * @Route("/packages/{id}", name="app_user_package_show", requirements={"id"="\d+"}, methods={"GET"})
      *
      *  @param [type] $id
      */

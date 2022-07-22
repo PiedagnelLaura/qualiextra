@@ -20,6 +20,128 @@
     --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba(246,240,233,0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 }
 
+/*Main*/
+
+    /** Nav Filtre Type **/
+
+.icon-experience-hoteliere {
+    background: url("../icon/hotel-solid.svg") no-repeat;
+}
+
+.icon-degustation-de-spiritueux {
+    background: url("../icon/wine-glass-solid.svg") no-repeat;
+}
+
+.icon-diner {
+    background: url("../icon/utensils-solid.svg") no-repeat;
+}
+
+.icon-experience-atypique {
+    background: url("../icon/mountain-sun-solid.svg") no-repeat;
+}
+
+.bloc-icon {
+    display: block;
+    padding: 8px;
+    align-self: center;
+    margin-right: 7px;
+}
+
+.filtre-type {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em;
+}
+
+.bloc-type {
+    color: #121629;
+    border-radius: 30px;
+    padding: 4px 6px;
+    display: flex;
+}
+
+.bloc-type:hover {
+    box-shadow: 0px 0px 25px 10px rgb(0 0 0 / 20%);
+}
+
+.lien-type {
+    text-decoration: none;
+    color: #121629;
+}
+
+.lien-type:hover {
+    color: #121629;
+}
+
+@media screen and (max-width: 720px) {
+
+.filtre {
+    display: none;
+}
+}
+
+
+
+
+
+    /** Card **/
+.bloc-container {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 25em;
+    margin: 1em;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 540px) {
+
+.card {
+    width: 100%;
+    position: relative;
+}
+}
+
+
+
+.package-detail {
+    background-color: rgba(50, 85, 100, 0.8);
+    color: #F6F0E9;
+    position: absolute;
+    bottom: 0;
+    height: 35%;
+    padding: 6px;
+    
+}
+
+@media screen and (min-width: 720px) {
+
+.card:hover .card-body {
+    display: block;
+}
+.card-body {
+    display: none;
+}
+
+}
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
 /*Footer*/
 
 .footer-color {
