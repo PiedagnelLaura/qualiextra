@@ -174,6 +174,116 @@ input[type="radio"]:checked {
     margin: 20px;
     text-align: center;
 }
+/*Detail package page*/
+
+h3{
+    color: #7A8C73;
+    font-weight: bold;
+    font-size: 32px;
+    padding: 1%;
+    text-align: center;
+}
+
+.row{
+    margin-right: 0;
+    margin-left: 0;
+
+}
+
+.container--title_package{
+    display: flex;
+    justify-content: center;
+    margin: 4% 0%;
+    
+
+}
+
+.container--title_package h1{
+    border-bottom: 6px outset #7A8C73;
+    color:#315565 ;  
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.wrap-img{
+    display: flex;
+    margin-top: 4%;
+    border: 6px outset #7A8C73;
+    padding: 20px;
+}
+
+.container--img {
+    text-align: center;
+}
+
+
+.carousel-item{
+    justify-content: center;
+}
+
+.package_picture {
+    width: 80%;
+    
+}
+.container--description_package{
+    border: 6px outset #7A8C73;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+}
+
+.description_package p{
+    text-align: center;
+}
+
+
+.validity_price{
+    display: flex;
+    justify-content: space-around;
+    height: 30%;
+    background: linear-gradient(#7A8C73, #315565 );
+    padding-top: 4%;
+}
+
+
+.validity_price p{
+    color: #121629;
+    width: 45%;
+    text-align: center;
+}
+
+.validity-span{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.container--description_package img{
+    width: 32px;
+    font-weight: bold;
+    height: 100%;
+}
+
+.container--address{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4%;
+}
+
+
+.container--address_package{
+
+    border: 6px outset #7A8C73;
+    text-align: center;
+    display : inline-block;
+}
 
 
 
@@ -270,3 +380,106 @@ a {
     }
    
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* Button contact et book  */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.button {    
+    position: relative; 
+    padding: 2% 2%;
+    padding-right: 2%;
+    font-size: 26px;
+    color:  #131629 ;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);  
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+}
+
+.button:before, .button:after {
+content: '';
+position: absolute; 
+transition: inherit;
+z-index: -1;
+}
+
+.button:hover {
+color:  #F6F0E9  ;
+transition-delay: .5s;
+}
+
+.button:hover:before {
+transition-delay: 0s;
+}
+
+.button:hover:after {
+background: #315565;
+transition-delay: .35s;
+}
+
+
+.from-center:before {
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 0;
+    border: 1px solid  #7A8C73 ;
+    border-left: 0;
+    border-right: 0;
+}
+
+.from-center:after {
+bottom: 0;
+left: 0;
+height: 0;
+width: 100%;
+background: #315565;
+}
+
+.from-center:hover:before {
+left: 0;
+width: 100%;
+}
+
+.from-center:hover:after {
+top: 0;
+height: 100%;
+}
+
+.hidde-btn-form {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    opacity: 0;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* booking's form  */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.wrap-book {
+    margin-bottom: 50px;
+}
+
+#form-book {
+    display: flex;
+    justify-content: center;
+}
+
+.book-input {
+    display: flex;
+    align-items: center;
+}
+
+.label-form-book {
+    margin-right: 20px;
+}
+
+.form-control{
+    margin-right: 20px;
+}
+
+
