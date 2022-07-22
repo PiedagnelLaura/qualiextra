@@ -71,7 +71,10 @@
     color: #F6F0E9;
 }
 
-/*Link homepage*/
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*      /* Button link homepage */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .lien-type {
     text-decoration: none;
@@ -86,15 +89,9 @@
     
 }
 
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*           /* Button link homepage */   
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 .home-btn {    
     position: relative; 
     padding: 1% 1%;
-    
     font-size: 15px;
     color:  #131629 ;
     letter-spacing: 0.3rem;
@@ -130,7 +127,6 @@
     transition-delay: .35s;
     
 }
-
 
 .home-from-center:before {
     top: 0;
@@ -176,7 +172,10 @@ height: 100%;
 }
 
 
-    /** Card **/
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    /*           /* Card Homepage */             
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .bloc-container {
     justify-content: center;
     display: flex;
@@ -198,16 +197,13 @@ height: 100%;
 }
 }
 
-
-
 .package-detail {
     background-color: rgba(50, 85, 100, 0.8);
     color: #F6F0E9;
     position: absolute;
     bottom: 0;
     height: 35%;
-    padding: 6px;
-    
+    padding: 6px; 
 }
 
 @media screen and (min-width: 720px) {
@@ -219,12 +215,13 @@ height: 100%;
     .card-body {
         display: none;
     }
-
 }
 
 
 
-/*Footer*/
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* Footer */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .footer-color {
     background-color: #121629;
@@ -249,9 +246,9 @@ height: 100%;
     color: #7A8C73;
 }
 
-/*! LES BONNES ADRESSES */
-
-
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* Good Address */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 body {
     background-color: #f6f0e9;
@@ -273,10 +270,9 @@ h1 {
     text-align: center;
     margin-bottom: 30px;
     padding-top: 10px;
-    
 }
 
-h2{
+h2 {
     color: #315565;
 }
 
@@ -299,8 +295,6 @@ h2{
     font-size: 0.8em;
     transition: 800ms;
 }
-
-
 
 /* div */
 
@@ -325,6 +319,7 @@ h2{
     right: 20px;
     top:10px;
 }
+
 .fa-xmark:hover {
     color: #83907c;
 }
@@ -347,7 +342,6 @@ h2{
 
 input[type="checkbox"] {
     background-color: #83907c;
-    
 }
 
 input[type="checkbox"]:checked {
@@ -356,7 +350,6 @@ input[type="checkbox"]:checked {
 
 input[type="radio"] {
     background-color: #83907c;
-    
 }
 
 input[type="radio"]:checked {
@@ -378,12 +371,7 @@ input[type="radio"]:checked {
     text-align: center;
 }
 
-
-
-
 /* ---------LIST OF RESTAURANT FORMATTING------- */
-
-
 
 .restaurant {
     background-color: #83907c;
@@ -393,8 +381,6 @@ input[type="radio"]:checked {
     border: 1px solid #315565;
     box-shadow: 5px 5px 15px #131629;
     transition: 800ms;
-   
-    
 }
 
 .restaurant:hover {
@@ -429,8 +415,6 @@ a {
     right: 20px;
     top:10px;
 }
-
-
 
 @media screen and (min-width: 1024px) {
 
@@ -471,10 +455,8 @@ a {
     .title-filter h2{
         font-size: 2em;
         font-weight: bold;
-    }
-   
+    } 
 }
-
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*      /*Detail package page*/   
@@ -499,9 +481,6 @@ h3{
     display: flex;
     justify-content: center;
     margin: 2% 0%;
-    
-    
-
 }
 
 .container--title_package h1{
@@ -707,7 +686,7 @@ height: 100%;
     font-size: larger
 }
 
-.form-control{
+.form-control-package{
     margin-right: 20px;
     background: linear-gradient(#7A8C73, #315565 );
 }

@@ -16,14 +16,25 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PackageController extends AbstractController
 {
+
+    private $sessionTab;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->sessionTab = $session->get('user') ?? [];
+    }
+
+
     /**
      * Show one package by id
      *
@@ -42,7 +53,7 @@ class PackageController extends AbstractController
         if ($package === null) {
             throw $this->createNotFoundException('Package don\'t find');
         }
-
+        // dd($_SESSION);
         return $this->render('User/packageShow.html.twig', [
             'package' => $package,
         ]);
@@ -53,11 +64,11 @@ class PackageController extends AbstractController
      * 
      * @Route("/packages/{id}", name="app_package-book", requirements={"id"="\d+"}, methods={"POST"})
      */
-    public function book(ManagerRegistry $doctrine, Request $request, UserRepository $userRepository, Package $package, SerializerInterface $serializer): JsonResponse
+    public function book(ManagerRegistry $doctrine, SessionInterface $session, Request $request, UserRepository $userRepository, Package $package, SerializerInterface $serializer): JsonResponse
     {
         //TODO : Après avoir fait le formulaire d'inscription
         //Récupérer l'utilisateur connecté
-        
+
 
         //Cela sert à récupérer l'utilisateur (pour le moment je l'ai mis en dur car pas d'authentification faite et pour pouvoir réserver j'ai besoin de l'id_user)
         $newUser = $userRepository->find(1);
