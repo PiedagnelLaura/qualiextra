@@ -4,7 +4,7 @@ const coordinate = {
 
     init: function () {
         // we put a listener on the checkboxes filters
-        const filtersCheckboxList = document.querySelectorAll('.checkbox-filters');
+        const filtersCheckboxList = document.querySelectorAll('.new-filters');
         for (const filterCheckbox of filtersCheckboxList) {
             filterCheckbox.addEventListener('change', coordinate.handleChangeMarker);
         }

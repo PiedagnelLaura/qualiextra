@@ -32,7 +32,7 @@
 							<p>Style</p>
 							{% for style in listStyle %}
 								<div class="form-check options-list">
-									<input class="form-check-input checkbox-filters" type="radio" value="" id="{{style.name}}" name="style">
+									<input class="form-check-input checkbox-filters new-filters" type="radio" value="" id="{{style.name}}" name="style">
 									<label class="form-check-label" for="flexCheckChecked">
 										{{style.name}}
 									</label>
@@ -44,7 +44,7 @@
 							<p>Equipements</p>
 							{% for tag in listTag %}
 								<div class="form-check options-list">
-									<input class="form-check-input checkbox-filters" type="checkbox" value="" id="{{tag.name}}">
+									<input class="form-check-input checkbox-filters new-filters" type="checkbox" value="" id="{{tag.name}}">
 									<label class="form-check-label" for="flexCheckChecked">
 										{{tag.name}}
 									</label>
@@ -54,12 +54,12 @@
 					</div>
 
 
-					<select class="form-select select-price" aria-label=" select">
+					<select class="form-select select-price new-filters" aria-label=" select">
 						<option selected>Prix</option>
-						<option value="1">Moins de 15 €</option>
-						<option value="2">Entre 15 et 25 €</option>
-						<option value="3">Entre 25 et 40 €</option>
-						<option value="4">Plus de 40 €</option>
+						<option class="price-filter" value="1">Moins de 15 €</option>
+						<option class="price-filter" value="2">Entre 15 et 25 €</option>
+						<option class="price-filter" value="3">Entre 25 et 40 €</option>
+						<option class="price-filter" value="4">Plus de 40 €</option>
 					</select>
 
 				</div>

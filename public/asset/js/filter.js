@@ -8,11 +8,11 @@ const filter = {
 
 
         // we put a listener on the checkboxes filters
-        const filtersCheckboxList = document.querySelectorAll('.checkbox-filters');
+        const filtersCheckboxList = document.querySelectorAll('.new-filters');
         for (const filterCheckbox of filtersCheckboxList) {
             filterCheckbox.addEventListener('change', filter.handleChangefilter);
         }
-        
+
 
     },
 
@@ -53,6 +53,7 @@ const filter = {
 
         }
 
+
         // we get the list of restaurants
         let restaurantList = document.querySelectorAll('.establishment');
 
@@ -72,8 +73,35 @@ const filter = {
                 }
             }
 
+            let comparator = listFiltersChecked.length
+
+            const filtersPriceList = document.querySelectorAll('.price-filter');
+            for (const filterPrice of filtersPriceList) {
+                if (filterPrice.selected) {
+
+                    comparator++; 
+
+                    // if a price filter is selected, we compare by the average price of the establishment
+                    let priceOfRestaurant = restaurant.dataset.price;
+                    
+                    if (filterPrice.value==1 && priceOfRestaurant<15) {
+                        counter++;
+                    }
+                    if (filterPrice.value==2 &&  priceOfRestaurant<25 &&  priceOfRestaurant>=15) {
+                        counter++;
+                    }
+                    if (filterPrice.value==3 &&  priceOfRestaurant<40 &&  priceOfRestaurant>=25) {
+                        counter++;
+                    }
+                    if (filterPrice.value==4 &&  40<=priceOfRestaurant) {
+                        counter++;
+                    }
+                }
+
+            }
+            
             // if the counter is equal to the number of checked filters, the restaurant is displayed
-            if (counter == listFiltersChecked.length) {
+            if (counter == comparator) {
                 restaurant.classList.remove("d-none");
             } else {
                 restaurant.classList.add("d-none");
