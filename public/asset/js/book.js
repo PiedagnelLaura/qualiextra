@@ -9,7 +9,7 @@ btnReservation.addEventListener("submit", handleCalendarShow);
 function handleCalendarShow(e) {
     //bloque le rechargement de la page à l'envoi
     e.preventDefault();
-
+ 
     //TODO il faut dynamiser le lien url du fetch car en dur pour le moment
     fetch('/packages/2', {
         method: "POST",
