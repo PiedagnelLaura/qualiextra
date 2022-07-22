@@ -34,7 +34,7 @@ class PackageController extends AbstractController
      */
     public function packageShow($id, ManagerRegistry $doctrine)
     {
-        // Alternative pour accéder au Repository de l'entité Post on se sert de ManagerRegistry pour récupéré le repository
+        // Alternative pour accéder au Repository de l'entité Package on se sert de ManagerRegistry pour récupéré le repository
         $PackageRepository = $doctrine->getRepository(Package::class);
 
         $package = $PackageRepository->find($id);

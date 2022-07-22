@@ -64,14 +64,17 @@
     box-shadow: 0px 0px 25px 10px rgb(0 0 0 / 20%);
 }
 
+/*Link homepage*/
+
 .lien-type {
     text-decoration: none;
-    color: #121629;
+    /* color: #121629; */
+    
 }
 
-.lien-type:hover {
+/* .lien-type:hover {
     color: #121629;
-}
+} */
 
 @media screen and (max-width: 720px) {
 
@@ -191,6 +194,11 @@ h1 {
     text-align: center;
     margin-bottom: 30px;
     padding-top: 10px;
+    
+}
+
+h2{
+    color: #315565;
 }
 
 #map-establishment {
@@ -207,18 +215,12 @@ h1 {
 
 /* button */
 #filter {
-    background-color: #315565;
-    border-radius: 0px;
-    border-color: #315565;
-    color: #f6f0e9;
+
     padding: 6px 10px;
     font-size: 0.8em;
     transition: 800ms;
 }
 
-#filter:hover {
-    background-color: #83907c;
-}
 
 
 /* div */
@@ -296,116 +298,7 @@ input[type="radio"]:checked {
     margin: 20px;
     text-align: center;
 }
-/*Detail package page*/
 
-h3{
-    color: #7A8C73;
-    font-weight: bold;
-    font-size: 32px;
-    padding: 1%;
-    text-align: center;
-}
-
-.row{
-    margin-right: 0;
-    margin-left: 0;
-
-}
-
-.container--title_package{
-    display: flex;
-    justify-content: center;
-    margin: 4% 0%;
-    
-
-}
-
-.container--title_package h1{
-    border-bottom: 6px outset #7A8C73;
-    color:#315565 ;  
-    font-weight: bold;
-    font-size: 60px;
-}
-
-.wrap-img{
-    display: flex;
-    margin-top: 4%;
-    border: 6px outset #7A8C73;
-    padding: 20px;
-}
-
-.container--img {
-    text-align: center;
-}
-
-
-.carousel-item{
-    justify-content: center;
-}
-
-.package_picture {
-    width: 80%;
-    
-}
-.container--description_package{
-    border: 6px outset #7A8C73;
-    height: 100%;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-
-}
-
-.description_package p{
-    text-align: center;
-}
-
-
-.validity_price{
-    display: flex;
-    justify-content: space-around;
-    height: 30%;
-    background: linear-gradient(#7A8C73, #315565 );
-    padding-top: 4%;
-}
-
-
-.validity_price p{
-    color: #121629;
-    width: 45%;
-    text-align: center;
-}
-
-.validity-span{
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.price {
-    font-weight: bold;
-    font-size: 60px;
-}
-
-.container--description_package img{
-    width: 32px;
-    font-weight: bold;
-    height: 100%;
-}
-
-.container--address{
-    display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 4%;
-}
-
-
-.container--address_package{
-
-    border: 6px outset #7A8C73;
-    text-align: center;
-    display : inline-block;
-}
 
 
 
@@ -503,6 +396,138 @@ a {
    
 }
 
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*      /*Detail package page*/   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+h3{
+    color: #7A8C73;
+    font-weight: bold;
+    font-size: 32px;
+    padding: 1%;
+    text-align: center;
+}
+
+.row{
+    margin-right: 0;
+    margin-left: 0;
+
+}
+
+.container--title_package{
+    display: flex;
+    justify-content: center;
+    margin: 2% 0%;
+    
+    
+
+}
+
+.container--title_package h1{
+    border-bottom: 6px outset #7A8C73;
+    color:#315565 ;  
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.wrap-img{
+    display: flex;
+    margin-top: 4%;
+    border: 6px outset #7A8C73;
+    padding: 20px;
+}
+
+.container--img {
+    text-align: center;
+    vertical-align: center;
+    padding: 4%;
+    height: 100%;
+}
+
+.map-package{
+    max-height: 40vh;
+}
+
+/* 
+// TODO à supprimer ?
+.carousel-item{
+    justify-content: center;
+} */
+
+.package_picture {
+    height: 100%;
+    
+}
+.container--description_package{
+    border: 6px outset #7A8C73;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+}
+
+.container--description_package img{
+    width: 32px;
+    font-weight: bold;
+    height: 100%;
+}
+
+.description_package p{
+    text-align: center;
+    padding: 2%;
+}
+
+
+.validity_price{
+    display: flex;
+    justify-content: space-around;
+    height: 40%;
+    background: linear-gradient(#7A8C73, #315565 );
+    padding-top: 5%;
+}
+
+
+.validity_price p{
+    color: #121629;
+    width: 45%;
+    text-align: center;
+}
+
+.validity-span{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 60px;
+    padding-bottom: 9%;    
+}
+
+
+
+.container--address{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4%;
+}
+
+
+.container--address_package{
+    border: 6px outset #7A8C73;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.address_package--address p{
+    margin-top: 4%;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*           /* Button contact et book  */   
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -522,24 +547,24 @@ a {
 }
 
 .button:before, .button:after {
-content: '';
-position: absolute; 
-transition: inherit;
-z-index: -1;
+    content: '';
+    position: absolute; 
+    transition: inherit;
+    z-index: -1;
 }
 
 .button:hover {
-color:  #F6F0E9  ;
-transition-delay: .5s;
+    color:  #F6F0E9  ;
+    transition-delay: .5s;
 }
 
 .button:hover:before {
-transition-delay: 0s;
+    transition-delay: 0s;
 }
 
 .button:hover:after {
-background: #315565;
-transition-delay: .35s;
+    background: #315565;
+    transition-delay: .35s;
 }
 
 
@@ -554,11 +579,11 @@ transition-delay: .35s;
 }
 
 .from-center:after {
-bottom: 0;
-left: 0;
-height: 0;
-width: 100%;
-background: #315565;
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+    background: #315565;
 }
 
 .from-center:hover:before {
@@ -578,12 +603,17 @@ height: 100%;
     opacity: 0;
 }
 
+
+
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*           /* booking's form  */   
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .wrap-book {
     margin-bottom: 50px;
+    border: 6px outset #7A8C73;
+    
 }
 
 #form-book {
@@ -594,14 +624,18 @@ height: 100%;
 .book-input {
     display: flex;
     align-items: center;
+    width: 50%;
 }
 
 .label-form-book {
     margin-right: 20px;
+    width: 50%;
+    font-size: larger
 }
 
 .form-control{
     margin-right: 20px;
+    background: linear-gradient(#7A8C73, #315565 );
 }
 
 

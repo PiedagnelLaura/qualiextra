@@ -16,7 +16,7 @@
 
             <div class="bloc-type">
                 <div class="icon-{{type.name|slug|lower}} bloc-icon"></div>
-                <a href="#{{type.name|slug|lower}}" class="lien-type">
+                <a href="#{{type.name|slug|lower}}" class="lien-type button from-center">
                 {{type.name}}
                 </a>
             </div>
@@ -24,8 +24,7 @@
             {% endfor %}
 
         </div>
-
-      
+     
 
             {% for type in typeList %}
                 <section id="{{type.name|slug|lower}}" class="bloc-container row">
