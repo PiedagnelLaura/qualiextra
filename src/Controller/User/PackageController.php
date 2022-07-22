@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use App\Entity\Book;
 use App\Entity\Establishment;
@@ -16,7 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\HttpCache\Esi;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -34,19 +33,18 @@ class PackageController extends AbstractController
      */
     public function packageShow($id, ManagerRegistry $doctrine)
     {
-        // Alternative pour accéder au Repository de l'entité Package on se sert de ManagerRegistry pour récupéré le repository
+        // Alternative for access Repository of entity Package we manage with ManagerRegistry for grib the repository
         $PackageRepository = $doctrine->getRepository(Package::class);
 
         $package = $PackageRepository->find($id);
         
-        // Post not found ?
+        // Package not found ?
         if ($package === null) {
             throw $this->createNotFoundException('Package don\'t find');
         }
 
-        return $this->render('User/package/packageShow.html.twig', [
+        return $this->render('User/packageShow.html.twig', [
             'package' => $package,
-            
         ]);
     }
 
@@ -59,7 +57,7 @@ class PackageController extends AbstractController
     {
         //TODO : Après avoir fait le formulaire d'inscription
         //Récupérer l'utilisateur connecté
-        //Vérifier qu'il n'a pas fait plusieurs réservation avec ce même package à la même date
+        
 
         //Cela sert à récupérer l'utilisateur (pour le moment je l'ai mis en dur car pas d'authentification faite et pour pouvoir réserver j'ai besoin de l'id_user)
         $newUser = $userRepository->find(1);
@@ -72,22 +70,41 @@ class PackageController extends AbstractController
 
         //*On set les éléments obligatoires pour ajouter notre réservation en BDD
 
-        //Ajout de la date qu'on viens de récup 
-        $newBook->setDate(\DateTime::createFromFormat('Y-m-d', $data['date']));
-        //Ajout user rattaché : TODO authentification
-        $newBook->setUser($newUser);
-        //Ajout du package associé à la réservation
-        $newBook->setPackages($package);
-        //Info par défault, status et prix (obligatoire pour valider l'ajout)
-        $newBook->setStatus(0);
-        $newBook->setPrice($package->getPrice());
+        
         
 
 
-        //Push en BDD
-        $entityManager = $doctrine->getManager();
-        $entityManager->persist($newBook);
-        $entityManager->flush();
+
+        $newBook = new Book();
+        
+        $form = $this->createForm(BookType::class, $newBook);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //Ajout user rattaché : TODO authentification
+            $newBook->setUser($newUser);
+            //Ajout du package associé à la réservation
+            $newBook->setPackages($package);
+            //Info par défault, status et prix (obligatoire pour valider l'ajout)
+            $newBook->setStatus(0);
+            $newBook->setPrice($package->getPrice());
+            
+            $form->add($newBook, true);
+
+            return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         //TODO Envoi du mail à l'admin et prestataire 
         
@@ -96,6 +113,9 @@ class PackageController extends AbstractController
 
         //envoi au format JSON info de la réservation
         return $this->json(['book' => json_decode($serializer->serialize($newBook, 'json', ['groups' => ['normal']]))]);
+
+        // redirection vers la page movieShow
+        return $this->redirectToRoute('movieShow', ['slug' => $movie->getSlug()]);
     }
 
     

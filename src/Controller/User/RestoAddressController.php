@@ -26,7 +26,7 @@ class RestoAddressController extends AbstractController
       
           
         
-        return $this->render('user/resto_address/index.html.twig', [
+        return $this->render('User/goodPlace.html.twig', [
             'listEstablishment' => $listEstablishment,
             'listTag' => $listTag,
             'listStyle' => $listStyle,
