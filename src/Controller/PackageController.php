@@ -78,8 +78,8 @@ class PackageController extends AbstractController
             $entityManager->flush();
 
             // On redirige vers la liste
-            return $this->redirectToRoute();
-        }
+        //     return $this->redirectToRoute();
+        // }
 
         
     }
