@@ -64,7 +64,7 @@
                 </div>
             </div>
     </section>
-
+    {% if is_granted('ROLE_USER') %}
     <section class="wrap-book">
     
     <form method="post" id="form-book">
@@ -78,6 +78,13 @@
     </form>
         
     </section>
+    {% else %}
+
+    <div class="bloc-login">
+        <p class="bloc-message-book">Vous devez vous connecter pour pouvoir réserver</p>
+        <a class="button from-center" href="{{path("app_login")}}">Se connecter</a>
+    </div>
+    {% endif %}
 
 
 </main>

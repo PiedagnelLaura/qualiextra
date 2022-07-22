@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block body %}
+{% include "User/partials/header.html.twig" %}
+<div class="bloc-login">
+	
+
+<h1 class="h3 mb-3 font-weight-normal bloc-title">S'inscrire</h1>
+
+
+{{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+
+    {{ form_widget(form) }}
+
+    <button class="btn button from-center btn-log" name="le_bouton_ajouter" type="submit">Je m'inscris</button>
+{{ form_end(form) }}
+</div>
+
+{% endblock %}
