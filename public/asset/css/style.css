@@ -605,3 +605,32 @@ height: 100%;
 }
 
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* LOGIN FORM  */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.bloc-login {
+    
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.bloc-title {
+    color: #121629;
+}
+
+.btn-log {
+    margin:30px;
+}
+
+#inputEmail {
+    margin-bottom: 30px;
+}
+
+.bloc-message-book {
+    padding-bottom: 10px;
+    font-size: 19px;
+}
