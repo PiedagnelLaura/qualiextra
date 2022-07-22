@@ -161,7 +161,7 @@ h3{
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*           /* Button contact  */   
+/*           /* Button contact et book  */   
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .button {    
@@ -228,55 +228,37 @@ top: 0;
 height: 100%;
 }
 
+.hidde-btn-form {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    opacity: 0;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*           /* booking's form  */   
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.container--formBook_package{
-    border: 6px outset #7A8C73 ;
-    border-radius: 10px;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 6%;
+.wrap-book {
+    margin-bottom: 50px;
 }
 
-.container--formBook_package h3{
-    text-align: center;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: stretch;
-    justify-content: center;
-    margin: 2%;
-
-}
-
-.formBook_package--names{
+#form-book {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 4%;
 }
 
-.input-book{
-    margin: auto;
-    margin-bottom: 1%;
+.book-input {
+    display: flex;
+    align-items: center;
 }
 
-.formBook_package--form_date{
-    margin: auto;
+.label-form-book {
+    margin-right: 20px;
 }
 
-
-.formBook_package--form_date div{
-    width: 55%;
-    margin: auto;
-    justify-content: center;
-    margin-top: 6%;
-    
+.form-control{
+    margin-right: 20px;
 }
 
 
