@@ -26,21 +26,23 @@
      
 
             {% for type in typeList %}
-                <section id="{{type.name|slug|lower}}" class="bloc-container row">
+                <section id="{{type.name|slug|lower}}" class="bloc-container  parallax row">
+                    {# <div class=" parallax-inner">
+                        <h1 class=" parallax-h1">{{type.name}} </h1> #}
+                        {% for package in type.getPackages() %}
+                        <div class="card col-xs-1 col-sm-2 col-md-3">
+                            <a href="{{path("app_user_package_show",{id:package.id})}}" class="">
+                                <img src="{{package.picture}}" class="card-img-top" alt="...">
+                            </a>
 
-                {% for package in type.getPackages() %}
-                    <div class="card col-xs-1 col-sm-2 col-md-3">
-
-                <a href="{{path("app_user_package_show",{id:package.id})}}" class="">
-                    <img src="{{package.picture}}" class="card-img-top" alt="...">
-                </a>
-
-                <div class="card-body package-detail">
-                    <h5 class="">{{package.name}}</h5>
-                    <p class="">{{package.description}}</p>
-                </div>
-            </div>
-                {% endfor %}
+                            <div class="card-body package-detail">
+                                <h5 class="">{{package.name}}</h5>
+                                <p class="">{{package.description}}</p>
+                            </div>
+                        </div>
+                        
+                    {% endfor %}
+                    {# </div> #}
                 </section>
 
             {% endfor %}

@@ -3,7 +3,7 @@
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*           /* Header */   
+/*           /*! Header */   
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .logo {
@@ -28,9 +28,40 @@
 }
 
 
-.name-user{
-    
+.dropdown-menu{
+    color: #7A8C73;
+    background-color: #315565e5;
+
 }
+
+.dropdown-item:hover{
+    color: #F6F0E9;
+    background-color: #7A8C73;
+
+}
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!       /*! Homepage User */   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* .parallax-h1{
+    text-align: center;
+    font-size: 30px;
+    color: red;
+    text-transform: uppercase;
+    letter-spacing: 1%;
+    margin: 45% 0;
+}
+
+.parallax{
+    
+
+}
+
+.parallax-inner{
+
+} */
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*       /* Filter Homepage User */   
@@ -177,9 +208,9 @@ height: 100%;
 }
 
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    /*           /* Card Homepage */             
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* Card Homepage */             
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .bloc-container {
     justify-content: center;
@@ -224,9 +255,9 @@ height: 100%;
 
 
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*           /* Footer */   
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!           /* Footer */   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .footer-color {
     background-color: #121629;
@@ -251,9 +282,9 @@ height: 100%;
     color: #7A8C73;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*           /* Good Address */   
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!           /* Good Address */   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 body {
     background-color: #f6f0e9;
@@ -287,8 +318,6 @@ h2 {
     z-index: 0;
     
 }
-
-
 
 
 /* ---------FILTER FORMATTING------- */
@@ -379,7 +408,7 @@ input[type="radio"]:checked {
 /* ---------LIST OF RESTAURANT FORMATTING------- */
 
 .restaurant {
-    background-color: #83907c;
+    background-color:#7a8c73e8;
     color: #f6f0e9;
     padding: 15px;
     margin: 15px;
@@ -463,12 +492,12 @@ a {
     } 
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*      /*Detail package page*/   
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Detail package page*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 
-h3{
+.title_h3{
     color: #7A8C73;
     font-weight: bold;
     font-size: 32px;
@@ -545,6 +574,7 @@ h3{
     height: 40%;
     background: linear-gradient(#7A8C73, #315565 );
     padding-top: 5%;
+    align-items: center;
 }
 
 
@@ -561,8 +591,7 @@ h3{
 
 .price {
     font-weight: bold;
-    font-size: 60px;
-    padding-bottom: 9%;    
+    font-size: 50px;
 }
 
 
@@ -587,7 +616,7 @@ h3{
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*           /* Button contact et book  */   
+/*     /* Button contact et book  */   
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .button {    
@@ -682,24 +711,25 @@ height: 100%;
 .book-input {
     display: flex;
     align-items: center;
-    width: 50%;
+    width: 70%;
 }
 
 .label-form-book {
     margin-right: 20px;
-    width: 50%;
+    width: 38%;
     font-size: larger
 }
 
 .form-control-package{
     margin-right: 20px;
     background: linear-gradient(#7A8C73, #315565 );
+    width: 50%;
 }
 
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*           /* LOGIN FORM  */   
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!           /* LOGIN FORM  */   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .bloc-login {
     
