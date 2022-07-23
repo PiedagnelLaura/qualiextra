@@ -5,6 +5,7 @@ namespace App\Controller\User;
 use App\Entity\Book;
 use App\Entity\Establishment;
 use App\Entity\Package;
+use App\Form\BookType;
 use App\Repository\BookRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -23,6 +24,10 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 
 class PackageController extends AbstractController
 {
@@ -81,9 +86,6 @@ class PackageController extends AbstractController
 
         //*On set les éléments obligatoires pour ajouter notre réservation en BDD
 
-        
-        
-
 
 
         $newBook = new Book();
@@ -107,13 +109,7 @@ class PackageController extends AbstractController
         }
 
 
-
-
-
-
-
-
-
+ 
 
 
 
@@ -128,6 +124,9 @@ class PackageController extends AbstractController
         // redirection vers la page movieShow
         return $this->redirectToRoute('movieShow', ['slug' => $movie->getSlug()]);
     }
+
+
+ 
 
     
 }
