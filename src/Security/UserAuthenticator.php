@@ -49,9 +49,9 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        $user =$this->userRepository->findByEmail($_REQUEST['email']);
+        // $user =$this->userRepository->findByEmail($_REQUEST['email']);
 
-        dd($_REQUEST);
+        // dd($_REQUEST);
         
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('app_user_home'));
