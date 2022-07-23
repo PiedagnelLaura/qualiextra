@@ -8,6 +8,21 @@
     background-color: #121629;
 }
 
+.fixed-title {
+    display: none;
+    background: radial-gradient(black, transparent);
+    font-size: 8em;
+    color: #7A8C73;
+    z-index: 1;
+    text-align: center;
+    position: fixed;
+    top: 30%;
+}
+
+.fixed-title.active {
+    display: block;
+}
+
 .nav-lien {
     color: #F6F0E9;
 }
