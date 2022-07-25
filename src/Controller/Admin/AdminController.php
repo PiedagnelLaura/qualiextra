@@ -16,6 +16,8 @@ class AdminController extends AbstractController
      */
     public function home(EstablishmentRepository $establishmentRepository, UserRepository $userRepository, BookRepository $bookRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
         $establishmentsList = $establishmentRepository->findBy([], ['name' => 'ASC']);
 
         $usersList = $userRepository->findByRoles('USER');
