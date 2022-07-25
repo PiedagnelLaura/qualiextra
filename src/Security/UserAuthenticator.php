@@ -51,7 +51,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
         // $user =$this->userRepository->findByEmail($_REQUEST['email']);
 
-        // dd($_REQUEST);
+        
         // $_GET[] = $user;
         
         // For example:
