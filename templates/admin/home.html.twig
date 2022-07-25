@@ -1,11 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil administrateur{% endblock %}
+{% block title %}Accueil administrateur
+{% endblock %}
 
 {% block body %}
-{% include "admin/partials/header.html.twig" %}
+	{% include "admin/partials/header.html.twig" %}
 
-    <h1>Bienvenue</h1>
+	<main class="container-fluid">
 
-{% include "admin/partials/footer.html.twig" %}
+
+		<div class="filtre-type filtre">
+
+			<a href="#" class="listLink home-btn home-from-center">
+				<div id="establishmentsList">
+					Liste des établissement
+				</div>
+			</a>
+			<a href="#" class="listLink home-btn home-from-center">
+				<div id="prosList">
+					Liste des prestataires
+				</div>
+			</a>
+			<a href="#" class="listLink home-btn home-from-center">
+				<div id="usersList">
+					Liste des utilisateurs
+				</div>
+			</a>
+			<a href="#" class="listLink home-btn home-from-center">
+				<div id="booksList">
+					Liste des réservations
+				</div>
+			</a>
+
+		</div>
+
+		<section class="list establishmentsList">
+       <h2>Liste des établissements</h2>
+			{% for establishment in establishmentsList %}
+				<h2>
+					{{establishment.name}}</h2>
+			{% endfor %}
+		</section>
+
+        <section  class="list prosList d-none">
+        <h2>Liste des prestataires</h2>
+			{% for pro in prosList %}
+            <h2>
+					{{pro.email}}</h2>
+            
+			{% endfor %}
+		</section>
+        
+        <section  class="list usersList d-none">
+        <h2>Liste des utilisateurs</h2>
+			{% for user in usersList %}
+            <h2>
+					{{user.email}}</h2>
+            
+			{% endfor %}
+		</section>
+        <section  class="list booksList d-none">
+        <h2>Liste des réservations</h2>
+			{% for book in booksList %}
+            <h2>
+					{{book.id}}</h2>
+            
+			{% endfor %}
+		</section>
+
+	</main>
+
+	{% include "admin/partials/footer.html.twig" %}
+    {% block javascripts %}
+		<script src="{{ asset('asset/js/selectedListAdmin.js') }}"></script>
+	{% endblock %}
 {% endblock %}
