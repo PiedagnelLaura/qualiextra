@@ -28,7 +28,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use App\Services\MailerService;
 use App\Form\BookType;
-
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * 
@@ -36,6 +36,12 @@ use App\Form\BookType;
 class PackageController extends AbstractController
 {
 
+    private $sessionTab;
+    public function __construct(SessionInterface $session, UserRepository $userRepository)
+    {
+        $this->sessionTab = $session->get('user') ?? [];
+        $this->userRepository = $userRepository;
+    }
 
     /**
      * Show one package by id
@@ -48,6 +54,7 @@ class PackageController extends AbstractController
     {
         // Alternative for access Repository of entity Package we manage with ManagerRegistry for grib the repository
         $PackageRepository = $doctrine->getRepository(Package::class);
+
         
 
         // show package by id
@@ -57,7 +64,7 @@ class PackageController extends AbstractController
         if ($package === null) {
             throw $this->createNotFoundException('Package don\'t find');
         }
-        // dd($_SESSION);
+        
         return $this->render('User/packageShow.html.twig', [
             'package' => $package,
         ]);
@@ -72,13 +79,12 @@ class PackageController extends AbstractController
                         ManagerRegistry $doctrine,
                         Request $request, 
                         Package $package, 
-                        SerializerInterface $serializer,
                         MailerService $mailerService): JsonResponse
     {
         //TODO : Après avoir fait le formulaire d'inscription
         //Récupérer l'utilisateur connecté
         $userRepository = $doctrine->getRepository(User::class);
-        dd($userRepository);
+        
 
         //instanciation de book
         $newBook = new Book();
@@ -87,22 +93,31 @@ class PackageController extends AbstractController
 
         $form = $this->createForm(BookType::class, $newBook);
         $form->handleRequest($request);
-        dd('ici');
-
+        
+        
         if ($form->isSubmitted() && $form->isValid()) {
 
             //Ajout user rattaché : TODO authentification
             $newBook->setUser($user);
+
             //Ajout du package associé à la réservation
             $newBook->setPackages($package);
             //Info par défault, status et prix (obligatoire pour valider l'ajout)
             $newBook->setStatus(0);
             $newBook->setPrice($package->getPrice());
             
+            dd("je suis là");
             $form->add($newBook, true);
+            dd("je suis là ici");
+            // Instant où on enregistre tout en BDD :
 
-            $data = $form->getData();
-            dd($data);
+            // $entityManager = $doctrine->getManager();
+            // $entityManager->persist($newBook);
+            
+            // $entityManager->flush();
+
+            // $data = $form->getData();
+            
 
             $mailerService->send(
                 "nouvelle réservation",
@@ -112,30 +127,40 @@ class PackageController extends AbstractController
                 [
                     "Nom" => $user["lastname"],
                     "E-mail" => $user["email"],
+                    "Prix" => $package["price"],
                     "Date de réservation" => $newBook["date"],
                 ]
-
                 );
 
             
-
-            dd($form);
             return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
         }
-
-
-        //TODO Envoi du mail à l'admin et prestataire 
-        
+        dd("je suis en dehors du if");
         //Flash Message pour le client
         $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
 
         //envoi au format JSON info de la réservation
         // return $this->json(['book' => json_decode($serializer->serialize($newBook, 'json', ['groups' => ['normal']]))]);
-
+        dd($form);
         // redirection vers la page 
         // return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
         return $this->renderForm('User/packageShow.html.twig', ["form" => $form]);
+        dd($form);
     }
 
 
+        /**
+     * Show email
+     *
+     * @Route("/email", name="app_mail", methods={"GET"})
+     *
+     *  
+     */
+    public function email(ManagerRegistry $doctrine)
+    {
+
+        
+        return $this->render('emails/email.html.twig');
+    }
 }
+

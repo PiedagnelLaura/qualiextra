@@ -71,6 +71,9 @@
         <div class="book-input ">
             <label class="label-form-book" for="date">Votre date de réservation</label>
             <input type="date" class="form-control-package" required name="date" id="date" placeholder="date">
+            <input type="hidden"  name="lastname" id="lastname" value="{{app.user.id}}">
+            <input type="hidden"  name="email" id="email" value="{{app.user.email}}">
+            <input type="hidden"  name="price" id="price" value="{{package.price}}">
         </div>
 
         <a class="button from-center" type="submit"> Réserver
