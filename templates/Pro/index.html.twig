@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qualiextra Pro{% endblock %}
+
+{% block body %}
+
+<div class='container my-6'>
+<a href="#" class="button from-center float-end">Ajouter</a>
+<h1> Mes packages </h1>
+
+
+{% for establishment in establishmentList %}
+<div>
+<h2 class="">{{establishment.name}}</h2>
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">Titre</th>
+      <th scope="col">Prix</th>
+    </tr>
+  </thead>
+  {% for package in establishment.getPackages() %}
+  <tbody>
+  
+    <tr>
+      <th scope="row">{{package.name}}</th>
+      <td>{{package.price}} €</td>
+      <td>
+        <a href="#"><i class="fa-solid fa-pen"></i></a>
+        
+        <a href="#"><i class="fa-solid fa-trash"></i></a>
+    </td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+
+
+</div>
+{% endfor %}
+
+</div>
+
+
+
+
+
+{% endblock %}
