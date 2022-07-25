@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qualiextra{% endblock %}
+
+{% block body %}
+
+{% include "User/partials/header.html.twig" %}
+
+    <main id="toto" class="container-fluid" >
+
+        <h1 id="title"></h1>
+
+        <div class="filtre-type filtre">
+
+            {% for type in typeList %}
+
+            <div class="bloc-type">
+                <div class="icon-{{type.name|slug|lower}} bloc-icon"></div>
+                <a href="#{{type.name|slug|lower}}" class="lien-type">
+                {{type.name}}
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+      
+
+            {% for type in typeList %}
+                <section id="{{type.name|slug|lower}}" class="bloc-container row">
+
+                    <h2 class="fixed-title">{{type.name|upper}}</h2>
+                {% for package in type.getPackages() %}
+                    <div class="card col-xs-1 col-sm-2 col-md-3">
+
+                <a href="#" class="">
+                    <img src="{{package.picture}}" class="card-img-top" alt="...">
+                </a>
+
+                <div class="card-body package-detail">
+                    <h5 class="">{{package.name}}</h5>
+                    <p class="">{{package.description}}</p>
+                </div>
+            </div>
+                {% endfor %}
+                </section>
+
+            {% endfor %}
+
+    
+           
+       
+    
+    </main>
+
+{% include "User/partials/footer.html.twig" %}
+
+{% endblock %}

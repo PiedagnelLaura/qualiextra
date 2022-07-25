@@ -9,9 +9,9 @@ when@dev:
 when@test:
     web_profiler:
         toolbar: false
-        //To intercept the mail we have to change param default false to true
-        //Because when we are in development not in production 
-        intercept_redirects: true
+        #To intercept the mail we have to change param default false to true
+        #Because when we are in development not in production 
+        intercept_redirects: false
 
     framework:
         profiler: { collect: false }
