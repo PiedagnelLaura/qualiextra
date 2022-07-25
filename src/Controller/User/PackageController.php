@@ -109,10 +109,6 @@ class PackageController extends AbstractController
         }
 
 
- 
-
-
-
         //TODO Envoi du mail à l'admin et prestataire 
         
         //Flash Message pour le client
@@ -126,7 +122,4 @@ class PackageController extends AbstractController
     }
 
 
- 
-
-    
 }
