@@ -18,7 +18,6 @@ class BookType extends AbstractType
     {
         $builder
             ->add('date', DateTimeInterface::class)
-
             ->add('name', TextType::class)
             ->add('price', IntegerType::class )
             ->add('email', EntityType::class, ['class' => User::class])

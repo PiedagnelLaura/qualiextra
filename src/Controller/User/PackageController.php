@@ -5,7 +5,7 @@ namespace App\Controller\User;
 use App\Entity\Book;
 use App\Entity\Establishment;
 use App\Entity\Package;
-use App\Form\BookType;
+use App\Entity\User;
 use App\Repository\BookRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -23,21 +23,18 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use Symfony\Component\Mime\Address;
+use App\Services\MailerService;
+use App\Form\BookType;
 
+
+/**
+ * 
+ */
 class PackageController extends AbstractController
 {
-
-    private $sessionTab;
-
-    public function __construct(SessionInterface $session)
-    {
-        $this->sessionTab = $session->get('user') ?? [];
-    }
 
 
     /**
@@ -51,7 +48,9 @@ class PackageController extends AbstractController
     {
         // Alternative for access Repository of entity Package we manage with ManagerRegistry for grib the repository
         $PackageRepository = $doctrine->getRepository(Package::class);
+        
 
+        // show package by id
         $package = $PackageRepository->find($id);
         
         // Package not found ?
@@ -69,34 +68,31 @@ class PackageController extends AbstractController
      * 
      * @Route("/packages/{id}", name="app_package-book", requirements={"id"="\d+"}, methods={"POST"})
      */
-    public function book(ManagerRegistry $doctrine, SessionInterface $session, Request $request, UserRepository $userRepository, Package $package, SerializerInterface $serializer): JsonResponse
+    public function book(int $id,
+                        ManagerRegistry $doctrine,
+                        Request $request, 
+                        Package $package, 
+                        SerializerInterface $serializer,
+                        MailerService $mailerService): JsonResponse
     {
         //TODO : Après avoir fait le formulaire d'inscription
         //Récupérer l'utilisateur connecté
+        $userRepository = $doctrine->getRepository(User::class);
+        dd($userRepository);
 
-
-        //Cela sert à récupérer l'utilisateur (pour le moment je l'ai mis en dur car pas d'authentification faite et pour pouvoir réserver j'ai besoin de l'id_user)
-        $newUser = $userRepository->find(1);
-
-        //J'instancie une nouvelle réservation
+        //instanciation de book
         $newBook = new Book();
 
-        //Récupère ce qu'il y a dans POST
-        $data = $request->toArray();
+        $user = new User();
 
-        //*On set les éléments obligatoires pour ajouter notre réservation en BDD
-
-
-
-        $newBook = new Book();
-        
         $form = $this->createForm(BookType::class, $newBook);
         $form->handleRequest($request);
+        dd('ici');
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             //Ajout user rattaché : TODO authentification
-            $newBook->setUser($newUser);
+            $newBook->setUser($user);
             //Ajout du package associé à la réservation
             $newBook->setPackages($package);
             //Info par défault, status et prix (obligatoire pour valider l'ajout)
@@ -105,6 +101,25 @@ class PackageController extends AbstractController
             
             $form->add($newBook, true);
 
+            $data = $form->getData();
+            dd($data);
+
+            $mailerService->send(
+                "nouvelle réservation",
+                "client@exemplemail.com",
+                "contact@testqualiextra.com",
+                "emails/email.html.twig'", 
+                [
+                    "Nom" => $user["lastname"],
+                    "E-mail" => $user["email"],
+                    "Date de réservation" => $newBook["date"],
+                ]
+
+                );
+
+            
+
+            dd($form);
             return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -115,10 +130,11 @@ class PackageController extends AbstractController
         $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
 
         //envoi au format JSON info de la réservation
-        return $this->json(['book' => json_decode($serializer->serialize($newBook, 'json', ['groups' => ['normal']]))]);
+        // return $this->json(['book' => json_decode($serializer->serialize($newBook, 'json', ['groups' => ['normal']]))]);
 
-        // redirection vers la page movieShow
-        return $this->redirectToRoute('movieShow', ['slug' => $movie->getSlug()]);
+        // redirection vers la page 
+        // return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
+        return $this->renderForm('User/packageShow.html.twig', ["form" => $form]);
     }
 
 

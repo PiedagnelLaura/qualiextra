@@ -39,7 +39,7 @@ class MailerService
      * @param array $parameters = (nom, prénom , email, ...)
      * @return void
      */
-    public function send(string $subject, string $from, string $to, string $template, array $parameters)
+    public function send(string $subject, string $from, string $to, string $template, array $parameters) : void
     {
         //On fait de Email un objet
         $email = (new Email())
