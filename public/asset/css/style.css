@@ -721,3 +721,30 @@ height: 100%;
     padding-bottom: 10px;
     font-size: 19px;
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* Home Pro */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.bloc-show {
+    margin-top: 5rem;
+}
+
+.bloc-show-title {
+    font-size: 3rem;
+    margin-bottom: 2em;
+    color: #121629;
+}
+
+.bloc-establishment-name {
+    background: linear-gradient(#7A8C73, #315565);
+    color: #F6F0E9;
+}
+
+.bloc-establishment {
+    margin-bottom: 5%;
+}
+
+.bloc-package {
+    width: 50%;
+}

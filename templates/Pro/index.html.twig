@@ -4,20 +4,22 @@
 
 {% block body %}
 
-<div class='container my-6'>
-<a href="#" class="button from-center float-end">Ajouter</a>
-<h1> Mes packages </h1>
+{% include "Pro/partials/header.html.twig" %}
+
+<div class='container my-6 bloc-show'>
+<a href="{{path('app_pro_new_package')}}" class="button from-center float-end">Ajouter</a>
+<h1 class="bloc-show-title"> Mes packages </h1>
 
 
 {% for establishment in establishmentList %}
-<div>
-<h2 class="">{{establishment.name}}</h2>
+<div class="bloc-establishment">
+<h2 class="bloc-establishment-name">{{establishment.name}}</h2>
 
 <table class="table">
 
   <thead>
     <tr>
-      <th scope="col">Titre</th>
+      <th scope="col">Nom du package</th>
       <th scope="col">Prix</th>
     </tr>
   </thead>
@@ -25,12 +27,12 @@
   <tbody>
   
     <tr>
-      <th scope="row">{{package.name}}</th>
+      <th scope="row" class="bloc-package">{{package.name}}</th>
       <td>{{package.price}} €</td>
       <td>
-        <a href="#"><i class="fa-solid fa-pen"></i></a>
+        <a href="{{path('app_pro_update_package',{id:package.id})}}"><i class="fa-solid fa-pen"></i></a>
         
-        <a href="#"><i class="fa-solid fa-trash"></i></a>
+        <a href="{{path('app_pro_delete_package',{id:package.id})}}"><i class="fa-solid fa-trash"></i></a>
     </td>
     </tr>
 
