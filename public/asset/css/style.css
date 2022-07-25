@@ -378,7 +378,7 @@ h2 {
 }
 
 input[type="checkbox"] {
-    background-color: #83907c;
+    background: linear-gradient(#7A8C73, #315565 );
 }
 
 input[type="checkbox"]:checked {
@@ -386,7 +386,7 @@ input[type="checkbox"]:checked {
 }
 
 input[type="radio"] {
-    background-color: #83907c;
+    background: linear-gradient(#7A8C73, #315565 );
 }
 
 input[type="radio"]:checked {
@@ -398,6 +398,7 @@ input[type="radio"]:checked {
     height: 40px;
     margin: 20px;
     text-align: center;
+    background: linear-gradient(#7A8C73, #315565 );
     background-color: #83907c;
     color: #f6f0e9;
 }
