@@ -11,67 +11,244 @@
 
 		<div class="filtre-type filtre">
 
-			<a href="#" class="listLink home-btn home-from-center">
-				<div id="establishmentsList">
-					Liste des établissement
-				</div>
+			<a href="#" class="listLink home-btn home-from-center" id="establishmentsList">
+				Liste des établissement
 			</a>
-			<a href="#" class="listLink home-btn home-from-center">
-				<div id="prosList">
-					Liste des prestataires
-				</div>
+			<a href="#" class="listLink home-btn home-from-center" id="prosList">
+				Liste des prestataires
 			</a>
-			<a href="#" class="listLink home-btn home-from-center">
-				<div id="usersList">
-					Liste des utilisateurs
-				</div>
+			<a href="#" class="listLink home-btn home-from-center" id="usersList">
+				Liste des utilisateurs
 			</a>
-			<a href="#" class="listLink home-btn home-from-center">
-				<div id="booksList">
-					Liste des réservations
-				</div>
+			<a href="#" class="listLink home-btn home-from-center" id="booksList">
+				Liste des réservations
 			</a>
 
 		</div>
 
-		<section class="list establishmentsList">
-       <h2>Liste des établissements</h2>
-			{% for establishment in establishmentsList %}
-				<h2>
-					{{establishment.name}}</h2>
-			{% endfor %}
+		<section class="list establishmentsList ">
+			<div class="title-admin-list">
+				<h3>Liste des établissements</h3>
+				<a class="button from-center" href="#">Ajouter</a>
+			</div>
+
+			<table class="table table-hover mt-4">
+				<thead class="head-list-admin">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Adresse</th>
+						<th scope="col">Nombres de packages</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for establishment in establishmentsList %}
+						<tr>
+							<th scope="row">{{ loop.index }}</th>
+							<td>{{establishment.name}}</td>
+							<td>{{establishment.address}}</td>
+							<td>{{establishment.packages| length}}</td>
+							<td class="text-end">
+								<a href="#" class="btn btn-sm edit">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</a>
+
+								<div class="btn-group">
+									<button type="button" class="btn btn-sm dropdown-toggle delete" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+									</button>
+									<div class="dropdown-menu delete-menu">
+										<a class="dropdown-item" href="#">Supprimer</a>
+										<a class="dropdown-item" href="" data-bs-toggle="dropdown">Annuler</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<th scope="row"></th>
+							<td>Il n'y a pas encore d'établissement, vous pouvez en ajouter un,
+								<a href="#">ici</a>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
 		</section>
 
-        <section  class="list prosList d-none">
-        <h2>Liste des prestataires</h2>
-			{% for pro in prosList %}
-            <h2>
-					{{pro.email}}</h2>
-            
-			{% endfor %}
+		<section class="list prosList d-none">
+			<div class="title-admin-list">
+				<h3>Liste des prestataires</h3>
+				<a class="button from-center" href="#">Ajouter</a>
+			</div>
+
+
+			<table class="table table-hover mt-4">
+				<thead class="head-list-admin">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Mail</th>
+                        <th scope="col">Nombres d'établissements</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for pro in prosList %}
+						<tr>
+							<th scope="row">{{ loop.index }}</th>
+							<td>{{pro.firstname ?? 'Mme/Mr'}}
+								{{pro.lastname}}</td>
+							<td>{{pro.email}}</td>
+                             <td>{{pro.establishments| length}}</td>
+							<td class="text-end">
+								<a href="#" class="btn btn-sm edit">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</a>
+
+								<div class="btn-group">
+									<button type="button" class="btn btn-sm dropdown-toggle delete" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+									</button>
+									<div class="dropdown-menu delete-menu">
+										<a class="dropdown-item" href="#">Supprimer</a>
+										<a class="dropdown-item" href="" data-bs-toggle="dropdown">Annuler</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<th scope="row"></th>
+							<td>Il n'y a pas encore de prestataire, vous pouvez en ajouter un,
+								<a href="#">ici</a>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
 		</section>
-        
-        <section  class="list usersList d-none">
-        <h2>Liste des utilisateurs</h2>
-			{% for user in usersList %}
-            <h2>
-					{{user.email}}</h2>
-            
-			{% endfor %}
+
+		<section class="list usersList d-none">
+			<div class="title-admin-list">
+				<h3>Liste des utilisateurs</h3>
+
+			</div>
+
+			<table class="table table-hover mt-4">
+				<thead class="head-list-admin">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Mail</th>
+                        <th scope="col">Nombre de réservations</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in usersList %}
+						<tr>
+							<th scope="row">{{ loop.index }}</th>
+							<td>{{user.firstname ?? 'Mme/Mr'}}
+								{{user.lastname}}</td>
+							<td>{{user.email}}</td>
+                            <td>{{user.books| length}}</td>
+							<td class="text-end">
+								<div class="btn-group">
+									<button type="button" class="btn btn-sm dropdown-toggle delete" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+									</button>
+									<div class="dropdown-menu delete-menu">
+										<a class="dropdown-item" href="#">Supprimer</a>
+										<a class="dropdown-item" href="" data-bs-toggle="dropdown">Annuler</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<th scope="row"></th>
+							<td>Il n'y a pas encore d'utilisateurs
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
 		</section>
-        <section  class="list booksList d-none">
-        <h2>Liste des réservations</h2>
-			{% for book in booksList %}
-            <h2>
-					{{book.id}}</h2>
-            
-			{% endfor %}
+		<section class="list booksList d-none">
+			<div class="title-admin-list">
+				<h3>Liste des réservations</h3>
+
+			</div>
+
+			<table class="table table-hover mt-4">
+				<thead class="head-list-admin">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom de l'utilisateur</th>
+						<th scope="col">Mail du client</th>
+						<th scope="col">Nom du package</th>
+                        <th scope="col">Contact de l'établissement</th>
+						<th scope="col">Date de réservation</th>
+						<th scope="col">Status</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for book in booksList %}
+
+						<tr>
+							<th scope="row">{{ loop.index }}</th>
+							<td>{{book.user.firstname ?? 'Mme/Mr'}}
+								{{book.user.lastname}}</td>
+							<td>{{book.user.email}}</td>
+							<td>{{book.packages.getName}}</td>
+                            <td>{{book.packages.establishment.email}}</td>
+							<td>{{book.date |date("d/m/Y", "Europe/Paris") }}</td>
+							<td>
+								{% if book.status ==0 %}
+									<i class="fa-solid fa-circle orange"></i>
+									En attente
+								{% elseif book.status==1 %}
+									<i class="fa-solid fa-circle green"></i>
+									Validée
+								{% else %}
+									<i class="fa-solid fa-circle red"></i>
+									Annulée
+								{% endif %}
+							</td>
+
+						</tr>
+					{% else %}
+						<tr>
+							<th scope="row"></th>
+							<td>Il n'y a pas encore de reservations
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+
 		</section>
 
 	</main>
 
-	{% include "admin/partials/footer.html.twig" %}
-    {% block javascripts %}
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+	{% block javascripts %}
 		<script src="{{ asset('asset/js/selectedListAdmin.js') }}"></script>
 	{% endblock %}
 {% endblock %}

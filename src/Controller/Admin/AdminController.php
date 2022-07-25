@@ -16,12 +16,12 @@ class AdminController extends AbstractController
      */
     public function home(EstablishmentRepository $establishmentRepository, UserRepository $userRepository, BookRepository $bookRepository): Response
     {
-        $establishmentsList = $establishmentRepository->findAll();
+        $establishmentsList = $establishmentRepository->findBy([], ['name' => 'ASC']);
 
         $usersList = $userRepository->findByRoles('USER');
         $prosList = $userRepository->findByRoles('PRO');
        
-        $booksList = $bookRepository->findAll();
+        $booksList = $bookRepository->findBy([], ['status' => 'ASC']);
 
         return $this->render('admin/home.html.twig', [
             'establishmentsList' => $establishmentsList,
