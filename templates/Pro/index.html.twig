@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qualiextra Pro{% endblock %}
+
+{% block body %}
+
+{% include "Pro/partials/header.html.twig" %}
+
+<div class='container my-6 bloc-show'>
+  <a href="{{path('app_pro_new_package')}}" class="button from-center float-end">Ajouter</a>
+  <h1 class="bloc-show-title"> Mes packages </h1>
+
+
+{% for establishment in establishmentList %}
+  {% if establishment.getPackages() is not empty %}
+  <div class="bloc-establishment">
+    <h2 class="bloc-establishment-name">{{establishment.name}}</h2>
+
+    <table class="table">
+
+      <thead>
+        <tr>
+          <th scope="col" class="color-primaire">Nom du package</th>
+          <th scope="col" class="color-primaire">Prix</th>
+        </tr>
+      </thead>
+      {% for package in establishment.getPackages() %}
+
+      <tbody>
+      
+        <tr>
+          <th scope="row" class="bloc-package">{{package.name}}</th>
+          <td>{{package.price}} €</td>
+          <td class="bloc-icon-package">
+            <a href="{{path('app_pro_update_package',{id:package.id})}}" class="btn btn-warning" role="button"><i class="fa-solid fa-pen"></i></a>
+            
+            <a href="{{path('app_pro_delete_package',{id:package.id})}}" class="btn btn-danger" role="button"><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+
+      </tbody> 
+        
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+{% endfor %}
+</div>
+
+
+
+
+
+{% endblock %}

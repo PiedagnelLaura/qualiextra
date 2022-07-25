@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Les Bonnes Adresses
+{% endblock %}
+
+{% block body %}
+	{% include "User/partials/header.html.twig" %}
+	<main>
+
+		<div class="title-filter">
+
+			<h2>Les Bonnes Adresses</h2>
+			<button id="filter" class="btn button from-center mb-2 ">Filtrer</button>
+
+
+		</div>
+
+		<div class="contener">
+
+			<section class="top-section">
+
+
+				<div class="filter-case d-none">
+					<div class="close">
+						<i id="filter-close" class="fa-solid fa-xmark"></i>
+					</div>
+
+					<h3>Filtrer</h3>
+					<div class="filter-checkbox">
+						<div class="select-filter">
+							<p>Style</p>
+							{% for style in listStyle %}
+								<div class="form-check options-list">
+									<input class="form-check-input checkbox-filters new-filters" type="radio" value="" id="{{style.name}}" name="style">
+									<label class="form-check-label" for="flexCheckChecked">
+										{{style.name}}
+									</label>
+								</div>
+							{% endfor %}
+
+						</div>
+						<div class="select-filter">
+							<p>Equipements</p>
+							{% for tag in listTag %}
+								<div class="form-check options-list">
+									<input class="form-check-input checkbox-filters new-filters" type="checkbox" value="" id="{{tag.name}}">
+									<label class="form-check-label" for="flexCheckChecked">
+										{{tag.name}}
+									</label>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+
+
+					<select class="form-select select-price new-filters" aria-label=" select">
+						<option selected>Prix</option>
+						<option class="price-filter" value="1">Moins de 15 €</option>
+						<option class="price-filter" value="2">Entre 15 et 25 €</option>
+						<option class="price-filter" value="3">Entre 25 et 40 €</option>
+						<option class="price-filter" value="4">Plus de 40 €</option>
+					</select>
+
+				</div>
+
+				<div id="map-establishment"></div>
+
+
+			</section>
+
+
+			<section class="bottom-section">
+
+				{% for establishment in listEstablishment %}
+
+
+					<aside class="details d-none" id="{{establishment.id}}">
+						<div class="closed">
+							<i id="details-close" class="fa-solid fa-xmark"></i>
+						</div>
+						<h3>{{establishment.name}}</h3>
+						<p>{{establishment.address}}</p>
+
+						<img src="{{establishment.picture}}" class="img-fluid">
+						<h4>Style :
+							{{establishment.style.name}}</h4>
+						<h4>
+							Equipements :
+
+							{% for tag in establishment.getTags() %}
+								{{tag.name}}
+							{% endfor %}
+						</h4>
+
+						<p>{{establishment.description}}</p>
+						<h4>Packages proposés par l'établissement</h4>
+						{% for packages in establishment.getPackages() %}
+
+							<a href="#">
+								{{packages.name}}</a>
+						{% endfor %}
+						<h4>Contact</h4>
+						<p>{{establishment.phone}}</p>
+					</aside>
+				{% endfor %}
+				<div class="establishmentList">
+					{% for establishment in listEstablishment %}
+						<a class="establishment" data-long="{{establishment.longitudes}}" data-lat="{{establishment.latitudes}}" data-number="{{establishment.id}}" data-price="{{establishment.price}}" data-name="{% for tag in establishment.getTags() %}{{tag.name}} {% endfor %}{{establishment.style.name}}" href="#">
+							<div class="restaurant">
+								<h3>{{establishment.name}}</h3>
+								<p>{{establishment.address}}</p>
+							</div>
+						</a>
+					{% else %}
+
+						<em>Aucun établissement ne correspond à vos recherches</em>
+
+					{% endfor %}
+				</div>
+
+
+			</section>
+
+		</div>
+
+
+	</main>
+	{% include "User/partials/footer.html.twig" %}
+	{% block javascripts %}
+		<script src="{{ asset('asset/js/app.js') }}"></script>
+		<script src="{{ asset('asset/js/map.js') }}"></script>
+		<script src="{{ asset('asset/js/filter.js') }}"></script>
+		<script src="{{ asset('asset/js/coordinate.js') }}"></script>
+		<script src="{{ asset('asset/js/establishmentDetails.js') }}"></script>
+	{% endblock %}
+
+{% endblock %}
