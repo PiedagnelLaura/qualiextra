@@ -10,42 +10,8 @@
 			<h1>Ajout d'un établissement</h1>
 			<a class="button from-center" href="{{path('app_admin_home')}}">Retour</a>
 		</div>
-		{{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
-		<div class="my-custom-class-for-errors">
-			{{ form_errors(form) }}
-		</div>
 
-		
-
-<div class="row col">
-			{{ form_row(form.name) }}
-		{{ form_row(form.address) }}
-		{{ form_row(form.phone) }}
-		{{ form_row(form.email) }}
-		{{ form_row(form.website) }}
-		{{ form_row(form.description) }}
-		{{ form_row(form.picture) }}
-			</div>
-		<div class="row">
-			<div class="col">
-				{{ form_row(form.user) }}
-			</div>
-			<div class="col">
-				{{ form_row(form.price) }}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				{{ form_row(form.style) }}
-			</div>
-			<div class="col">
-				{{ form_row(form.tags) }}
-			</div>
-		</div>
-        <div class=" validate-form">
-		<button class="btn button from-center btn-log" type="submit">Valider</button>
-        </div>
-		{{ form_end(form) }}
+		{{ include('admin/establishment/_form.html.twig') }}
 
 	</div>
 {% endblock %}

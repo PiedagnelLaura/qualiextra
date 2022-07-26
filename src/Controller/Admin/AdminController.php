@@ -87,7 +87,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('establishment/admin/updateResto.html.twig', [
+        return $this->renderForm('admin/establishment/updateResto.html.twig', [
             'establishment' => $establishment,
             'form' => $form,
         ]);

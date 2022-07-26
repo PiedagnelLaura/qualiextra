@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Establishment{% endblock %}
+{% block title %}Modifier un établissement{% endblock %}
 
 {% block body %}
-    <h1>Edit Establishment</h1>
+ 
+    {% include "admin/partials/header.html.twig" %}
+	<div class="bloc-establishment-admin">
+		<div class="title-admin-list">
+			<h1>Modifier un établissement</h1>
+			<a class="button from-center" href="{{path('app_admin_home')}}">Retour</a>
+		</div>
 
-    {{ include('establishment/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('admin/establishment/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_establishment_index') }}">back to list</a>
+	</div>
 
-    {{ include('establishment/_delete_form.html.twig') }}
 {% endblock %}
