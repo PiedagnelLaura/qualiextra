@@ -19,14 +19,12 @@ class BookType extends AbstractType
     {
         $builder
             ->add('date', DateType::class)
-            ->add('status', IntegerType::class)
+
             ->add('price', NumberType::class )
             ->add('packages',EntityType::class, [
-                'label' => 'Package_id *',
                 'choice_label' => 'id',
                 'class' => Package::class,
                 'multiple' => false,
-                'expanded' => true,
                 'required' => true
             ] )
             ->add('user',EntityType::class, [
