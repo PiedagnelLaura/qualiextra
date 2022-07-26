@@ -53,24 +53,29 @@ class PackageController extends AbstractController
         // show package by id
         $package = $PackageRepository->find($id);
 
-        // dd($package);
+        //dd($package);
+
         // Package not found ?
         if ($package === null) {
             throw $this->createNotFoundException('Package don\'t find');
         }
-        
+
+        //Get user who is connected
+        $user = $this->getUser();
+        //dd($user);
+
         //instanciation de book
         $newBook = new Book();
-        $user = new User();
+        //dump('dump de newBook',$newBook);
 
         $form = $this->createForm(BookType::class, $newBook);
         $form->handleRequest($request);
 
-        //dd($form);
+        
         
         if ($form->isSubmitted() && $form->isValid()) {
 
-            dd('dans le if');
+            //dd('dans le if');
             //Ajout user rattaché : TODO authentification
             $newBook->setUser($user);
 
@@ -82,7 +87,7 @@ class PackageController extends AbstractController
             $newBook->setPrice($package->getPrice());
             $bookRepository->add($newBook, true);
 
-            dd($newBook);
+            dump('dump de newBook',$newBook);
 
             //Envoi de mail au click du bouton réservation
             // $mailerService->send(
@@ -97,14 +102,14 @@ class PackageController extends AbstractController
             //         "Date de réservation" => $newBook["date"],
             //     ]
             //     );
-
+            dd('dump de form dans le if',$form);
             //Flash Message pour le client
             $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
             
             
             return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
         }
-
+        
         //! Formulaire booking
 
         
