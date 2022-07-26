@@ -760,11 +760,19 @@ height: 100%;
 /*!      /*!Admin pages*/   
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ---------HOMEPAGE------- */
+
 .title-admin-list {
     height: 150px;
     display:flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.filter-list {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em;
 }
 
 .head-list-admin {
@@ -806,4 +814,17 @@ height: 100%;
 
 .red {
     color:darkred
+}
+
+/* ---------ADD NEW ESTABLISHMENT------- */
+
+.bloc-establishment-admin {
+    max-width: 800px;
+    color: #315565;
+    margin: auto;
+    
+}
+.validate-form {
+    margin: 30px 0;
+    text-align: center;
 }

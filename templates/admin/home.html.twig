@@ -9,7 +9,7 @@
 	<main class="container-fluid">
 
 
-		<div class="filtre-type filtre">
+		<div class="filter-list filtre">
 
 			<a href="#" class="listLink home-btn home-from-center" id="establishmentsList">
 				Liste des établissement
@@ -29,7 +29,7 @@
 		<section class="list establishmentsList ">
 			<div class="title-admin-list">
 				<h3>Liste des établissements</h3>
-				<a class="button from-center" href="{{path('app_admin_establishment_new')}}">Nouveau</a>
+				<a class="button from-center" href="{{path('app_admin_establishment_new')}}">Ajouter</a>
 			</div>
 
 			<table class="table table-hover mt-4">
@@ -38,6 +38,7 @@
 						<th scope="col">#</th>
 						<th scope="col">Nom</th>
 						<th scope="col">Adresse</th>
+						<th scope="col">Prestataire</th>
 						<th scope="col">Nombres de packages</th>
 						<th scope="col"></th>
 					</tr>
@@ -48,6 +49,7 @@
 							<th scope="row">{{ loop.index }}</th>
 							<td>{{establishment.name}}</td>
 							<td>{{establishment.address}}</td>
+							<td>{{establishment.user.firstname ?? "Mme/Mr"}} {{establishment.user.lastname}}</td>
 							<td>{{establishment.packages| length}}</td>
 							<td class="text-end">
 								<a href="#" class="btn btn-sm edit">
@@ -83,7 +85,7 @@
 		<section class="list prosList d-none">
 			<div class="title-admin-list">
 				<h3>Liste des prestataires</h3>
-				<a class="button from-center" href="#">Nouveau</a>
+				<a class="button from-center" href="#">Ajouter</a>
 			</div>
 
 

@@ -5,18 +5,47 @@
 
 {% block body %}
 	{% include "admin/partials/header.html.twig" %}
+	<div class="bloc-establishment-admin">
+		<div class="title-admin-list">
+			<h1>Ajout d'un établissement</h1>
+			<a class="button from-center" href="{{path('app_admin_home')}}">Retour</a>
+		</div>
+		{{ form_start(form) }}
+		<div class="my-custom-class-for-errors">
+			{{ form_errors(form) }}
+		</div>
 
-	<div class="title-admin-list">
-		<h1>Ajout d'un établissement</h1>
-		<a class="button from-center" href="{{path('app_admin_home')}}">Retour</a>
+		
+
+<div class="row col">
+			{{ form_row(form.name) }}
+		{{ form_row(form.address) }}
+		{{ form_row(form.phone) }}
+		{{ form_row(form.email) }}
+		{{ form_row(form.website) }}
+		{{ form_row(form.description) }}
+		{{ form_row(form.picture) }}
+			</div>
+		<div class="row">
+			<div class="col">
+				{{ form_row(form.user) }}
+			</div>
+			<div class="col">
+				{{ form_row(form.price) }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				{{ form_row(form.style) }}
+			</div>
+			<div class="col">
+				{{ form_row(form.tags) }}
+			</div>
+		</div>
+        <div class=" validate-form">
+		<button class="btn button from-center btn-log" type="submit">Valider</button>
+        </div>
+		{{ form_end(form) }}
+
 	</div>
-
-	{{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
-
-	{{ form_widget(form) }}
-
-	<button class="btn button from-center btn-log" type="submit">Ajouter</button>
-	{{ form_end(form) }}
-
-
 {% endblock %}

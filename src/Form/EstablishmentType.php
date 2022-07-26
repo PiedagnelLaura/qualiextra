@@ -30,18 +30,16 @@ class EstablishmentType extends AbstractType
             ->add('email', TextType::class)
             ->add('website', TextType::class,  [
                 'label' => 'Site web'])
-            ->add('openingHour',  DateType::class)
-            ->add('openingDay', DateType::class )
             ->add('description', TextareaType::class,  [
-                'label' => 'Description l\'établissement *'])
+                'label' => 'Description *'])
             ->add('picture', UrlType::class, [
                 'help' => 'Url de l\'image',
                 'label' => 'Photo de l\'établissement'
             ])
             ->add('price',  NumberType::class,  [
-                'label' => 'Prix moyen proposé par l\'établissement'])
+                'label' => 'Prix moyen proposé'])
             ->add('tags', EntityType::class, [
-                'label' => 'Choisir le ou les équipements que possède l\'établissement',
+                'label' => 'Equipement(s)',
                 'choice_label' => 'name',
                 'class' => Tag::class,
                 'multiple' => true,
@@ -49,15 +47,15 @@ class EstablishmentType extends AbstractType
                 'required' => false
             ])
             ->add('user', EntityType::class, [
-                'label' => 'Sélectionner le gérant de l\'établissement *',
+                'label' => 'Nom du gérant *',
                 'choice_label' => 'lastname',
                 'class' => User::class,
                 'multiple' => false,
-                'expanded' => true,
+                'expanded' => false,
                 'required' => true
             ])
             ->add('style', EntityType::class, [
-                'label' => 'Style de l\'établissement *',
+                'label' => 'Style *',
                 'choice_label' => 'name',
                 'class' => Style::class,
                 'multiple' => false,
