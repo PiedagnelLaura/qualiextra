@@ -7,7 +7,7 @@
 <main class="container-fluid">
 <h1>Liste de vos établissements</h1>
 
-    <div class="title-establishment-list">
+    <div class="title-establishment">
         <a class="add-btn button from-center" href="{{ path('app_establishment_new') }}">Create new</a>
     </div>  
     <table class="table table-hover mt-4">
@@ -21,16 +21,14 @@
         <tbody>
         {% for establishment in establishments %}
             <tr>
-                
-                <td><a class="name-establishment" href="{{ path('app_establishment_show', {'id': establishment.id}) }}"> {{ establishment.name }}</a></td>
+                <td>{{ establishment.name }}</td>
                 <td>{{ establishment.address }}</td>
-                
 
                 <td class="text-end">
                     <a href="{{ path('app_establishment_edit', {'id': establishment.id}) }}" class="btn btn-sm edit_btn">
 						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 					</a>
-
+                    
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm dropdown-toggle delete_btn " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>

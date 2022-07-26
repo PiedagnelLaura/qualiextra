@@ -767,7 +767,7 @@ height: 100%;
     margin: 3% 3% ;
 }
 
-.title-establishment-list {
+.title-establishment {
     font-size: 19px;
     display: flex;
     justify-content: flex-end;
@@ -796,6 +796,7 @@ height: 100%;
 .delete_btn  {
     background: linear-gradient(#315565, #131629 );
     color: #F6F0E9;
+    
 }
 
 .delete_btn :hover {
@@ -806,3 +807,4 @@ height: 100%;
 .delete-menu {
     background-color:#F6F0E9;
 }
+

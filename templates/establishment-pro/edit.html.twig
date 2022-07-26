@@ -1,13 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Establishment{% endblock %}
+{% block title %}Modifier un établissement{% endblock %}
 
 {% block body %}
-    <h1>Edit Establishment</h1>
+<main class="container-fluid">
 
-    {{ include('establishment/_form.html.twig', {'button_label': 'Update'}) }}
+    <h1>Modifier cet établissement</h1>
 
-    <a href="{{ path('app_establishment_index') }}">back to list</a>
+    <div class="title-establishment">
+        <a class="button from-center" href="{{ path('app_establishmentList') }}">Retour</a>
+    </div>
 
-    {{ include('establishment/_delete_form.html.twig') }}
+    
+    {{ include('establishment-pro/_form.html.twig', {'button_label': 'Modifier'}) }}
+   
+
+  
+    {{ include('establishment-pro/_delete_form.html.twig') }}
+    
+
+</main>
 {% endblock %}

@@ -14,17 +14,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class EstablishmentController extends AbstractController
 {
     /**
-     * @Route("/business/establishments", name="app_establishment_index", methods={"GET"})
+     * @Route("/business/establishments", name="app_establishmentList", methods={"GET"})
      */
     public function index(EstablishmentRepository $establishmentRepository): Response
     {
-        return $this->render('establishment-pro/index.html.twig', [
+        return $this->render('establishment-pro/establishmentList.html.twig', [
             'establishments' => $establishmentRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/business/establishments", name="app_establishment_new", methods={"GET", "POST"})
+     * @Route("/business/establishments/new", name="app_establishment_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EstablishmentRepository $establishmentRepository): Response
     {
@@ -35,7 +35,7 @@ class EstablishmentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $establishmentRepository->add($establishment, true);
 
-            return $this->redirectToRoute('app_establishment_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_establishmentList', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('establishment-pro/new.html.twig', [
@@ -44,18 +44,18 @@ class EstablishmentController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/business/establishments/{id}", name="app_establishment_show", methods={"GET"})
-     */
-    public function show(Establishment $establishment): Response
-    {
-        return $this->render('establishment-pro/show.html.twig', [
-            'establishment' => $establishment,
-        ]);
-    }
+    // /**
+    //  * @Route("/business/establishments/{id}", name="app_establishment_show", methods={"GET"})
+    //  */
+    // public function show(Establishment $establishment): Response
+    // {
+    //     return $this->render('establishment-pro/show.html.twig', [
+    //         'establishment' => $establishment,
+    //     ]);
+    // }
 
     /**
-     * @Route("/{id}/edit", name="app_establishment_edit", methods={"GET", "POST"})
+     * @Route("/business/establishments/{id}", name="app_establishment_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository): Response
     {
@@ -65,7 +65,7 @@ class EstablishmentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $establishmentRepository->add($establishment, true);
 
-            return $this->redirectToRoute('app_establishment_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_establishmentList', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('establishment-pro/edit.html.twig', [
@@ -83,6 +83,6 @@ class EstablishmentController extends AbstractController
             $establishmentRepository->remove($establishment, true);
         }
 
-        return $this->redirectToRoute('app_establishment_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_establishmentList', [], Response::HTTP_SEE_OTHER);
     }
 }

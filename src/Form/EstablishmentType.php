@@ -28,8 +28,8 @@ class EstablishmentType extends AbstractType
             ->add('phone', TextType::class)
             ->add('email', EmailType::class)
             ->add('website', UrlType::class)
-            ->add('openingHour', DateType::class)
-            ->add('openingDay', DateType::class)
+            ->add('openingHour', TextType::class)
+            ->add('openingDay', TextType::class)
             ->add('description', TextareaType::class)
             ->add('picture', UrlType::class, [
                 'help' => 'Url de l\'image'
@@ -57,9 +57,9 @@ class EstablishmentType extends AbstractType
                 'label' => 'Choisir le style',
                 'choice_label' => 'name', // valeur de la prop à afficher dans les balises options
                 'class' => Style::class,
-                'multiple' => true,
+                'multiple' => false,
                 'expanded' => true,
-                'required' => false
+                'required' => true
             ])
         ;
     }
