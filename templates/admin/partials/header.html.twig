@@ -13,19 +13,19 @@
                     <a class="nav-link dropdown-toggle nav-lien" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bonjour {{app.user.firstname ?? "Mme/Mr"}} {{app.user.lastname ?? " "}} </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if app.user !=null %}
-                      <li><a class="dropdown-item" href="{{path("app_logout")}}">Déconnection</a></li>
+                      <li><a class="dropdown-item" href="{{path("app_logout")}}">Se déconnecter</a></li>
                     {% else %}
-                      <li><a class="dropdown-item" href="{{path("app_login")}}">Connection</a></li>
+                      <li><a class="dropdown-item" href="{{path("app_login")}}">Se connecter</a></li>
                     {% endif %} 
                     </ul>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item admin-navbar">
                     <a class="nav-link nav-lien" aria-current="page" href="{{path("app_admin_home")}}">Accueil</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link nav-lien" aria-current="page" href="#">Ajouter un prestataire</a>
+                  <li class="nav-item admin-navbar">
+                    <a class="nav-link nav-lien" aria-current="page" href="{{path('app_admin_pro_new')}}">Ajouter un prestataire</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item admin-navbar">
                     <a class="nav-link nav-lien" aria-current="page" href="{{path('app_admin_establishment_new')}}">Ajouter un établissement</a>
                   </li>
                 </ul>
