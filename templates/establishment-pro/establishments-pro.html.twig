@@ -3,12 +3,13 @@
 {% block title %}Liste des établissements{% endblock %}
 
 {% block body %}
+{# {% include "" %} #}
 
 <main class="container-fluid">
 <h1>Liste de vos établissements</h1>
 
     <div class="title-establishment">
-        <a class="add-btn button from-center" href="{{ path('app_establishment_new') }}">Create new</a>
+        <a class="add-btn button from-center" href="{{ path('app_establishment_new') }}">Ajouter</a>
     </div>  
     <table class="table table-hover mt-4">
         <thead class="head-list-establishment">
@@ -19,33 +20,37 @@
             </tr>
         </thead>
         <tbody>
+
         {% for establishment in establishments %}
+            
             <tr>
                 <td>{{ establishment.name }}</td>
                 <td>{{ establishment.address }}</td>
 
                 <td class="text-end">
                     <a href="{{ path('app_establishment_edit', {'id': establishment.id}) }}" class="btn btn-sm edit_btn">
-						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-					</a>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
                     
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm dropdown-toggle delete_btn " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu delete-menu">
-                            <a class="dropdown-item" href="#">Supprimer</a>
+                            <a class="dropdown-item" href="{{ path('app_establishment_delete', {'id': establishment.id}) }}">Supprimer</a>
                             <a class="dropdown-item" href="" data-bs-toggle="dropdown">Annuler</a>
                         </div>
                     </div>
                     
                 </td>
             </tr>
+            
         {% else %}
             <tr>
                 <td colspan="14">Pas d'établissement pour l'instant.</td>
             </tr>
         {% endfor %}
+        
         </tbody>
     </table>
 </main>

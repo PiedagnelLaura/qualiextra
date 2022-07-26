@@ -14,11 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class EstablishmentController extends AbstractController
 {
     /**
-     * @Route("/business/establishments", name="app_establishmentList", methods={"GET"})
+     * @Route("/business/establishments", name="app_establishments-pro", methods={"GET"})
      */
     public function index(EstablishmentRepository $establishmentRepository): Response
     {
-        return $this->render('establishment-pro/establishmentList.html.twig', [
+        // /** @var \App\Entity\User $user */
+        // $user = $this->getUser();
+        
+        // $proConnected = $user->getEstablishments();
+
+        return $this->render('establishment-pro/establishments-pro.html.twig', [
             'establishments' => $establishmentRepository->findAll(),
         ]);
     }
@@ -35,7 +40,7 @@ class EstablishmentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $establishmentRepository->add($establishment, true);
 
-            return $this->redirectToRoute('app_establishmentList', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_establishments-pro', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('establishment-pro/new.html.twig', [
@@ -65,7 +70,7 @@ class EstablishmentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $establishmentRepository->add($establishment, true);
 
-            return $this->redirectToRoute('app_establishmentList', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_establishments-pro', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('establishment-pro/edit.html.twig', [
@@ -83,6 +88,6 @@ class EstablishmentController extends AbstractController
             $establishmentRepository->remove($establishment, true);
         }
 
-        return $this->redirectToRoute('app_establishmentList', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_establishments-pro', [], Response::HTTP_SEE_OTHER);
     }
 }
