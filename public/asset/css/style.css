@@ -758,3 +758,51 @@ height: 100%;
     padding-bottom: 10px;
     font-size: 19px;
 }
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Establishment pro page*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.container-fluid{
+    margin: 3% 3% ;
+}
+
+.title-establishment-list {
+    font-size: 19px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.name-establishment{
+    text-decoration: none;
+    color: #131629;
+}
+.head-list-establishment {
+    background: linear-gradient(#7A8C73, #315565 );
+    width: 50%;
+    color: #F6F0E9;
+}
+
+.edit_btn {
+    background: linear-gradient(#7A8C73, #315565 );
+    color: #F6F0E9;
+}
+
+.edit_btn :hover {
+    background: linear-gradient(#131629 , #315565);
+    color: #F6F0E9;
+}
+.delete_btn  {
+    background: linear-gradient(#315565, #131629 );
+    color: #F6F0E9;
+}
+
+.delete_btn :hover {
+    background: linear-gradient(#315565, #7A8C73);
+    color: #F6F0E9;
+}
+
+.delete-menu {
+    background-color:#F6F0E9;
+}

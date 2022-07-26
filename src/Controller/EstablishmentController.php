@@ -18,13 +18,13 @@ class EstablishmentController extends AbstractController
      */
     public function index(EstablishmentRepository $establishmentRepository): Response
     {
-        return $this->render('establishment/index.html.twig', [
+        return $this->render('establishment-pro/index.html.twig', [
             'establishments' => $establishmentRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="app_establishment_new", methods={"GET", "POST"})
+     * @Route("/business/establishments", name="app_establishment_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EstablishmentRepository $establishmentRepository): Response
     {
@@ -38,18 +38,18 @@ class EstablishmentController extends AbstractController
             return $this->redirectToRoute('app_establishment_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('establishment/new.html.twig', [
+        return $this->renderForm('establishment-pro/new.html.twig', [
             'establishment' => $establishment,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="app_establishment_show", methods={"GET"})
+     * @Route("/business/establishments/{id}", name="app_establishment_show", methods={"GET"})
      */
     public function show(Establishment $establishment): Response
     {
-        return $this->render('establishment/show.html.twig', [
+        return $this->render('establishment-pro/show.html.twig', [
             'establishment' => $establishment,
         ]);
     }
@@ -68,7 +68,7 @@ class EstablishmentController extends AbstractController
             return $this->redirectToRoute('app_establishment_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('establishment/edit.html.twig', [
+        return $this->renderForm('establishment-pro/edit.html.twig', [
             'establishment' => $establishment,
             'form' => $form,
         ]);
