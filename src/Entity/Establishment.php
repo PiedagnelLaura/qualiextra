@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass=EstablishmentRepository::class)
  */
@@ -21,11 +23,13 @@ class Establishment
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $address;
 
@@ -36,6 +40,9 @@ class Establishment
 
     /**
      * @ORM\Column(type="string", length=180, nullable=true)
+     * @Assert\Email(
+     *     message = "Ce mail '{{ value }}' n'est pas valide."
+     * )
      */
     private $email;
 
@@ -56,6 +63,7 @@ class Establishment
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $description;
 
@@ -79,6 +87,7 @@ class Establishment
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="establishments")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $user;
 
@@ -90,6 +99,7 @@ class Establishment
     /**
      * @ORM\ManyToOne(targetEntity=Style::class, inversedBy="establishments")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $style;
 

@@ -1,15 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Establishment{% endblock %}
+{% block title %}Ajout d'un établissement
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Establishment</h1>
+	{% include "admin/partials/header.html.twig" %}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+	<div class="title-admin-list">
+		<h1>Ajout d'un établissement</h1>
+		<a class="button from-center" href="{{path('app_admin_home')}}">Retour</a>
+	</div>
+
+	{{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+
+	{{ form_widget(form) }}
+
+	<button class="btn button from-center btn-log" type="submit">Ajouter</button>
+	{{ form_end(form) }}
 
 
-    <a href="">back to list</a>
 {% endblock %}

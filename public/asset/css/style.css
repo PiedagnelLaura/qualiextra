@@ -377,7 +377,7 @@ h2 {
     display: flex;
 }
 
-input[type="checkbox"] {
+.new-filters {
     background: linear-gradient(#7A8C73, #315565 );
 }
 
@@ -385,9 +385,6 @@ input[type="checkbox"]:checked {
     background-color: #131629;
 }
 
-input[type="radio"] {
-    background: linear-gradient(#7A8C73, #315565 );
-}
 
 input[type="radio"]:checked {
     background-color: #131629;
