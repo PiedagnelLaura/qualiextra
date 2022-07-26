@@ -10,23 +10,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/business/establishment")
- */
+
 class EstablishmentController extends AbstractController
 {
-    // /**
-    //  * @Route("/", name="app_establishment_index", methods={"GET"})
-    //  */
-    // public function index(EstablishmentRepository $establishmentRepository): Response
-    // {
-    //     return $this->render('establishment/index.html.twig', [
-    //         'establishments' => $establishmentRepository->findAll(),
-    //     ]);
-    // }
+    /**
+     * @Route("/business/establishments", name="app_establishment_index", methods={"GET"})
+     */
+    public function index(EstablishmentRepository $establishmentRepository): Response
+    {
+        return $this->render('establishment/index.html.twig', [
+            'establishments' => $establishmentRepository->findAll(),
+        ]);
+    }
 
     /**
-     * @Route("/", name="app_establishment_new", methods={"GET", "POST"})
+     * @Route("/new", name="app_establishment_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EstablishmentRepository $establishmentRepository): Response
     {

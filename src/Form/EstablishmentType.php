@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Establishment;
 use App\Entity\Style;
 use App\Entity\Tag;
+use App\Entity\User;
 use PharIo\Manifest\Email;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -44,7 +45,14 @@ class EstablishmentType extends AbstractType
                 'expanded' => true,
                 'required' => false
             ])
-            ->add('user', EntityType::class)
+            ->add('user', EntityType::class, [
+                'label' => 'Sélectionner le gérant de l\'établissement *',
+                'choice_label' => 'lastname',
+                'class' => User::class,
+                'multiple' => false,
+                'expanded' => true,
+                'required' => true
+            ])
             ->add('style', EntityType::class, [
                 'label' => 'Choisir le style',
                 'choice_label' => 'name', // valeur de la prop à afficher dans les balises options
