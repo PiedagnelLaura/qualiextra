@@ -56,7 +56,7 @@ class Package
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="packages")
+     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="packages", orphanRemoval=true)
      */
     private $books;
 
