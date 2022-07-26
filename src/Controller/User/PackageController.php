@@ -66,7 +66,7 @@ class PackageController extends AbstractController
         $form = $this->createForm(BookType::class, $newBook);
         $form->handleRequest($request);
 
-        //dd('avant le if');
+        //dd($form);
         
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -80,7 +80,7 @@ class PackageController extends AbstractController
             //Info par défault, status et prix (obligatoire pour valider l'ajout)
             $newBook->setStatus(0);
             $newBook->setPrice($package->getPrice());
-            $form->add($newBook, true);
+            $bookRepository->add($newBook, true);
 
             dd($newBook);
 
@@ -100,7 +100,7 @@ class PackageController extends AbstractController
 
             //Flash Message pour le client
             $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
-
+            
             
             return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
         }
