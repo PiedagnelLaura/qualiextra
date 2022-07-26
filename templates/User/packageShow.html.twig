@@ -32,9 +32,9 @@
 
     </section>
 
-    <div class="container--title_package establishment"data-long="{{package.establishment.longitudes}}" data-lat="{{package.establishment.latitudes}}">
+    {# <div class="container--title_package establishment"data-long="{{package.establishment.longitudes}}" data-lat="{{package.establishment.latitudes}}">
         <h1>{{package.name}}</h1>
-    </div>
+    </div> #}
 
     <section class="container--address row">
 
@@ -67,15 +67,14 @@
     {% if is_granted('ROLE_USER') %}
     <section class="wrap-book row">
     
-    {# { form_start( form) }} #}
+    {{ form_start(form) }}
 
         <form class="col-12 col-md-12" method="post" id="form-book">
             <div class="book-input ">
                 <label class="label-form-book" for="date">Votre date de réservation</label>
-                <input type="date" class="form-control-package" required name="date" id="date" placeholder="date">
-                <input type="hidden"  name="lastname" id="lastname" value="{{app.user.id}}">
-                <input type="hidden"  name="email" id="email" value="{{app.user.email}}">
-                <input type="hidden"  name="price" id="price" value="{{package.price}}">
+
+                {{ form_row(form.date)}}
+
             </div>
         
             <a class="button from-center" type="submit"> Réserver
@@ -83,7 +82,7 @@
             </a>
 
         </form>
-    {# {{ form_end(form) }} #}
+    {{ form_end(form) }}
 
     </section>
     {% else %}

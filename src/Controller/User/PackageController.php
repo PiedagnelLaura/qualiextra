@@ -3,21 +3,19 @@
 namespace App\Controller\User;
 
 use App\Entity\Book;
+use App\Repository\BookRepository;
+use App\Form\BookType;
 use App\Entity\Establishment;
 use App\Entity\Package;
+use App\Repository\PackageRepository;
 use App\Entity\User;
-use App\Repository\BookRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -27,8 +25,7 @@ use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use App\Services\MailerService;
-use App\Form\BookType;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 /**
  * 
@@ -44,11 +41,8 @@ class PackageController extends AbstractController
      *
      *  @param [type] $id
      */
-    public function packageShow($id, ManagerRegistry $doctrine,Request $request, BookRepository $bookRepository)
+    public function packageShow($id,Request $request, BookRepository $bookRepository, PackageRepository $PackageRepository)
     {
-        
-        // Alternative for access Repository of entity Package we manage with ManagerRegistry for grib the repository
-        $PackageRepository = $doctrine->getRepository(Package::class);
 
         // show package by id
         $package = $PackageRepository->find($id);
@@ -62,32 +56,34 @@ class PackageController extends AbstractController
 
         //Get user who is connected
         $user = $this->getUser();
-        //dd($user);
-
-        //instanciation de book
-        $newBook = new Book();
-        //dump('dump de newBook',$newBook);
-
-        $form = $this->createForm(BookType::class, $newBook);
+        
+        //! Formulaire booking
+        $book = new Book();
+        $package = new Package();
+        
+        $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
-        
-        
         if ($form->isSubmitted() && $form->isValid()) {
-
             //dd('dans le if');
             //Ajout user rattaché : TODO authentification
-            $newBook->setUser($user);
+            $book->setUser($user);
 
             //Ajout du package associé à la réservation
-            $newBook->setPackages($package);
+            $book->setPackages($package);
             
             //Info par défault, status et prix (obligatoire pour valider l'ajout)
-            $newBook->setStatus(0);
-            $newBook->setPrice($package->getPrice());
-            $bookRepository->add($newBook, true);
+            $book->setStatus(0);
+            $book->setPrice($package->getPrice());
+            $bookRepository->add($book, true);
+            dd('dump de form dans le if',$form);
+            //Flash Message pour le client
+            $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
 
-            dump('dump de newBook',$newBook);
+            return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
+        }
+
+        // dump('dump de book',$book);
 
             //Envoi de mail au click du bouton réservation
             // $mailerService->send(
@@ -102,25 +98,17 @@ class PackageController extends AbstractController
             //         "Date de réservation" => $newBook["date"],
             //     ]
             //     );
-            dd('dump de form dans le if',$form);
-            //Flash Message pour le client
-            $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
             
-            
-            return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
-        }
-        
-        //! Formulaire booking
 
-        
         return $this->renderForm('User/packageShow.html.twig', [
             'package' => $package,
-            'form' => $form
+            'form' => $form,
+            'book' => $book,
         ]);
 
     }
 
-    
+
 
         /**
      * Show email
