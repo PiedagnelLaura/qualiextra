@@ -48,6 +48,8 @@ class Establishment
 
     /**
      * @ORM\Column(type="string", length=180, nullable=true)
+     * @Assert\Url(
+     * relativeProtocol = true)
      */
     private $website;
 
@@ -64,11 +66,16 @@ class Establishment
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
+     * @Assert\Length(
+     *      min=20,
+     *      minMessage = "Votre description doit contenir {{ limit }} caractères au minimun")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(
+     * relativeProtocol = true)
      */
     private $picture;
 

@@ -10,7 +10,7 @@
 			<h1>Ajout d'un établissement</h1>
 			<a class="button from-center" href="{{path('app_admin_home')}}">Retour</a>
 		</div>
-		{{ form_start(form) }}
+		{{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
 		<div class="my-custom-class-for-errors">
 			{{ form_errors(form) }}
 		</div>
