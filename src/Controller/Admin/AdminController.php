@@ -63,6 +63,8 @@ class AdminController extends AbstractController
             
             $establishmentRepository->add($establishment, true);
 
+            $this->addFlash('success', 'L\'établissement '.$establishment->getName().' à bien été créé');
+
             return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,15 +76,25 @@ class AdminController extends AbstractController
 
 
     /**
-     * @Route("/bonnes-adresses/{id}", name="app_admin_establishment_edit", methods={"GET", "POST"})
+     * @Route("/bonnes-adresses/{id}", name="app_admin_establishment_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
-    public function updateResto(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository): Response
+    public function updateResto(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository,  Geocodage $geocodage): Response
     {
         $form = $this->createForm(EstablishmentType::class, $establishment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // the address is geocoded 
+            $address = $establishment->getAddress();
+            $coordinates = $geocodage->geocoding($address);
+            $lat = $coordinates['lat'];
+            $long = $coordinates['lng'];
+            $establishment->setLatitudes($lat);
+            $establishment->setLongitudes($long);
+
             $establishmentRepository->add($establishment, true);
+
+            $this->addFlash('success', 'L\'établissement '.$establishment->getName().' à bien été modifié');
 
             return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -94,12 +106,14 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/bonnes-adresses/delete/{id}", name="app_admin_establishment_delete", methods={"POST"})
+     * @Route("/bonnes-adresses/delete/{id}", name="app_admin_establishment_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function delete(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$establishment->getId(), $request->request->get('_token'))) {
             $establishmentRepository->remove($establishment, true);
+
+            $this->addFlash('success', 'L\'établissement '.$establishment->getName().' à bien été supprimé');
         }
 
         return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);

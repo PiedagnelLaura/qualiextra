@@ -7,7 +7,6 @@ use App\Entity\Style;
 use App\Entity\Tag;
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -30,6 +29,10 @@ class EstablishmentType extends AbstractType
             ->add('email', TextType::class)
             ->add('website', TextType::class,  [
                 'label' => 'Site web'])
+            ->add('openingHour', TextType::class,  [
+                'label' => 'Horaires d\'ouverture'])
+            ->add('openingDay', TextType::class,  [
+                'label' => 'Jours d\'ouverture'])
             ->add('description', TextareaType::class,  [
                 'label' => 'Description *'])
             ->add('picture', UrlType::class, [

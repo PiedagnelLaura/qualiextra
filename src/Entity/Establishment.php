@@ -193,24 +193,24 @@ class Establishment
 
    
 
-    public function getOpeningHour(): ?\DateTimeInterface
+    public function getOpeningHour(): ?string
     {
         return $this->openingHour;
     }
 
-    public function setOpeningHour(?\DateTimeInterface $openingHour): self
+    public function setOpeningHour(?string $openingHour): self
     {
         $this->openingHour = $openingHour;
 
         return $this;
     }
 
-    public function getOpeningDay(): ?\DateTimeInterface
+    public function getOpeningDay(): ?string
     {
         return $this->openingDay;
     }
 
-    public function setOpeningDay(?\DateTimeInterface $openingDay): self
+    public function setOpeningDay(?string $openingDay): self
     {
         $this->openingDay = $openingDay;
 
