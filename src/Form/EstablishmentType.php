@@ -35,8 +35,6 @@ class EstablishmentType extends AbstractType
                 'help' => 'Url de l\'image'
             ])
             ->add('price', IntegerType::class)
-            ->add('longitudes', IntegerType::class)
-            ->add('latitudes', IntegerType::class)
             ->add('tags', EntityType::class, [
                 'label' => 'Choisir le ou les tag',
                 'choice_label' => 'name', // valeur de la prop à afficher dans les balises options

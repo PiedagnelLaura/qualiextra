@@ -66,13 +66,16 @@ class EstablishmentController extends AbstractController
     {
         $form = $this->createForm(EstablishmentType::class, $establishment);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $establishmentRepository->add($establishment, true);
+
+            dd($establishment);
 
             return $this->redirectToRoute('app_establishments-pro', [], Response::HTTP_SEE_OTHER);
         }
 
+        
         return $this->renderForm('establishment-pro/edit.html.twig', [
             'establishment' => $establishment,
             'form' => $form,
@@ -80,7 +83,7 @@ class EstablishmentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_establishment_delete", methods={"POST"})
+     * @Route("/business/establishments/{id}/delete", name="app_establishment_delete", methods={"POST"})
      */
     public function delete(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository): Response
     {
