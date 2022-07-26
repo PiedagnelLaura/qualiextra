@@ -1,0 +1,178 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Qualiextra Pro{% endblock %}
+{% block body %}
+
+<div class='container my-6 bloc-show'>
+  <a href="#" class="button from-center float-end">Retour</a>
+  <h1 class="bloc-show-title"> Gestion des réservations </h1>
+
+  {# <div class="filtre-type filtre">
+
+           
+        <a href="Réservations-à-valider" >
+            <div class="bloc-type ">
+                <div class="icon-{{type.name|slug|lower}} bloc-icon"></div>
+                {{type.name}}
+            </div>
+        </a>
+           
+
+    </div> #}
+
+  <h2>Réservations à valider</h2>
+
+{% for establishment in listEstablishment %}
+  {% if establishment.getPackages() is not empty %}
+    
+    <div class="bloc-establishment ">
+        <h2 class="bloc-establishment-name">Etablissement {{establishment.name}}</h2>
+        {% for package in establishment.getPackages() %}
+            {% if package.getBooks() is not empty %}
+            <div class="bloc-package-name">        
+            <h4>Nom du package: {{package.name}}</h3>
+            <table class="table toCheck">
+            <thead>
+                <tr>
+                <th scope="col" class="color-primaire">Reservation Id</th>            
+                <th scope="col" class="color-primaire">Client</th>
+                <th scope="col" class="color-primaire">Date de reservation</th>
+                <th></th>
+                </tr>
+                </tr>
+            </thead>
+            {% for book in package.books %}
+            <tbody >
+                <tr class='package-line' data-status={{book.status}}>
+                
+                <td>{{book.id}}</td>            
+                <td>{{book.user.lastname}} </td>
+                <td>{{package.price}}</td>
+                <td class="bloc-icon-package">
+                    <a href="#" class="btn btn-success" role="button"><i class="fa-solid fa-pen"></i></a>
+                    <a href="#" class="btn btn-danger" role="button"><i class="fa-solid fa-trash"></i></a>
+                </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            </table>
+            </div>
+            {% endif %}
+         
+        {% endfor %}
+    </div>
+  {% endif %}
+{% endfor %}
+</div>
+
+<h2>Réservations validées </h2>
+{% for establishment in listEstablishment %}
+  {% if establishment.getPackages() is not empty%}
+  
+    <div class="bloc-establishment ">
+        <h2 class="bloc-establishment-name">Etablissement {{establishment.name}}</h2>
+        {% for package in establishment.getPackages() %}
+            {% if package.getBooks() is not empty %}
+            <div class="bloc-package-name">        
+            <h4>Nom du package: {{package.name}}</h3>
+            <table class="table validated">
+            <thead>
+                <tr>
+                <th scope="col" class="color-primaire">Reservation Id</th>            
+                <th scope="col" class="color-primaire">Client</th>
+                <th scope="col" class="color-primaire">Date de reservation</th>
+                <th></th>
+                </tr>
+                </tr>
+            </thead>
+            {% for book in package.books %}
+            <tbody >
+                <tr class='package-line' data-status={{book.status}}>
+                
+                <td>{{book.id}}</td>            
+                <td>{{book.user.lastname}} </td>
+                <td>{{package.price}}</td>
+                <td class="bloc-icon-package">
+                    <a href="#" class="btn btn-success" role="button"><i class="fa-solid fa-pen"></i></a>
+                    
+                </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            </table>
+            </div>
+            {% endif %}
+         
+        {% endfor %}
+    </div>
+    
+  {% endif %}
+{% endfor %}
+</div>
+ <h2>Réservations annulées</h2>
+
+{% for establishment in listEstablishment %}
+  {% if establishment.getPackages() is not empty %}
+    
+    <div class="bloc-establishment ">
+        <h2 class="bloc-establishment-name">Etablissement {{establishment.name}}</h2>
+        {% for package in establishment.getPackages() %}
+            {% if package.getBooks() is not empty %}
+            <div class="bloc-package-name">        
+            <h4>Nom du package: {{package.name}}</h3>
+            <table class="table validated">
+            <thead>
+                <tr>
+                <th scope="col" class="color-primaire">Reservation Id</th>            
+                <th scope="col" class="color-primaire">Client</th>
+                <th scope="col" class="color-primaire">Date de reservation</th>
+                <th></th>
+                </tr>
+                </tr>
+            </thead>
+            {% for book in package.books %}
+            <tbody >
+                <tr class='package-line' data-status={{book.status}}>
+                
+                <td>{{book.id}}</td>            
+                <td>{{book.user.lastname}} </td>
+                <td>{{package.price}}</td>
+                <td class="bloc-icon-package">
+                    <a href="#" class="btn btn-danger" role="button"><i class="fa-solid fa-trash"></i></a>
+                    
+                </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            </table>
+            </div>
+            {% endif %}
+         
+        {% endfor %}
+    </div>
+  {% endif %}
+{% endfor %}
+</div>
+    {% block javascripts %}
+		<script src="{{ asset('asset/js/reservations_list.js') }}"></script>
+	{% endblock %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

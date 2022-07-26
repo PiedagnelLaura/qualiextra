@@ -7,6 +7,8 @@ use App\Entity\Establishment;
 use App\Entity\Package;
 use App\Form\BookType;
 use App\Repository\BookRepository;
+use App\Repository\EstablishmentRepository;
+use App\Repository\PackageRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -34,9 +36,11 @@ class PackageController extends AbstractController
 
     private $sessionTab;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, UserRepository $userRepository,PackageRepository $packageRepository)
     {
         $this->sessionTab = $session->get('user') ?? [];
+        $this->userRepository = $userRepository;
+        $this->packageRepository = $packageRepository;
     }
 
 
@@ -120,6 +124,24 @@ class PackageController extends AbstractController
         // redirection vers la page movieShow
         return $this->redirectToRoute('movieShow', ['slug' => $movie->getSlug()]);
     }
+    /**
+    * @Route("/business/books", name="app_pro_reservations_list")
+    */
+    public function showBook ($idUser = 2, EstablishmentRepository $establishmentRepository ,BookRepository $bookRepository){
+        
+        //we find the current User
+        $email= $_SESSION['_sf2_attributes']['_security.last_username'];
+        
+        $user =$this->userRepository->findByEmail($email);
 
+        // we retrieve his establishments
+        $listEstablishment = $establishmentRepository->findByUser($user);
+        
+       
 
+        return $this->render('Pro/reservations_list.html.twig', [
+            'listEstablishment' => $listEstablishment,
+          
+        ]);
+    }
 }
