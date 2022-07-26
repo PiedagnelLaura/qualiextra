@@ -49,21 +49,21 @@
 							<th scope="row">{{ loop.index }}</th>
 							<td>{{establishment.name}}</td>
 							<td>{{establishment.address}}</td>
-							<td>{{establishment.user.firstname ?? "Mme/Mr"}} {{establishment.user.lastname}}</td>
+							<td>{{establishment.user.firstname ?? "Mme/Mr"}}
+								{{establishment.user.lastname}}</td>
 							<td>{{establishment.packages| length}}</td>
 							<td class="text-end">
 								<a href="#" class="btn btn-sm edit">
 									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 								</a>
-
 								<div class="btn-group">
-									<button type="button" class="btn btn-sm dropdown-toggle delete" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<i class="fa fa-trash-o" aria-hidden="true"></i>
-									</button>
-									<div class="dropdown-menu delete-menu">
-										<a class="dropdown-item" href="#">Supprimer</a>
-										<a class="dropdown-item" href="" data-bs-toggle="dropdown">Annuler</a>
-									</div>
+									<form method="post" action="{{ path('app_admin_establishment_delete', {'id': establishment.id}) }}" onsubmit="return confirm('Supprimer l\' établissement {{establishment.name}} ?');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ establishment.id) }}">
+										<button class="btn btn-sm delete">
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</button>
+									</form>
+
 								</div>
 							</td>
 						</tr>
@@ -95,7 +95,7 @@
 						<th scope="col">#</th>
 						<th scope="col">Nom</th>
 						<th scope="col">Mail</th>
-                        <th scope="col">Nombres d'établissements</th>
+						<th scope="col">Nombres d'établissements</th>
 						<th scope="col"></th>
 					</tr>
 				</thead>
@@ -106,7 +106,7 @@
 							<td>{{pro.firstname ?? 'Mme/Mr'}}
 								{{pro.lastname}}</td>
 							<td>{{pro.email}}</td>
-                             <td>{{pro.establishments| length}}</td>
+							<td>{{pro.establishments| length}}</td>
 							<td class="text-end">
 								<a href="#" class="btn btn-sm edit">
 									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -150,7 +150,7 @@
 						<th scope="col">#</th>
 						<th scope="col">Nom</th>
 						<th scope="col">Mail</th>
-                        <th scope="col">Nombre de réservations</th>
+						<th scope="col">Nombre de réservations</th>
 						<th scope="col"></th>
 					</tr>
 				</thead>
@@ -161,7 +161,7 @@
 							<td>{{user.firstname ?? 'Mme/Mr'}}
 								{{user.lastname}}</td>
 							<td>{{user.email}}</td>
-                            <td>{{user.books| length}}</td>
+							<td>{{user.books| length}}</td>
 							<td class="text-end">
 								<div class="btn-group">
 									<button type="button" class="btn btn-sm dropdown-toggle delete" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -200,7 +200,7 @@
 						<th scope="col">Nom de l'utilisateur</th>
 						<th scope="col">Mail du client</th>
 						<th scope="col">Nom du package</th>
-                        <th scope="col">Contact de l'établissement</th>
+						<th scope="col">Contact de l'établissement</th>
 						<th scope="col">Date de réservation</th>
 						<th scope="col">Status</th>
 
@@ -215,7 +215,7 @@
 								{{book.user.lastname}}</td>
 							<td>{{book.user.email}}</td>
 							<td>{{book.packages.getName}}</td>
-                            <td>{{book.packages.establishment.email}}</td>
+							<td>{{book.packages.establishment.email}}</td>
 							<td>{{book.date |date("d/m/Y", "Europe/Paris") }}</td>
 							<td>
 								{% if book.status ==0 %}

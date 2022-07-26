@@ -7,6 +7,7 @@ use App\Form\EstablishmentType;
 use App\Repository\BookRepository;
 use App\Repository\EstablishmentRepository;
 use App\Repository\UserRepository;
+use App\Services\Geocodage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,13 +46,21 @@ class AdminController extends AbstractController
     /**
      * @Route("/bonnes-adresses", name="app_admin_establishment_new", methods={"GET", "POST"})
      */
-    public function addResto(Request $request, EstablishmentRepository $establishmentRepository): Response
+    public function addResto(Request $request, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
     {
         $establishment = new Establishment();
         $form = $this->createForm(EstablishmentType::class, $establishment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // the address is geocoded 
+            $address = $establishment->getAddress();
+            $coordinates = $geocodage->geocoding($address);
+            $lat = $coordinates['lat'];
+            $long = $coordinates['lng'];
+            $establishment->setLatitudes($lat);
+            $establishment->setLongitudes($long);
+            
             $establishmentRepository->add($establishment, true);
 
             return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);
@@ -85,7 +94,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/bonnes-adresses/d/{id}", name="app_admin_establishment_delete", methods={"POST"})
+     * @Route("/bonnes-adresses/delete/{id}", name="app_admin_establishment_delete", methods={"POST"})
      */
     public function delete(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository): Response
     {
