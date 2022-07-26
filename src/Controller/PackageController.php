@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Package;
 use App\Form\PackageType;
+use App\Form\EditPackageType;
 use App\Repository\PackageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,12 +44,13 @@ class PackageController extends AbstractController
      */
     public function updatePackage(Request $request, Package $package, PackageRepository $packageRepository): Response
     {
-        $form = $this->createForm(PackageType::class, $package);
+        $form = $this->createForm(EditPackageType::class, $package);
         $form->handleRequest($request);
+
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $packageRepository->add($package, true);
-
             return $this->redirectToRoute('app_package_index', [], Response::HTTP_SEE_OTHER);
         }
 

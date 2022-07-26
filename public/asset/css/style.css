@@ -763,3 +763,10 @@ height: 100%;
 .color-primaire {
     color: #121629;
 }
+
+    /** Add package **/
+
+.btn-save {
+    text-align: center;
+}
+

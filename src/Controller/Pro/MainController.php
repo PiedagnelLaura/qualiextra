@@ -19,7 +19,7 @@ class MainController extends AbstractController
 
         $myEstablishment = $user->getEstablishments();
 
-        return $this->render('Pro/index.html.twig', [
+        return $this->render('Pro/home.html.twig', [
 
             'establishmentList' => $myEstablishment,
         ]);

@@ -15,13 +15,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PackageType extends AbstractType
+class EditPackageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom du package',
+                'disabled' => true,
+                
             ])
 
             ->add('picture',TextType::class, [
@@ -34,7 +36,8 @@ class PackageType extends AbstractType
             ])
 
             ->add('description', TextType::class, [
-                'label' => 'Description du package'
+                'label' => 'Description du package',
+                'disabled' => true,
             ])
 
             ->add('date', DateType::class,[
@@ -47,13 +50,15 @@ class PackageType extends AbstractType
                 'class' => Type::class,
                 'multiple' => true,
                 'expanded' => true,
+                'disabled' => true,
             ])
 
             ->add('establishment', EntityType::class, [
                 'label' => 'Le package est rattaché à quel établissement ?',
                 'choice_label' => 'name',
                 'class' => Establishment::class,
-                'multiple' => false
+                'multiple' => false,
+                'disabled' => true,
             ])
         ;
     }

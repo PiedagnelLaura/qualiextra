@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Package{% endblock %}
+{% block title %}Modifier un package{% endblock %}
 
 {% block body %}
-    <h1>Edit Package</h1>
 
-    {{ include('package/_form.html.twig', {'button_label': 'Update'}) }}
+{% include "Pro/partials/header.html.twig" %}
 
-    <a href="{{ path('app_package_index') }}">back to list</a>
+<div class='container my-6 bloc-show'>
+  <a href="{{path('app_pro_home')}}" class="button from-center float-end">Retour</a>
+  <h1 class="bloc-show-title"> Modifier mon package </h1>
+   
 
-    {{ include('package/_delete_form.html.twig') }}
+    {{ include('package/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+
 {% endblock %}
