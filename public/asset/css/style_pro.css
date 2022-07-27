@@ -1,0 +1,55 @@
+:root{
+    --linear-gradient-color : linear-gradient(#7A8C73, #315565);
+    --text-color-title : #F6F0E9;
+}
+
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Same class*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.head-list-establishment {
+    background: var(--linear-gradient-color);
+    color: var(--text-color-title);
+}
+
+.title {
+    margin-top: 5rem;
+}
+
+.title-secondary {
+    font-size: 25px;
+    text-align: center;
+}
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Homepage pro*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.bloc-establishment {
+    margin-bottom: 5%;
+}
+
+.bloc-package {
+    width: 50%;
+    font-weight: normal;
+}
+
+.bloc-icon-package {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Establishment pro page*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.title-establishment {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+

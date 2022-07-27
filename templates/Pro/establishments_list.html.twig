@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'Pro/base.html.twig' %}
 
 {% block title %}Liste des établissements
 {% endblock %}
@@ -7,7 +7,7 @@
 	{% include "Pro/partials/header.html.twig" %}
 
 	<main class="container-fluid">
-		<h1>Liste de vos établissements</h1>
+		<h1 class="title">Liste de vos établissements</h1>
 
 		<div class="title-establishment">
 			<a class="add-btn button from-center" href="{{ path('app_pro_new_establishment') }}">Ajouter</a>
@@ -36,7 +36,7 @@
 							<div class="btn-group">
 								<form method="post" action="{{ path('app_pro_delete_establishment', {'id': establishment.id}) }}" onsubmit="return confirm('Supprimer l\' établissement {{establishment.name}} ?');">
 									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ establishment.id) }}">
-									<button class="btn btn-sm delete">
+									<button class="btn btn-sm delete_btn">
 										<i class="fa fa-trash-o" aria-hidden="true"></i>
 									</button>
 								</form>

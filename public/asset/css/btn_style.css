@@ -1,0 +1,160 @@
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!     /*! Button Primary  !*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.button {    
+    position: relative; 
+    padding: 2% 2%;
+    padding-right: 2%;
+    font-size: 26px;
+    color:  #131629 ;
+    letter-spacing: 0.5rem;
+    text-transform: uppercase;
+    transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);  
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+}
+
+.button:before, .button:after {
+    content: '';
+    position: absolute; 
+    transition: inherit;
+    z-index: -1;
+}
+
+.button:hover {
+    color:  #F6F0E9  ;
+    transition-delay: .5s;
+}
+
+.button:hover:before {
+    transition-delay: 0s;
+}
+
+.button:hover:after {
+    background: #315565;
+    transition-delay: .35s;
+}
+
+.from-center:before {
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 0;
+    border: 1px solid  #7A8C73 ;
+    border-left: 0;
+    border-right: 0;
+}
+
+.from-center:after {
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+    background: #315565;
+}
+
+.from-center:hover:before {
+left: 0;
+width: 100%;
+}
+
+.from-center:hover:after {
+top: 0;
+height: 100%;
+}
+
+.hidde-btn-form {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    opacity: 0;
+}
+
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!     /*! Button Homepage user with filter  !*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.home-btn {    
+    position: relative; 
+    padding: 1% 1%;
+    font-size: 15px;
+    color:  #131629 ;
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+    transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);  
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;  
+}
+
+.home-btn:before, .home-btn:after {
+    content: '';
+    position: absolute; 
+    transition: inherit;
+    z-index: -1;
+    border-radius: 30px;
+}
+
+.home-btn:hover {
+    color:  #F6F0E9  ;
+    transition-delay: .5s;
+}
+
+.home-btn:hover:before {
+    transition-delay: 0s;
+}
+
+.home-btn:hover:after {
+    background: #315565;
+    transition-delay: .35s;
+}
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!     /*! Button Good Place Filter  !*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#filter {
+    padding: 6px 10px;
+    font-size: 0.8em;
+    transition: 800ms;
+}
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!     /*! Button Login Form  !*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.btn-log {
+    margin:30px;
+}
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!     /*! Button Edit  !*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.edit_btn {
+    background: linear-gradient(#7A8C73, #315565 );
+    color: #F6F0E9;
+}
+
+.edit_btn :hover {
+    background: linear-gradient(#315565, #131629);
+    color: #F6F0E9;
+}
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!     /*! Button Delete  !*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.delete_btn  {
+    background: linear-gradient(#315565, #131629 );
+    color: #F6F0E9;   
+}
+
+.delete_btn :hover {
+    background: linear-gradient(#315565, #7A8C73);
+    color: #F6F0E9;
+}
+

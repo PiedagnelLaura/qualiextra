@@ -1,11 +1,11 @@
 
-{% extends 'base.html.twig' %}
+{% extends 'Pro/base.html.twig' %}
 {% block title %}Qualiextra Pro{% endblock %}
 {% block body %}
 {% include "Pro/partials/header.html.twig" %}
-<div class='container my-6 bloc-show'>
+<div class='table table-hover mt-4'>
 
-  <h1 class="bloc-show-title"> Gestion des réservations </h1>
+  <h1 class="title"> Gestion des réservations </h1>
 
   {# <div class="filtre-type filtre">
 
@@ -26,17 +26,17 @@
   {% if establishment.getPackages() is not empty %}
     
     <div class="bloc-establishment ">
-        <h2 class="bloc-establishment-name">Etablissement {{establishment.name}}</h2>
+        <h2 class="head-list-establishment title">Etablissement {{establishment.name}}</h2>
         {% for package in establishment.getPackages() %}
             {% if package.getBooks() is not empty %}
-            <div class="bloc-package-name">        
+            <div>        
             <h4>Nom du package: {{package.name}}</h3>
             <table class="table toCheck">
             <thead>
                 <tr>
-                <th scope="col" class="color-primaire">Reservation Id</th>            
-                <th scope="col" class="color-primaire">Client</th>
-                <th scope="col" class="color-primaire">Date de reservation</th>
+                <th scope="col">Reservation Id</th>            
+                <th scope="col">Client</th>
+                <th scope="col">Date de reservation</th>
                 <th></th>
                 </tr>
                 </tr>
@@ -49,8 +49,8 @@
                 <td>{{book.user.lastname}} </td>
                 <td>{{package.price}}</td>
                 <td class="bloc-icon-package">
-                    <a href="{{path('app_pro_update_book_validated',{id:book.id})}}" class="btn btn-success" role="button"><i class="fa-solid fa-check"></i></a>
-                    <a href="{{path('app_pro_update_book_cancelled',{id:book.id})}}" class="btn btn-danger" role="button"><i class="fa-solid fa-ban"></i></a>
+                    <a href="{{path('app_pro_update_book_validated',{id:book.id})}}" class="btn btn-sm edit_btn" role="button"><i class="fa-solid fa-check"></i></a>
+                    <a href="{{path('app_pro_update_book_cancelled',{id:book.id})}}" class="btn btn-sm delete_btn" role="button"><i class="fa-solid fa-ban"></i></a>
                 </td>
                 </tr>
             </tbody>

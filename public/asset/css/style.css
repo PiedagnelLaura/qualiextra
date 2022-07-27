@@ -114,18 +114,7 @@
 /*      /* Button link homepage */   
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.lien-type {
-    text-decoration: none;
-    color: #121629;
-    
-}
 
-.lien-type:hover {
-    text-decoration: none;
-    color:  #F6F0E9 ;
-    transition-delay: .5s;
-    
-}
 
 .home-btn {    
     position: relative; 
@@ -781,8 +770,6 @@ height: 100%;
 /*!      /*!Establishment pro page*/   
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-
-
 .title-establishment {
     font-size: 19px;
     display: flex;
@@ -794,6 +781,7 @@ height: 100%;
     text-decoration: none;
     color: #131629;
 }
+
 .head-list-establishment {
     background: linear-gradient(#7A8C73, #315565 );
     width: 50%;
