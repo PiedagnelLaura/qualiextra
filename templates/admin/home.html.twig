@@ -1,0 +1,255 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil administrateur
+{% endblock %}
+
+{% block body %}
+	{% include "admin/partials/header.html.twig" %}
+
+	<main class="container-fluid">
+
+
+		<div class="filter-list filtre">
+
+			<a href="#" class="listLink home-btn home-from-center" id="establishmentsList">
+				Etablissement
+			</a>
+			<a href="#" class="listLink home-btn home-from-center" id="prosList">
+				Prestataires
+			</a>
+			<a href="#" class="listLink home-btn home-from-center" id="usersList">
+				Utilisateurs
+			</a>
+			<a href="#" class="listLink home-btn home-from-center" id="booksList">
+				Réservations
+			</a>
+
+		</div>
+
+		<section class="list establishmentsList ">
+			<div class="title-admin-list">
+				<h3>Liste des établissements</h3>
+				<a class="button from-center" href="{{path('app_admin_establishment_new')}}">Ajouter</a>
+			</div>
+
+			<table class="table table-hover mt-4">
+				<thead class="head-list-admin">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Adresse</th>
+						<th scope="col">Contact</th>
+						<th scope="col">Prestataire</th>
+						<th scope="col">Packages</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for establishment in establishmentsList %}
+						<tr>
+							<th scope="row">{{ loop.index }}</th>
+							<td>{{establishment.name}}</td>
+							<td>{{establishment.address}}</td>
+							<td>{{establishment.email}}</td>
+							<td>{{establishment.user.firstname ?? "Mme/Mr"}}
+								{{establishment.user.lastname}}</td>
+							<td>{{establishment.packages| length}}</td>
+							<td class="text-end">
+								<a href="{{path("app_admin_establishment_edit",{id:establishment.id})}}" class="btn btn-sm edit">
+									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								</a>
+								<div class="btn-group">
+									<form method="post" action="{{ path('app_admin_establishment_delete', {'id': establishment.id}) }}" onsubmit="return confirm('Supprimer l\' établissement {{establishment.name}} ?');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ establishment.id) }}">
+										<button class="btn btn-sm delete">
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</button>
+									</form>
+
+								</div>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<th scope="row"></th>
+							<td>Il n'y a pas encore d'établissement, vous pouvez en ajouter un,
+								<a href="{{path('app_admin_establishment_new')}}">ici</a>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+		</section>
+
+		<section class="list prosList d-none">
+			<div class="title-admin-list">
+				<h3>Liste des prestataires</h3>
+				<a class="button from-center" href="{{path('app_admin_pro_new')}}">Ajouter</a>
+			</div>
+
+
+			<table class="table table-hover mt-4">
+				<thead class="head-list-admin">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Mail</th>
+						<th scope="col">Etablissements</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for pro in prosList %}
+						<tr>
+							<th scope="row">{{ loop.index }}</th>
+							<td>{{pro.firstname ?? 'Mme/Mr'}}
+								{{pro.lastname}}</td>
+							<td>{{pro.email}}</td>
+							<td>{{pro.establishments| length}}</td>
+							<td class="text-end">
+
+								<div class="btn-group">
+									<form method="post" action="{{ path('app_admin_user_delete', {'id': pro.id}) }}" onsubmit="return confirm('Supprimer le prestataire {{pro.email}} ?');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pro.id) }}">
+										<button class="btn btn-sm delete">
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</button>
+									</form>
+
+								</div>
+
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<th scope="row"></th>
+							<td>Il n'y a pas encore de prestataire, vous pouvez en ajouter un,
+								<a href="{{path('app_admin_pro_new')}}">ici</a>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+		</section>
+
+		<section class="list usersList d-none">
+			<div class="title-admin-list">
+				<h3>Liste des utilisateurs</h3>
+
+			</div>
+
+			<table class="table table-hover mt-4">
+				<thead class="head-list-admin">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Mail</th>
+						<th scope="col">Réservations</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in usersList %}
+						<tr>
+							<th scope="row">{{ loop.index }}</th>
+							<td>{{user.firstname ?? 'Mme/Mr'}}
+								{{user.lastname}}</td>
+							<td>{{user.email}}</td>
+							<td>{{user.books| length}}</td>
+							<td class="text-end">
+								<div class="btn-group">
+									<form method="post" action="{{ path('app_admin_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Supprimer l\'utilisateur {{user.email}} ?');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+										<button class="btn btn-sm delete">
+											<i class="fa fa-trash-o" aria-hidden="true"></i>
+										</button>
+									</form>
+
+								</div>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<th scope="row"></th>
+							<td>Il n'y a pas encore d'utilisateurs
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+		</section>
+		<section class="list booksList d-none">
+			<div class="title-admin-list">
+				<h3>Liste des réservations</h3>
+
+			</div>
+
+			<table class="table table-hover mt-4">
+				<thead class="head-list-admin">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nom de l'utilisateur</th>
+						<th scope="col">Mail du client</th>
+						<th scope="col">Nom du package</th>
+						<th scope="col">Contact de l'établissement</th>
+						<th scope="col">Date de réservation</th>
+						<th scope="col">Status</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for book in booksList %}
+
+						<tr>
+							<th scope="row">{{ loop.index }}</th>
+							<td>{{book.user.firstname ?? 'Mme/Mr'}}
+								{{book.user.lastname}}</td>
+							<td>{{book.user.email}}</td>
+							<td>{{book.packages.getName}}</td>
+							<td>{{book.packages.establishment.email}}</td>
+							<td>{{book.date |date("d/m/Y", "Europe/Paris") }}</td>
+							<td>
+								{% if book.status ==0 %}
+									<i class="fa-solid fa-circle orange"></i>
+									En attente
+								{% elseif book.status==1 %}
+									<i class="fa-solid fa-circle green"></i>
+									Validée
+								{% else %}
+									<i class="fa-solid fa-circle red"></i>
+									Annulée
+								{% endif %}
+							</td>
+
+						</tr>
+					{% else %}
+						<tr>
+							<th scope="row"></th>
+							<td>Il n'y a pas encore de réservations
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+
+		</section>
+
+	</main>
+
+
+	{% block javascripts %}
+		<script src="{{ asset('asset/js/selectedListAdmin.js') }}"></script>
+	{% endblock %}
+{% endblock %}

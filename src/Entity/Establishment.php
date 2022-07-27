@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass=EstablishmentRepository::class)
  */
@@ -21,11 +23,13 @@ class Establishment
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $address;
 
@@ -36,31 +40,42 @@ class Establishment
 
     /**
      * @ORM\Column(type="string", length=180, nullable=true)
+     * @Assert\Email(
+     *     message = "Ce mail '{{ value }}' n'est pas valide."
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=180, nullable=true)
+     * @Assert\Url(
+     * relativeProtocol = true)
      */
     private $website;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $openingHour;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $openingDay;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min=20,
+     *      minMessage = "Votre description doit contenir {{ limit }} caractères au minimun")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(
+     * relativeProtocol = true)
      */
     private $picture;
 
@@ -79,6 +94,7 @@ class Establishment
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="establishments")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $user;
 
@@ -90,6 +106,7 @@ class Establishment
     /**
      * @ORM\ManyToOne(targetEntity=Style::class, inversedBy="establishments")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $style;
 
@@ -176,24 +193,24 @@ class Establishment
 
    
 
-    public function getOpeningHour(): ?\DateTimeInterface
+    public function getOpeningHour(): ?string
     {
         return $this->openingHour;
     }
 
-    public function setOpeningHour(?\DateTimeInterface $openingHour): self
+    public function setOpeningHour(?string $openingHour): self
     {
         $this->openingHour = $openingHour;
 
         return $this;
     }
 
-    public function getOpeningDay(): ?\DateTimeInterface
+    public function getOpeningDay(): ?string
     {
         return $this->openingDay;
     }
 
-    public function setOpeningDay(?\DateTimeInterface $openingDay): self
+    public function setOpeningDay(?string $openingDay): self
     {
         $this->openingDay = $openingDay;
 

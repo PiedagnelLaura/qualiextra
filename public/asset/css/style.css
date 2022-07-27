@@ -263,6 +263,7 @@ height: 100%;
 
 .footer-color {
     background-color: #121629;
+    padding: 15px;
 }
 
 .footer-bloc {
@@ -376,17 +377,14 @@ h2 {
     display: flex;
 }
 
-input[type="checkbox"] {
-    background-color: #83907c;
+.new-filters {
+    background: linear-gradient(#7A8C73, #315565 );
 }
 
 input[type="checkbox"]:checked {
     background-color: #131629;
 }
 
-input[type="radio"] {
-    background-color: #83907c;
-}
 
 input[type="radio"]:checked {
     background-color: #131629;
@@ -397,6 +395,7 @@ input[type="radio"]:checked {
     height: 40px;
     margin: 20px;
     text-align: center;
+    background: linear-gradient(#7A8C73, #315565 );
     background-color: #83907c;
     color: #f6f0e9;
 }
@@ -757,4 +756,80 @@ height: 100%;
 .bloc-message-book {
     padding-bottom: 10px;
     font-size: 19px;
+}/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Admin pages*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ---------HOMEPAGE------- */
+
+.title-admin-list {
+    height: 150px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter-list {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em;
+    margin-top: 30px;
+}
+
+.head-list-admin {
+    background: linear-gradient(#7A8C73, #315565 );
+    width: 50%;
+    color: #F6F0E9;
+}
+
+.edit {
+    background: linear-gradient(#7A8C73, #315565 );
+    color: #F6F0E9;
+}
+
+.edit:hover {
+    background: linear-gradient(#131629 , #315565);
+    color: #F6F0E9;
+}
+.delete {
+    background: linear-gradient(#315565, #131629 );
+    color: #F6F0E9;
+}
+
+.delete:hover {
+    background: linear-gradient(#315565, #7A8C73);
+    color: #F6F0E9;
+}
+
+.delete-menu {
+    background-color:#F6F0E9;
+}
+
+.orange {
+    color: darksalmon;
+}
+
+.green {
+    color:#7A8C73
+}
+
+.red {
+    color:darkred
+}
+
+/* ---------ADD NEW ESTABLISHMENT------- */
+
+.bloc-establishment-admin {
+    max-width: 800px;
+    color: #315565;
+    margin: auto;
+    
+}
+.validate-form {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.admin-navbar {
+    margin-left:10px;
 }
