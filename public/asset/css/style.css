@@ -914,3 +914,31 @@ height: 100%;
     text-align: center;
 }
 
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*       /* Error 404/403 */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.container-error {
+    display: flex;
+    justify-content: center;
+}
+
+.title-error {
+    margin-top: 14px;
+    font-size: 18rem;
+}
+
+.logo-error {
+    background-color: #F6F0E9;
+    width: 25%;
+}
+
+.container-message {
+    text-align: center;
+}
+
+.container-message-error {
+    margin-bottom: 3em;
+    font-size: 2em;
+}
