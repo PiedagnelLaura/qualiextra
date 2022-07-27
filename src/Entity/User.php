@@ -67,6 +67,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $establishments;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastLogin;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $newLogin;
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
@@ -242,6 +252,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $establishment->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLastLogin(): ?\DateTimeInterface
+    {
+        return $this->lastLogin;
+    }
+
+    public function setLastLogin(?\DateTimeInterface $lastLogin): self
+    {
+        $this->lastLogin = $lastLogin;
+
+        return $this;
+    }
+
+    public function getNewLogin(): ?\DateTimeInterface
+    {
+        return $this->newLogin;
+    }
+
+    public function setNewLogin(?\DateTimeInterface $newLogin): self
+    {
+        $this->newLogin = $newLogin;
 
         return $this;
     }
