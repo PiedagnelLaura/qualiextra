@@ -17,7 +17,7 @@ class MainController extends AbstractController
      * 
      * @Route("/", name="app_user_home", methods={"GET"})
      */
-    public function home(TypeRepository $typeRepository, BookRepository $bookRepository): Response
+    public function home(TypeRepository $typeRepository, BookRepository $bookRepository, PackageRepository $packageRepository): Response
     {
         $typeList = $typeRepository->findAll();
 
@@ -28,17 +28,19 @@ class MainController extends AbstractController
             // Get user booking with user Id
             $books = $bookRepository->findByUser($user);
             // For display the flash message to each package which are booked
-            foreach ($books as $book) { 
+            foreach ($books as $book) {
+                // we get the package associated to the reservation
+                $package = $packageRepository->findOneById($book->getId());
                 //If the message status = 0 so we display the response from the pro
                 if ($book->isMessageStatus() === false) {
                     //If the pro valid the book => the book is confirmed
                     if ($book->getStatus() === 1) {
                         
                        
-                        $this->addFlash('success '.$book->getId(), 'Votre réservation est confirmé');
+                        $this->addFlash('success '.$book->getId(), 'Votre réservation pour le package "' . $package->getName() . '" a bien été confirmée');
                     } //If the pro reject the book => the book is cancelled
                     else if ($book->getStatus() === 2) {
-                        $this->addFlash('danger '.$book->getId(), 'Votre réservation a été refusée');
+                        $this->addFlash('danger '.$book->getId(), 'Votre reservation pour le package "' . $package->getName() . '" a été annulée ');
                     }
                 }
             }
