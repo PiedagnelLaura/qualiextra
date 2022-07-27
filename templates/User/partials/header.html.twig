@@ -28,12 +28,14 @@
 </header>
 {#Ajout du flash message pour le client#}
 
-{% for message in app.flashes('success-book') %}
-
-    <div  class="alert alert-success">
-        {{message}}
-    </div>
-
-{% endfor %}
+{% for message in app.flashes('accept') %}
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			{{ message }}
+			<a href="{{path("app_user_flash",{id:book.id})}}" class="btn btn-sm edit">
+				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+			</a>
+		</div>
+	{% endfor %}
 
 {#Fin du flash message pour le client#}
+

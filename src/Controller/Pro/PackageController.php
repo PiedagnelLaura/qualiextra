@@ -114,6 +114,8 @@ class PackageController extends AbstractController
         
         //Set new value (1=book validate)
         $book->setStatus(1);
+        //Set bool for user message
+        $book->setMessageStatus(false);
 
         //Save in the BDD
         $entityManager =$doctrine->getManager();
@@ -143,6 +145,8 @@ class PackageController extends AbstractController
         
         //Set new value (2=book cancelled)
         $book->setStatus(2);
+        //Set bool for user message
+        $book->setMessageStatus(false);
 
         $entityManager =$doctrine->getManager();
         $entityManager->flush();

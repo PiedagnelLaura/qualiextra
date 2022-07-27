@@ -76,7 +76,7 @@ class PackageController extends AbstractController
             $bookRepository->add($book, true);
           
             //Flash Message pour le client
-            $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
+            $this->addFlash('success', 'Votre réservation est en cours de confirmation.');
 
             return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -95,63 +95,6 @@ class PackageController extends AbstractController
     
 
 
-    
-    /**
-    * @Route("/business/books", name="app_pro_reservations_list")
-    */
-    public function showBook ( EstablishmentRepository $establishmentRepository ){
-        
-        //we find the current User
-        $email= $_SESSION['_sf2_attributes']['_security.last_username'];
-        
-        $user =$this->userRepository->findByEmail($email);
-
-        // we retrieve his establishments
-        $listEstablishment = $establishmentRepository->findByUser($user);
-        
-       
-
-        return $this->render('Pro/reservations_list.html.twig', [
-            'listEstablishment' => $listEstablishment,
-          
-        ]);
-    }
-    /**
-    * @Route("/business/books/validated/{id}", name="app_pro_update_book_validated")
-    */
-    public function bookValidate (BookRepository $bookRepository, ManagerRegistry $doctrine){
-        
-
-         $infos = $_SERVER['PATH_INFO'];
-         $id= substr($infos,-2);
-       
-        //we find the entity book in our BDD
-        $book = $bookRepository->find($id);
-        
-        $book->setStatus(1);
-
-        $entityManager =$doctrine->getManager();
-        
-        $entityManager->flush();
-        return $this->redirectToRoute('app_pro_reservations_list', [], Response::HTTP_SEE_OTHER);
-  
-    }
-     /**
-    * @Route("/business/books/cancelled/{id}", name="app_pro_update_book_cancelled")
-    */
-    public function bookCancel (BookRepository $bookRepository, ManagerRegistry $doctrine){
-    $infos = $_SERVER['PATH_INFO'];
-    $id= substr($infos, -2);
-      
-    //we find the entity book in our BDD
-    $book = $bookRepository->find($id);
-       
-    $book->setStatus(2);
-
-    $entityManager =$doctrine->getManager();
-       
-    $entityManager->flush();
-    return $this->redirectToRoute('app_pro_reservations_list', [], Response::HTTP_SEE_OTHER);
-    }
+   
  
 }
