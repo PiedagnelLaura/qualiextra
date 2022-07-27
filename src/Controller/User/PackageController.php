@@ -5,6 +5,7 @@ namespace App\Controller\User;
 use App\Entity\Book;
 use App\Entity\Establishment;
 use App\Entity\Package;
+use App\Entity\User;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use App\Repository\EstablishmentRepository;
@@ -36,93 +37,121 @@ use Symfony\Component\Mime\Address;
 class PackageController extends AbstractController
 {
     
-    private $sessionTab;
-
-    public function __construct(SessionInterface $session, UserRepository $userRepository,PackageRepository $packageRepository)
-    {
-        
-        $this->sessionTab = $session->get('user') ?? [];
-        $this->userRepository = $userRepository;
-        $this->packageRepository = $packageRepository;
-    }
-
-
-    /**
+   /**
      * Show one package by id
      *
-     * @Route("/packages/{id}", name="app_user_package_show", requirements={"id"="\d+"}, methods={"GET"})
+     * @Route("/packages/{id}", name="app_user_package_show", requirements={"id"="\d+"}, methods={"GET", "POST"})
      *
      *  @param [type] $id
      */
-    public function packageShow($id, ManagerRegistry $doctrine)
+    public function packageShow($id,Request $request, BookRepository $bookRepository, PackageRepository $PackageRepository, UserRepository $userRepository)
     {
-        // Alternative for access Repository of entity Package we manage with ManagerRegistry for grib the repository
-        $PackageRepository = $doctrine->getRepository(Package::class);
 
+        // show package by id
         $package = $PackageRepository->find($id);
-        
+
+
         // Package not found ?
         if ($package === null) {
             throw $this->createNotFoundException('Package don\'t find');
         }
-        // dd($_SESSION);
-        return $this->render('User/packageShow.html.twig', [
-            'package' => $package,
-        ]);
-    }
 
-    /**
-     * Méthode qui permet d'ajouter une réservation 
-     * 
-     * @Route("/packages/{id}", name="app_package-book", requirements={"id"="\d+"}, methods={"POST"})
-     */
-    public function book(ManagerRegistry $doctrine, SessionInterface $session, Request $request, UserRepository $userRepository, Package $package, SerializerInterface $serializer): JsonResponse
-    {
-        //TODO : Après avoir fait le formulaire d'inscription
-        //Récupérer l'utilisateur connecté
+        //Get user who is connected
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
 
-
-        //Cela sert à récupérer l'utilisateur (pour le moment je l'ai mis en dur car pas d'authentification faite et pour pouvoir réserver j'ai besoin de l'id_user)
-        $newUser = $userRepository->find(1);
-
-        //J'instancie une nouvelle réservation
-        $newBook = new Book();
-
-        //Récupère ce qu'il y a dans POST
-        $data = $request->toArray();
-
-        //*On set les éléments obligatoires pour ajouter notre réservation en BDD
-
-
-
-        $newBook = new Book();
+        //! Formulaire booking
+        $book = new Book();
         
-        $form = $this->createForm(BookType::class, $newBook);
+        $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            //Ajout user rattaché : TODO authentification
-            $newBook->setUser($newUser);
-            //Ajout du package associé à la réservation
-            $newBook->setPackages($package);
-            //Info par défault, status et prix (obligatoire pour valider l'ajout)
-            $newBook->setStatus(0);
-            $newBook->setPrice($package->getPrice());
             
-            $form->add($newBook, true);
+            $book->setStatus(0);
+            $book->setUser($user);
+            $book->setPackages($package);
+            $book->setPrice($package->getPrice());
+            
+            $bookRepository->add($book, true);
+          
+            //Flash Message pour le client
+            $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
 
             return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
         }
 
 
-        //TODO Envoi du mail à l'admin et prestataire 
-        
-        //Flash Message pour le client
-        $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
+        return $this->renderForm('User/packageShow.html.twig', [
+            'package' => $package,
+            'form' => $form,
+            'book' => $book,
+        ]);
 
-        //envoi au format JSON info de la réservation
-        return $this->json(['book' => json_decode($serializer->serialize($newBook, 'json', ['groups' => ['normal']]))]);
+
+
+    }
+
+    
+
+
+    
+    /**
+    * @Route("/business/books", name="app_pro_reservations_list")
+    */
+    public function showBook ( EstablishmentRepository $establishmentRepository ){
+        
+        //we find the current User
+        $email= $_SESSION['_sf2_attributes']['_security.last_username'];
+        
+        $user =$this->userRepository->findByEmail($email);
+
+        // we retrieve his establishments
+        $listEstablishment = $establishmentRepository->findByUser($user);
+        
+       
+
+        return $this->render('Pro/reservations_list.html.twig', [
+            'listEstablishment' => $listEstablishment,
+          
+        ]);
+    }
+    /**
+    * @Route("/business/books/validated/{id}", name="app_pro_update_book_validated")
+    */
+    public function bookValidate (BookRepository $bookRepository, ManagerRegistry $doctrine){
+        
+
+         $infos = $_SERVER['PATH_INFO'];
+         $id= substr($infos,-2);
+       
+        //we find the entity book in our BDD
+        $book = $bookRepository->find($id);
+        
+        $book->setStatus(1);
+
+        $entityManager =$doctrine->getManager();
+        
+        $entityManager->flush();
+        return $this->redirectToRoute('app_pro_reservations_list', [], Response::HTTP_SEE_OTHER);
+  
+    }
+     /**
+    * @Route("/business/books/cancelled/{id}", name="app_pro_update_book_cancelled")
+    */
+    public function bookCancel (BookRepository $bookRepository, ManagerRegistry $doctrine){
+    $infos = $_SERVER['PATH_INFO'];
+    $id= substr($infos, -2);
+      
+    //we find the entity book in our BDD
+    $book = $bookRepository->find($id);
+       
+    $book->setStatus(2);
+
+    $entityManager =$doctrine->getManager();
+       
+    $entityManager->flush();
+    return $this->redirectToRoute('app_pro_reservations_list', [], Response::HTTP_SEE_OTHER);
     }
  
 }

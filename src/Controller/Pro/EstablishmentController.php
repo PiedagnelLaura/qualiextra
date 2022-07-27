@@ -5,6 +5,7 @@ namespace App\Controller\Pro;
 use App\Entity\Establishment;
 use App\Form\EstablishmentType;
 use App\Repository\EstablishmentRepository;
+use App\Services\Geocodage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,13 +32,21 @@ class EstablishmentController extends AbstractController
     /**
      * @Route("/business/establishments/new", name="app_establishment_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EstablishmentRepository $establishmentRepository): Response
+    public function new(Request $request, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
     {
         $establishment = new Establishment();
         $form = $this->createForm(EstablishmentType::class, $establishment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // the address is geocoded 
+            $address = $establishment->getAddress();
+            $coordinates = $geocodage->geocoding($address);
+            $lat = $coordinates['lat'];
+            $long = $coordinates['lng'];
+            $establishment->setLatitudes($lat);
+            $establishment->setLongitudes($long);
+            
             $establishmentRepository->add($establishment, true);
 
             return $this->redirectToRoute('app_establishments-pro', [], Response::HTTP_SEE_OTHER);
@@ -49,28 +58,26 @@ class EstablishmentController extends AbstractController
         ]);
     }
 
-    // /**
-    //  * @Route("/business/establishments/{id}", name="app_establishment_show", methods={"GET"})
-    //  */
-    // public function show(Establishment $establishment): Response
-    // {
-    //     return $this->render('establishment-pro/show.html.twig', [
-    //         'establishment' => $establishment,
-    //     ]);
-    // }
-
+    
     /**
      * @Route("/business/establishments/{id}", name="app_establishment_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository): Response
+    public function edit(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
     {
         $form = $this->createForm(EstablishmentType::class, $establishment);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            // the address is geocoded 
+            $address = $establishment->getAddress();
+            $coordinates = $geocodage->geocoding($address);
+            $lat = $coordinates['lat'];
+            $long = $coordinates['lng'];
+            $establishment->setLatitudes($lat);
+            $establishment->setLongitudes($long);
+
             $establishmentRepository->add($establishment, true);
 
-            dd($establishment);
 
             return $this->redirectToRoute('app_establishments-pro', [], Response::HTTP_SEE_OTHER);
         }
@@ -81,6 +88,7 @@ class EstablishmentController extends AbstractController
             'form' => $form,
         ]);
     }
+
 
     /**
      * @Route("/business/establishments/{id}/delete", name="app_establishment_delete", methods={"POST"})

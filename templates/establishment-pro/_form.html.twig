@@ -1,7 +1,8 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <br>
-    <a class="button from-center">{{ button_label|default('Enregistrer') }}</a>
+{{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+{{ form_widget(form) }}
+<div class=" validate-form">
+	<button class="btn button from-center btn-log" type="submit">Valider</button>
+</div>
 
-    
+
 {{ form_end(form) }}

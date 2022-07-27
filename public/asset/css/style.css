@@ -721,13 +721,11 @@ height: 100%;
     font-size: larger
 }
 
-.form-control-package{
-    margin-right: 20px;
+
+#book_date {
     background: linear-gradient(#7A8C73, #315565 );
-    width: 50%;
+    width: 200%;
 }
-
-
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*!           /* LOGIN FORM  */   
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

@@ -5,17 +5,6 @@
 {% block body %}
 {% include "User/partials/header.html.twig" %}
 
-{#Ajout du flash message pour le client#}
-
-{% for message in app.flashes('success-book') %}
-
-    <div  class="alert alert-success">
-        {{message}}
-    </div>
-
-{% endfor %}
-
-{#Fin du flash message pour le client#}
 
 
 <main class="container-fluid row">
@@ -67,16 +56,16 @@
     {% if is_granted('ROLE_USER') %}
     <section class="wrap-book row">
     
-    <form class="col-12 col-md-12" method="post" id="form-book">
+    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+    <div id="form-book">
         <div class="book-input ">
             <label class="label-form-book" for="date">Votre date de réservation</label>
-            <input type="date" class="form-control-package" required name="date" id="date" placeholder="date">
+            {{ form_row(form.date) }}
         </div>
 
-        <a class="button from-center" type="submit"> Réserver
-        <input type="submit" class="hidde-btn-form "> </a>
-    </form>
-        
+        <button class="btn button from-center btn-log" type="submit">Réserver</button>
+    {{ form_end(form) }}
+        </div>
     </section>
     {% else %}
 

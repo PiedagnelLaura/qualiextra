@@ -26,3 +26,14 @@
                
             </div>
 </header>
+{#Ajout du flash message pour le client#}
+
+{% for message in app.flashes('success-book') %}
+
+    <div  class="alert alert-success">
+        {{message}}
+    </div>
+
+{% endfor %}
+
+{#Fin du flash message pour le client#}
