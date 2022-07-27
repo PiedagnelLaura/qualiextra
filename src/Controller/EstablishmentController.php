@@ -89,6 +89,7 @@ class EstablishmentController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/business/establishments/{id}/delete", name="app_establishment_delete", methods={"POST"})
      */

@@ -59,7 +59,6 @@ class PackageController extends AbstractController
         //Get user who is connected
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
-        $userID= $user->getId();
 
         //! Formulaire booking
         $book = new Book();
