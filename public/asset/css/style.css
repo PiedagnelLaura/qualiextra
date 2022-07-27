@@ -833,3 +833,53 @@ height: 100%;
 .admin-navbar {
     margin-left:10px;
 }
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* Home Pro */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.bloc-show {
+    margin-top: 5rem;
+}
+
+.bloc-show-title {
+    font-size: 3rem;
+    margin-bottom: 2em;
+    color: #121629;
+}
+
+.bloc-establishment-name {
+    background: linear-gradient(#315565, #121629);
+    color: #F6F0E9;
+    text-align: center;
+}
+
+.bloc-establishment {
+    margin-bottom: 5%;
+}
+
+.bloc-package {
+    width: 50%;
+    font-weight: normal;
+}
+
+.bloc-icon-package {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-warning {
+    margin-right: 20px;
+}
+
+.color-primaire {
+    color: #121629;
+}
+
+    /** Add package **/
+
+.btn-save {
+    text-align: center;
+}
+
