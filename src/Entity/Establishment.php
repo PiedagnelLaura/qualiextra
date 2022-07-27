@@ -84,7 +84,6 @@ class Establishment
      */
     private $tags;
 
-   
 
     /**
      * @ORM\OneToMany(targetEntity=Package::class, mappedBy="establishment", orphanRemoval=true)

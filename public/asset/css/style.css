@@ -756,7 +756,8 @@ height: 100%;
 .bloc-message-book {
     padding-bottom: 10px;
     font-size: 19px;
-}/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+}
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*!      /*!Admin pages*/   
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -776,13 +777,32 @@ height: 100%;
     margin-top: 30px;
 }
 
-.head-list-admin {
+
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Establishment pro page*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+
+.title-establishment {
+    font-size: 19px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.name-establishment{
+    text-decoration: none;
+    color: #131629;
+}
+.head-list-establishment {
     background: linear-gradient(#7A8C73, #315565 );
     width: 50%;
     color: #F6F0E9;
 }
 
-.edit {
+.edit_btn {
     background: linear-gradient(#7A8C73, #315565 );
     color: #F6F0E9;
 }
@@ -796,7 +816,18 @@ height: 100%;
     color: #F6F0E9;
 }
 
-.delete:hover {
+
+.edit_btn :hover {
+    background: linear-gradient(#131629 , #315565);
+    color: #F6F0E9;
+}
+.delete_btn  {
+    background: linear-gradient(#315565, #131629 );
+    color: #F6F0E9;
+    
+}
+
+.delete_btn :hover {
     background: linear-gradient(#315565, #7A8C73);
     color: #F6F0E9;
 }
