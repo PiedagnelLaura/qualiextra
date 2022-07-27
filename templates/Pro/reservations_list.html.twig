@@ -4,6 +4,7 @@
 {% block body %}
 
 <div class='container my-6 bloc-show'>
+{# {{path('app_pro_home')}} #}
   <a href="#" class="button from-center float-end">Retour</a>
   <h1 class="bloc-show-title"> Gestion des réservations </h1>
 
@@ -49,14 +50,15 @@
                 <td>{{book.user.lastname}} </td>
                 <td>{{package.price}}</td>
                 <td class="bloc-icon-package">
-                    <a href="#" class="btn btn-success" role="button"><i class="fa-solid fa-pen"></i></a>
-                    <a href="#" class="btn btn-danger" role="button"><i class="fa-solid fa-trash"></i></a>
+                    <a href="{{path('app_pro_update_book_validated',{id:book.id})}}" class="btn btn-success" role="button"><i class="fa-solid fa-check"></i></a>
+                    <a href="{{path('app_pro_update_book_cancelled',{id:book.id})}}" class="btn btn-danger" role="button"><i class="fa-solid fa-ban"></i></a>
                 </td>
                 </tr>
             </tbody>
             {% endfor %}
             </table>
             </div>
+           
             {% endif %}
          
         {% endfor %}
@@ -93,7 +95,7 @@
                 <td>{{book.user.lastname}} </td>
                 <td>{{package.price}}</td>
                 <td class="bloc-icon-package">
-                    <a href="#" class="btn btn-success" role="button"><i class="fa-solid fa-pen"></i></a>
+                   <i class="btn btn-success fa-solid fa-check"></i>
                     
                 </td>
                 </tr>
@@ -101,6 +103,7 @@
             {% endfor %}
             </table>
             </div>
+            
             {% endif %}
          
         {% endfor %}
@@ -138,7 +141,7 @@
                 <td>{{book.user.lastname}} </td>
                 <td>{{package.price}}</td>
                 <td class="bloc-icon-package">
-                    <a href="#" class="btn btn-danger" role="button"><i class="fa-solid fa-trash"></i></a>
+                    <i class="btn btn-danger fa-solid fa-ban"></i>
                     
                 </td>
                 </tr>
@@ -146,10 +149,12 @@
             {% endfor %}
             </table>
             </div>
+            
             {% endif %}
          
         {% endfor %}
     </div>
+ 
   {% endif %}
 {% endfor %}
 </div>

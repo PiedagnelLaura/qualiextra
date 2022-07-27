@@ -12,6 +12,7 @@ use App\Repository\PackageRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -31,13 +32,15 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Address;
 
+
 class PackageController extends AbstractController
 {
-
+    
     private $sessionTab;
 
     public function __construct(SessionInterface $session, UserRepository $userRepository,PackageRepository $packageRepository)
     {
+        
         $this->sessionTab = $session->get('user') ?? [];
         $this->userRepository = $userRepository;
         $this->packageRepository = $packageRepository;
@@ -127,7 +130,7 @@ class PackageController extends AbstractController
     /**
     * @Route("/business/books", name="app_pro_reservations_list")
     */
-    public function showBook ($idUser = 2, EstablishmentRepository $establishmentRepository ,BookRepository $bookRepository){
+    public function showBook ( EstablishmentRepository $establishmentRepository ){
         
         //we find the current User
         $email= $_SESSION['_sf2_attributes']['_security.last_username'];
@@ -143,5 +146,42 @@ class PackageController extends AbstractController
             'listEstablishment' => $listEstablishment,
           
         ]);
+    }
+    /**
+    * @Route("/business/books/validated/{id}", name="app_pro_update_book_validated")
+    */
+    public function bookValidate (BookRepository $bookRepository, ManagerRegistry $doctrine){
+        
+
+         $infos = $_SERVER['PATH_INFO'];
+         $id= substr($infos,-2);
+       
+        //we find the entity book in our BDD
+        $book = $bookRepository->find($id);
+        
+        $book->setStatus(1);
+
+        $entityManager =$doctrine->getManager();
+        
+        $entityManager->flush();
+        return $this->redirectToRoute('app_pro_reservations_list', [], Response::HTTP_SEE_OTHER);
+  
+    }
+     /**
+    * @Route("/business/books/cancelled/{id}", name="app_pro_update_book_cancelled")
+    */
+    public function bookCancel (BookRepository $bookRepository, ManagerRegistry $doctrine){
+    $infos = $_SERVER['PATH_INFO'];
+    $id= substr($infos, -2);
+      
+    //we find the entity book in our BDD
+    $book = $bookRepository->find($id);
+       
+    $book->setStatus(2);
+
+    $entityManager =$doctrine->getManager();
+       
+    $entityManager->flush();
+    return $this->redirectToRoute('app_pro_reservations_list', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -3,6 +3,8 @@ const reservations_list = {
         const AllreservationsList = document.querySelectorAll('.package-line');
         for(const oneReservation of AllreservationsList){
             oneReservation.classList.add('d-none')
+            oneReservation.classList.remove('apparence')
+            oneReservation.classList.remove('packager')
         }
 
         //we browse the reservation to check
@@ -11,6 +13,10 @@ const reservations_list = {
         reservations_list.browseValidated();
         //we browse the reservation cancelled
         reservations_list.browseCancelled();
+        //we hide the package who doesn't have any reservation
+        reservations_list.hidePackage();
+        //we hide the etablishment who doesn't have any reservation
+        reservations_list.hideEstablishment();
     },
 
     browseToCheck: function() {
@@ -28,6 +34,8 @@ const reservations_list = {
                 //we remove the d-none class when the status is to check
                 if (statusReservation == 0){
                     reservation.classList.remove('d-none')
+                    reservation.classList.add('apparence')
+                    reservation.classList.add('packager')
                 }
             }        
         }
@@ -47,6 +55,8 @@ const reservations_list = {
                 //we remove the d-none class when the status is cancelled
                 if (statusReservation == 2){
                     reservation.classList.remove('d-none')
+                    reservation.classList.add('apparence')
+                    reservation.classList.add('packager')
                 }
             }        
         }
@@ -67,10 +77,39 @@ const reservations_list = {
                 //we remove the d-none class when the status is validated
                 if (statusReservation == 1){
                     reservation.classList.remove('d-none')
+                    reservation.classList.add('apparence')
+                    reservation.classList.add('packager')
+
                 }
             }        
         }
 
     },
+   
+    hidePackage: function(){
+        const packagesList= document.querySelectorAll('.bloc-establishment');
+       
+        //for each etablishment block, we test if there is at least one book to browse
+        for (const packageBlock of packagesList){
+            const line = packageBlock.querySelectorAll('.packager');
+            
+            if(line.length==0){
+                packageBlock.classList.add('d-none')
+            }
+        }
+    },
+
+    hideEstablishment: function(){
+        const establishmentsList= document.querySelectorAll('.bloc-package-name');
+       
+        //for each etablishment block, we test if there is at least one book to browse
+        for (const establishmentBlock of establishmentsList){
+            const line = establishmentBlock.querySelectorAll('.apparence');
+            
+            if(line.length==0){
+                establishmentBlock.classList.add('d-none')
+            }
+        }
+    }
 }
 document.addEventListener('DOMContentLoaded', reservations_list.init);
