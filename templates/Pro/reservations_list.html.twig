@@ -2,7 +2,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Qualiextra Pro{% endblock %}
 {% block body %}
-
+{% include "Pro/partials/header.html.twig" %}
 <div class='container my-6 bloc-show'>
 
   <h1 class="bloc-show-title"> Gestion des réservations </h1>
@@ -160,6 +160,8 @@
     {% block javascripts %}
 		<script src="{{ asset('asset/js/reservations_list.js') }}"></script>
 	{% endblock %}
+
+    {% include "Pro/partials/footer.html.twig" %}
 {% endblock %}
 
 

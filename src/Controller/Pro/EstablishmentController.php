@@ -15,24 +15,29 @@ use Symfony\Component\Routing\Annotation\Route;
 class EstablishmentController extends AbstractController
 {
     /**
-     * @Route("/business/establishments", name="app_establishments-pro", methods={"GET"})
+     * Show establishments list
+     * 
+     * @Route("/business/establishments", name="app_pro_establishments", methods={"GET"})
      */
-    public function index(EstablishmentRepository $establishmentRepository): Response
+    public function listStore(EstablishmentRepository $establishmentRepository): Response
     {
-        // /** @var \App\Entity\User $user */
-        // $user = $this->getUser();
+         /** @var \App\Entity\User $user */
+         $user = $this->getUser();
         
-        // $proConnected = $user->getEstablishments();
-
-        return $this->render('establishment-pro/establishments-pro.html.twig', [
-            'establishments' => $establishmentRepository->findAll(),
+        // we retrieve his establishments
+        $establishment = $establishmentRepository->findByUser($user);       
+       
+        return $this->render('Pro/establishments_list.html.twig', [
+            'establishments' => $establishment
         ]);
     }
 
     /**
-     * @Route("/business/establishments/new", name="app_establishment_new", methods={"GET", "POST"})
+     * create a new entity of establishment in the bdd
+     * 
+     * @Route("/business/establishments/addStore", name="app_pro_new_establishment", methods={"GET", "POST"})
      */
-    public function new(Request $request, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
+    public function addStore(Request $request, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
     {
         $establishment = new Establishment();
         $form = $this->createForm(EstablishmentType::class, $establishment);
@@ -49,20 +54,23 @@ class EstablishmentController extends AbstractController
             
             $establishmentRepository->add($establishment, true);
 
-            return $this->redirectToRoute('app_establishments-pro', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . 'à été crée ');
+
+            return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('establishment-pro/new.html.twig', [
+        return $this->renderForm('Pro/establishment/new.html.twig', [
             'establishment' => $establishment,
             'form' => $form,
         ]);
     }
 
-    
     /**
-     * @Route("/business/establishments/{id}", name="app_establishment_edit", methods={"GET", "POST"})
+     * Update the current entity of store in the BDD
+     * 
+     * @Route("/business/establishments/{id}", name="app_pro_update_establishment", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
+    public function updateStore(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
     {
         $form = $this->createForm(EstablishmentType::class, $establishment);
         $form->handleRequest($request);
@@ -78,12 +86,12 @@ class EstablishmentController extends AbstractController
 
             $establishmentRepository->add($establishment, true);
 
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . 'à bien été modifié');
 
-            return $this->redirectToRoute('app_establishments-pro', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
         }
 
-        
-        return $this->renderForm('establishment-pro/edit.html.twig', [
+        return $this->renderForm('Pro/establishment/edit.html.twig', [
             'establishment' => $establishment,
             'form' => $form,
         ]);
@@ -91,14 +99,18 @@ class EstablishmentController extends AbstractController
 
 
     /**
-     * @Route("/business/establishments/{id}/delete", name="app_establishment_delete", methods={"POST"})
+     * Delete a establishment in the BDD
+     * 
+     * @Route("/business/establishments/{id}/delete", name="app_pro_delete_establishment", methods={"POST"})
      */
     public function delete(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$establishment->getId(), $request->request->get('_token'))) {
             $establishmentRepository->remove($establishment, true);
+
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . 'à été supprimé');
         }
 
-        return $this->redirectToRoute('app_establishments-pro', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
     }
 }

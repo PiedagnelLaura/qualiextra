@@ -4,13 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	{% include "/establishment-pro/partials/navbar-pro.html.twig" %}
+	{% include "Pro/partials/header.html.twig" %}
 
 	<main class="container-fluid">
 		<h1>Liste de vos établissements</h1>
 
 		<div class="title-establishment">
-			<a class="add-btn button from-center" href="{{ path('app_establishment_new') }}">Ajouter</a>
+			<a class="add-btn button from-center" href="{{ path('app_pro_new_establishment') }}">Ajouter</a>
 		</div>
 		<table class="table table-hover mt-4">
 			<thead class="head-list-establishment">
@@ -29,12 +29,12 @@
 						<td>{{ establishment.address }}</td>
 
 						<td class="text-end">
-							<a href="{{ path('app_establishment_edit', {'id': establishment.id}) }}" class="btn btn-sm edit_btn">
+							<a href="{{ path('app_pro_update_establishment', {'id': establishment.id}) }}" class="btn btn-sm edit_btn">
 								<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							</a>
 
 							<div class="btn-group">
-								<form method="post" action="{{ path('app_establishment_delete', {'id': establishment.id}) }}" onsubmit="return confirm('Supprimer l\' établissement {{establishment.name}} ?');">
+								<form method="post" action="{{ path('app_pro_delete_establishment', {'id': establishment.id}) }}" onsubmit="return confirm('Supprimer l\' établissement {{establishment.name}} ?');">
 									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ establishment.id) }}">
 									<button class="btn btn-sm delete">
 										<i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -55,5 +55,7 @@
 			</tbody>
 		</table>
 	</main>
+
+	{% include "Pro/partials/footer.html.twig" %}
 
 {% endblock %}

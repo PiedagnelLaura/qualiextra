@@ -15,7 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class RestoAddressController extends AbstractController
 {
     /**
-     * @Route("/bonnes-adresses", name="app_user_resto_address")
+     * Show map with resto store
+     * 
+     * @Route("/good-places", name="app_user_resto_address")
      */
     public function listResto(EstablishmentRepository $establishmentRepository, StyleRepository $styleRepository, TagRepository $tagRepository): Response
     {
@@ -23,8 +25,6 @@ class RestoAddressController extends AbstractController
         $listEstablishment = $establishmentRepository->findAll();
         $listTag = $tagRepository->findAll();
         $listStyle = $styleRepository->findAll();
-      
-          
         
         return $this->render('User/goodPlace.html.twig', [
             'listEstablishment' => $listEstablishment,

@@ -15,10 +15,9 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
-
-
-
     /**
+     * Show login page
+     * 
      * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -44,6 +43,8 @@ class UserController extends AbstractController
     }
 
     /**
+     * Show form register
+     * 
      * @Route("/register", name="app_register", methods={"GET", "POST"})
      */
     public function register(UserRepository $userRepository, Request $request, UserPasswordHasherInterface $passwordHasher): Response
@@ -64,8 +65,7 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
         }
-
-
+        
         return $this->renderForm("security/register.html.twig", ['form' => $form]);
     }
 }

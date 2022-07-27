@@ -26,6 +26,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class AdminController extends AbstractController
 {
     /** 
+     * Homepage (show establishment, pro, user and book list)
+     * 
      * @Route("/", name="app_admin_home")
      */
     public function home(EstablishmentRepository $establishmentRepository, UserRepository $userRepository, BookRepository $bookRepository): Response
@@ -46,6 +48,8 @@ class AdminController extends AbstractController
     }
 
     /**
+     * Add new resto in the BDD
+     * 
      * @Route("/bonnes-adresses", name="app_admin_establishment_new", methods={"GET", "POST"})
      */
     public function addResto(Request $request, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
@@ -78,6 +82,8 @@ class AdminController extends AbstractController
 
 
     /**
+     * Update a resto in the BDD
+     * 
      * @Route("/bonnes-adresses/{id}", name="app_admin_establishment_edit", methods={"GET", "POST"}, requirements={"id"="\d+"})
      */
     public function updateResto(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository,  Geocodage $geocodage): Response
@@ -108,6 +114,8 @@ class AdminController extends AbstractController
     }
 
     /**
+     * Delete a resto in the BDD
+     * 
      * @Route("/bonnes-adresses/delete/{id}", name="app_admin_establishment_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function deleteResto(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository): Response
@@ -122,7 +130,9 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/professionnels", name="app_admin_pro_new", methods={"GET", "POST"})
+     * Add new profil pro in the BDD
+     * 
+     * @Route("/professionnals", name="app_admin_pro_new", methods={"GET", "POST"})
      */
     public function addPro(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -153,6 +163,8 @@ class AdminController extends AbstractController
     }
 
     /**
+     * Delete a profil user in the BDD 
+     * 
      * @Route("/users/delete/{id}", name="app_admin_user_delete", methods={"POST"}, requirements={"id"="\d+"})
      */
     public function deleteUser(Request $request, User $user, UserRepository $userRepository): Response

@@ -19,8 +19,7 @@ class MainController extends AbstractController
         $typeList = $typeRepository->findAll();
         
         return $this->render(
-            'User/home.html.twig', 
-            [
+            'User/home.html.twig', [
                 'typeList' => $typeList,
             ]
         );

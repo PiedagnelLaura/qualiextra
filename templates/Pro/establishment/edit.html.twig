@@ -3,19 +3,18 @@
 {% block title %}Modifier un établissement{% endblock %}
 
 {% block body %}
-{% include "/establishment-pro/partials/navbar-pro.html.twig" %}
 
 <main class="container-fluid">
 
     <h1>Modifier cet établissement</h1>
 
     <div class="title-establishment">
-        <a class="button from-center" href="{{ path('app_establishments-pro') }}">Retour</a>
+        <a class="button from-center" href="{{ path('app_pro_establishments') }}">Retour</a>
     </div>
 
 
     
-    {{ include('establishment-pro/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {{ include('Pro/establishment/_form.html.twig', {'button_label': 'Modifier'}) }}
 
     
 

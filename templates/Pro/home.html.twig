@@ -34,7 +34,7 @@
           <td class="bloc-icon-package">
             <a href="{{path('app_pro_update_package',{id:package.id})}}" class="btn btn-warning" role="button"><i class="fa-solid fa-pen"></i></a>
             
-            <form method="post" action="{{ path('app_pro_delete_package', {'id': package.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+            <form method="post" action="{{ path('app_pro_delete_package', {'id': package.id}) }}" onsubmit="return confirm('Souhaitez-vous supprimer ce package ?');">
               <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ package.id) }}">
               <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
           </form>
@@ -52,8 +52,7 @@
 {% endfor %}
 </div>
 
-
-
+{% include "Pro/partials/footer.html.twig" %}
 
 
 {% endblock %}

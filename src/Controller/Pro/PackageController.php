@@ -32,15 +32,16 @@ class PackageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $packageRepository->add($package, true);
 
+            $this->addFlash('success', 'L\'ajout du package ' . $package->getName() . ' à bien été créé');
+
             return $this->redirectToRoute('app_pro_home', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('package/new.html.twig', [
+        return $this->renderForm('Pro/package/new.html.twig', [
             'package' => $package,
             'form' => $form,
         ]);
     }
-
 
     /**
      * Update a package in the BDD
@@ -55,10 +56,12 @@ class PackageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $packageRepository->add($package, true);
 
+            $this->addFlash('success', 'La modification du package ' . $package->getName() . ' à bien été prise en compte');
+
             return $this->redirectToRoute('app_pro_home', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('package/edit.html.twig', [
+        return $this->renderForm('Pro/package/edit.html.twig', [
             'package' => $package,
             'form' => $form,
         ]);
@@ -74,6 +77,8 @@ class PackageController extends AbstractController
 
         if ($this->isCsrfTokenValid('delete'.$package->getId(), $request->request->get('_token'))) {
             $packageRepository->remove($package, true);
+
+            $this->addFlash('success', 'La suppression du package ' . $package->getName() . ' à bien été prise en compte');
         }
 
         return $this->redirectToRoute('app_pro_home', [], Response::HTTP_SEE_OTHER);
@@ -119,10 +124,7 @@ class PackageController extends AbstractController
         $entityManager =$doctrine->getManager();
         $entityManager->flush();
 
-
-        //TODO:add a flash message in the current page
-        //TODO:add flash message to the customer 
-
+        $this->addFlash('success', 'La réservation de ' . $book->getUser() . 'à été confirmée');
 
         return $this->redirectToRoute('app_pro_reservations', [], Response::HTTP_SEE_OTHER);
     }
@@ -146,6 +148,8 @@ class PackageController extends AbstractController
 
         $entityManager =$doctrine->getManager();
         $entityManager->flush();
+
+        $this->addFlash('success', 'La réservation de ' . $book->getUser() . 'à été annulée');
 
         return $this->redirectToRoute('app_pro_reservations', [], Response::HTTP_SEE_OTHER);
     }
