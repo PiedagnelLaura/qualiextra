@@ -25,4 +25,13 @@ class MainController extends AbstractController
             ]
         );
     }
+
+    /**
+     * Show CGV
+     *
+     * @Route("/CGV", name="app_user_cgv", methods={"GET"})
+     */
+    public function cgv() {
+        return $this->render('User/cgv.html.twig');
+    }
 }
