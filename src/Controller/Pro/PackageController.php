@@ -91,6 +91,7 @@ class PackageController extends AbstractController
     */
     public function showBook ( EstablishmentRepository $establishmentRepository )
     {
+        
          /** @var \App\Entity\User $user */
          $user = $this->getUser();
         
@@ -124,7 +125,7 @@ class PackageController extends AbstractController
         $entityManager =$doctrine->getManager();
         $entityManager->flush();
 
-        $this->addFlash('success', 'La réservation de ' . $book->getUser() . 'à été confirmée');
+        $this->addFlash('success', 'La réservation a bien été confirmée');
 
         return $this->redirectToRoute('app_pro_reservations', [], Response::HTTP_SEE_OTHER);
     }
@@ -149,7 +150,7 @@ class PackageController extends AbstractController
         $entityManager =$doctrine->getManager();
         $entityManager->flush();
 
-        $this->addFlash('success', 'La réservation de ' . $book->getUser() . 'à été annulée');
+        $this->addFlash('success', 'La réservation a été annulée');
 
         return $this->redirectToRoute('app_pro_reservations', [], Response::HTTP_SEE_OTHER);
     }
