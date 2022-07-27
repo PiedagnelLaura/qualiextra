@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
+     * Show package list
+     * 
      * @Route("/business", name="app_pro_home")
      */
     public function home(): Response
@@ -20,7 +22,6 @@ class MainController extends AbstractController
         $myEstablishment = $user->getEstablishments();
 
         return $this->render('Pro/home.html.twig', [
-
             'establishmentList' => $myEstablishment,
         ]);
     }

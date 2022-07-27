@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Pro;
 
 use App\Entity\Establishment;
 use App\Form\EstablishmentType;

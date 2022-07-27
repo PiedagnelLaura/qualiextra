@@ -25,7 +25,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
  */
 class AdminController extends AbstractController
 {
-    /**
+    /** 
      * @Route("/", name="app_admin_home")
      */
     public function home(EstablishmentRepository $establishmentRepository, UserRepository $userRepository, BookRepository $bookRepository): Response
