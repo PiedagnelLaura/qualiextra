@@ -519,6 +519,8 @@ a {
     margin-top: 4%;
     border: 6px outset #7A8C73;
     padding: 20px;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .container--img {

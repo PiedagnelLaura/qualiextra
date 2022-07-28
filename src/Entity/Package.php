@@ -25,10 +25,6 @@ class Package
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $picture;
 
     /**
      * @ORM\Column(type="float")
@@ -71,11 +67,17 @@ class Package
      */
     private $establishment;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="package")
+     */
+    private $galleries;
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
         $this->types = new ArrayCollection();
         $this->createdAt = new DateTime();
+        $this->galleries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,17 +97,7 @@ class Package
         return $this;
     }
 
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
 
-    public function setPicture(string $picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
 
     public function getPrice(): ?float
     {
@@ -229,6 +221,36 @@ class Package
     public function setEstablishment(?Establishment $establishment): self
     {
         $this->establishment = $establishment;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gallery>
+     */
+    public function getGalleries(): Collection
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): self
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries[] = $gallery;
+            $gallery->setPackage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): self
+    {
+        if ($this->galleries->removeElement($gallery)) {
+            // set the owning side to null (unless already changed)
+            if ($gallery->getPackage() === $this) {
+                $gallery->setPackage(null);
+            }
+        }
 
         return $this;
     }
