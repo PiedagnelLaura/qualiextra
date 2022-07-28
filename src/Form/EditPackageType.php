@@ -26,11 +26,6 @@ class EditPackageType extends AbstractType
                 
             ])
 
-            ->add('picture',TextType::class, [
-                'label' => 'Ajout d\'une photo',
-                
-            ])
-
             ->add('price', NumberType::class, [
                 'label' => 'Prix du package',
             ])

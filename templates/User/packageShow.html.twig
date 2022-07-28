@@ -16,8 +16,8 @@
         {%for gallery in package.galleries %} 
      
         <section class="carousel d-none">
-      
-        <img class="image-home" src="{{ gallery.picture }}" alt="">
+     
+        <img class="image-home" src="{{asset('uploads/')}}{{gallery.picture}}" alt="">
      
         </section>
         {% endfor %}

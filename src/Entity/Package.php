@@ -68,7 +68,7 @@ class Package
     private $establishment;
 
     /**
-     * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="package")
+     * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="package",cascade={"persist"})
      */
     private $galleries;
 
