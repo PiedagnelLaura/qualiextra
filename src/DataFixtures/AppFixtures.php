@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\DataFixtures\Provider\AddressProvider;
+use App\DataFixtures\Provider\PictureProvider;
 use App\Entity\Book;
 use App\Entity\Establishment;
 use App\Entity\Gallery;
@@ -55,6 +56,7 @@ class AppFixtures extends Fixture
     {
         $this->truncate();
         $addressProvider = new AddressProvider;
+        $pictureProvider = new PictureProvider;
 
         $faker = Faker\Factory::create('fr_FR');
 
@@ -246,7 +248,7 @@ class AppFixtures extends Fixture
             $nbMaxpicture = mt_rand(1, 4);
             for ($n = 1; $n <= $nbMaxpicture; $n++) {
                 $gallery = new Gallery;
-                $gallery->setPicture('https://picsum.photos/id/' . mt_rand(1, 100) . '/450/300');
+                $gallery->setPicture($pictureProvider->getRandomPicture());
                 $gallery->setPackage($package);
                 $manager->persist($gallery);
             }

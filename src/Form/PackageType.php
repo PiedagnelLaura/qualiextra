@@ -28,7 +28,7 @@ class PackageType extends AbstractType
             ->add('galleries', FileType::class, [
                 'label' => false,
                 'multiple' => true,
-                'mapped' => true,
+                'mapped' => false,
                 'required' => false
             ])
 

@@ -31,10 +31,10 @@
 			<section id="{{type.name|slug|lower}}" class="bloc-container  row">
 				<h2 class="fixed-title">{{type.name|upper}}</h2>
 				{% for package in type.getPackages() %}
-				{{ dump(package.galleries) }}
+				
 					<div class="card col-xs-1 col-sm-2 col-md-3">
 						<a href="{{path("app_user_package_show",{id:package.id})}}" class="">
-							<img src="" class="card-img-top" alt="...">
+							<img src="{{asset('uploads/')}}{{package.galleries[0].picture}}" class="card-img-top" alt="...">
 						</a> 
 
 						<div class="card-body package-detail">
