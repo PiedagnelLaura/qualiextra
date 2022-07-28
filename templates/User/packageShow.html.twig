@@ -10,9 +10,7 @@
 <main class="container-fluid row">
 
     <section class="wrap-img ">
-        <div class="col-sm-4 col-md-6">
-            <div id="map-establishment" class="map-package"></div>
-        </div>
+
 
     <div class="slider">
         {%for gallery in package.galleries %} 
@@ -41,6 +39,10 @@
                     <h3 class="title_h3">Description</h3>
 
                     <p >{{package.description}}</p>
+
+                    <div class="col-sm-4 col-md-6">
+                        <div id="map-establishment" class="map-package"></div>
+                    </div>
                 </div>
 
                 <div class="validity_price">
