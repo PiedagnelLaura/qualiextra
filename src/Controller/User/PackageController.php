@@ -54,8 +54,8 @@ class PackageController extends AbstractController
             
             $bookRepository->add($book, true);
           
-            //Flash Message for the customer
-            $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
+            //Flash Message pour le client
+            $this->addFlash('success', 'Votre réservation est en cours de confirmation.');
 
             return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);
         }

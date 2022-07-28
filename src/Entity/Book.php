@@ -47,6 +47,11 @@ class Book
      */
     private $price;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $messageStatus;
+
    
 
     public function getId(): ?int
@@ -110,6 +115,18 @@ class Book
     public function setPrice(float $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function isMessageStatus(): ?bool
+    {
+        return $this->messageStatus;
+    }
+
+    public function setMessageStatus(?bool $messageStatus): self
+    {
+        $this->messageStatus = $messageStatus;
 
         return $this;
     }
