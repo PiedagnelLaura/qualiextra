@@ -11,6 +11,7 @@ set('composer_options', '--verbose --prefer-dist --no-progress --no-interaction 
 // Paramètres de notre application
 // ---------------------------------------------------------------------------
 set("env_database", "mysql://qualiextra:qualiextra@127.0.0.1:3306/qualiextra?serverVersion=mariadb-10.3.25");
+                   
 // ---------------------------------------------------------------------------
 // Paramètres de connexion au serveur distant
 // ---------------------------------------------------------------------------
@@ -110,6 +111,11 @@ task('init:config:write:prod', function() {
     // {{remote_server_target_repository}} == '/var/www/html/qualiextra
     run('echo "APP_ENV=prod" > {{remote_server_target_repository}}/shared/.env.local');
     run('echo "DATABASE_URL={{env_database}}" >> {{remote_server_target_repository}}/shared/.env.local');
+   
+});
+task('init:config:write:dev', function() {
+    run('echo "APP_ENV=dev" > {{deploy_path}}/shared/.env.local');
+    run('echo "DATABASE_URL={{env_database}}" >> {{deploy_path}}/shared/.env.local');
    
 });
 
