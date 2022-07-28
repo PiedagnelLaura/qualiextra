@@ -10,7 +10,7 @@ set('composer_options', '--verbose --prefer-dist --no-progress --no-interaction 
 // ---------------------------------------------------------------------------
 // Paramètres de notre application
 // ---------------------------------------------------------------------------
-set("env_database", "mysql://qualiextra:qualiextra@127.0.0.1:3306/qualiextra?serverVersion=mariadb-10.3.25");
+set("env_database","mysql://curie_admin:curie_Admin@127.0.0.1:3306/quali?serverVersion=mariadb-10.3.34");
 // ---------------------------------------------------------------------------
 // Paramètres de connexion au serveur distant
 // ---------------------------------------------------------------------------
@@ -25,7 +25,7 @@ set("env_database", "mysql://qualiextra:qualiextra@127.0.0.1:3306/qualiextra?ser
 // Adresse du serveur distant (adresse IP ou DNS public)
 // set('remote_server_url','adresse_ip_ou_dns_public_du_serveur');
 // TODO 
-set('remote_server_url','sebastienjeandel-server.eddi.cloud');
+set('remote_server_url','piedagnellaura-server.cloud');
 // Nom du compte utilisateur sur le serveur distant/
 // C'est cet utilisateur qui exécutera les commandes distantes.
 // set('remote_server_user','nom_utilisateur_distant');
@@ -38,7 +38,7 @@ set('remote_server_user','student');
 // Répertoire cible (sur le serveur distant) où le code source sera déployé
 // => le répertoire sera créé s'il n'existe pas
 // TODO
-set('remote_server_target_repository', '/var/www/html/projet-22-qualiextra');
+set('remote_server_target_repository', '/var/www/html/qualiextra');
 // Adresse du dépôt Github contenant le code source du projet 
 // TODO
 set('repository', 'git@github.com:O-clock-Curie/projet-22-qualiextra.git');
@@ -112,6 +112,14 @@ task('init:config:write:prod', function() {
     run('echo "DATABASE_URL={{env_database}}" >> {{remote_server_target_repository}}/shared/.env.local');
    
 });
+desc('écraser le .env.local PUIS écrire les paramètres de DEV');
+task('init:config:write:dev', function() {
+    // {{remote_server_target_repository}} == '/var/www/html/qualiextra
+    run('echo "APP_ENV=dev" > {{remote_server_target_repository}}/shared/.env.local');
+    run('echo "DATABASE_URL={{env_database}}" >> {{remote_server_target_repository}}/shared/.env.local');
+   
+});
+
 
 
 desc('Deploy project');
