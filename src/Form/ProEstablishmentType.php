@@ -15,7 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EstablishmentType extends AbstractType
+class ProEstablishmentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -49,14 +49,7 @@ class EstablishmentType extends AbstractType
                 'expanded' => true,
                 'required' => false
             ])
-            ->add('user', EntityType::class, [
-                'label' => 'Nom du gérant *',
-                'choice_label' => 'lastname',
-                'class' => User::class,
-                'multiple' => false,
-                'expanded' => false,
-                'required' => true,
-            ])
+            
             ->add('style', EntityType::class, [
                 'label' => 'Style *',
                 'choice_label' => 'name',

@@ -139,7 +139,7 @@ height: 100%;
     color: #F6F0E9;
 }
 
-.edit_btn :hover {
+.edit_btn:hover {
     background: linear-gradient(#315565, #131629);
     color: #F6F0E9;
 }
@@ -153,7 +153,7 @@ height: 100%;
     color: #F6F0E9;   
 }
 
-.delete_btn :hover {
+.delete_btn:hover {
     background: linear-gradient(#315565, #7A8C73);
     color: #F6F0E9;
 }

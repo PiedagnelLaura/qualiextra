@@ -1,0 +1,19 @@
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Admin pages*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ---------HOMEPAGE------- */
+
+.title-admin-list {
+    height: 150px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter-list {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em;
+    margin-top: 30px;
+}

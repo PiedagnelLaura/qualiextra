@@ -3,7 +3,8 @@
 namespace App\Controller\Pro;
 
 use App\Entity\Establishment;
-use App\Form\EstablishmentType;
+use App\Entity\User;
+use App\Form\ProEstablishmentType;
 use App\Repository\EstablishmentRepository;
 use App\Services\Geocodage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,8 +41,17 @@ class EstablishmentController extends AbstractController
     public function addStore(Request $request, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
     {
         $establishment = new Establishment();
-        $form = $this->createForm(EstablishmentType::class, $establishment);
+        $form = $this->createForm(ProEstablishmentType::class, $establishment);
+
+        //We are obliged to set user to link the establishment
+
+         /** @var \App\Entity\User $user */
+         $user = $this->getUser();
+
+        $establishment->setUser($user);
+
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             // the address is geocoded 
@@ -51,10 +61,11 @@ class EstablishmentController extends AbstractController
             $long = $coordinates['lng'];
             $establishment->setLatitudes($lat);
             $establishment->setLongitudes($long);
+
             
             $establishmentRepository->add($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . 'à été crée ');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à été crée ');
 
             return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
         }
@@ -72,7 +83,7 @@ class EstablishmentController extends AbstractController
      */
     public function updateStore(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository, Geocodage $geocodage): Response
     {
-        $form = $this->createForm(EstablishmentType::class, $establishment);
+        $form = $this->createForm(ProEstablishmentType::class, $establishment);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,7 +97,7 @@ class EstablishmentController extends AbstractController
 
             $establishmentRepository->add($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . 'à bien été modifié');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à bien été modifié');
 
             return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
         }
@@ -108,7 +119,7 @@ class EstablishmentController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$establishment->getId(), $request->request->get('_token'))) {
             $establishmentRepository->remove($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . 'à été supprimé');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à été supprimé');
         }
 
         return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
