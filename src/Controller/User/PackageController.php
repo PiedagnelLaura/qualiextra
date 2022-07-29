@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PackageController extends AbstractController
 {   
-   /**
+    /**
      * Show one package by id
      *
      * @Route("/packages/{id}", name="app_user_package_show", requirements={"id"="\d+"}, methods={"GET", "POST"})
@@ -53,7 +53,7 @@ class PackageController extends AbstractController
             $book->setPrice($package->getPrice());
             
             $bookRepository->add($book, true);
-          
+
             //Flash Message pour le client
             $this->addFlash('success', 'Votre réservation est en cours de confirmation.');
 
