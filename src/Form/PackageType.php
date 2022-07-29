@@ -6,6 +6,8 @@ use App\Entity\Establishment;
 use App\Entity\Gallery;
 use App\Entity\Package;
 use App\Entity\Type;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -13,6 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,8 +23,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PackageType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        $user = $options['user'];
+
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom du package',
@@ -70,15 +77,24 @@ class PackageType extends AbstractType
                 'label' => 'Le package est rattaché à quel établissement ?',
                 'choice_label' => 'name',
                 'class' => Establishment::class,
-                'multiple' => false
-            ])
-        ;
+                'multiple' => false,
+                'query_builder' => function(EntityRepository $er) use($user) {
+                                return $er->createQueryBuilder('e')
+                                -> where('e.user =:user')
+                                ->setParameter('user', $user);
+                    }
+
+
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Package::class,
+            'user' => null,
         ]);
+
+
     }
 }

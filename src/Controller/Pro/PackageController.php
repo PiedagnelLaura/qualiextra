@@ -32,7 +32,10 @@ class PackageController extends AbstractController
     public function addPackage(Request $request, PackageRepository $packageRepository): Response
     {
         $package = new Package();
-        $form = $this->createForm(PackageType::class, $package);
+        
+        /** @var \App\Entity\User $user */
+
+        $form = $this->createForm(PackageType::class, $package,['user'=> $this->getUser()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
