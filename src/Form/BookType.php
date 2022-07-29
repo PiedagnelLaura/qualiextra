@@ -18,23 +18,13 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date', DateType::class)
+            ->add('date', DateType::class, [
+                'label' => ' ',
+                'widget' => 'single_text',])
 
-            ->add('price', NumberType::class )
-            ->add('packages',EntityType::class, [
-                'choice_label' => 'id',
-                'class' => Package::class,
-                'multiple' => false,
-                'required' => true
-            ] )
-            ->add('user',EntityType::class, [
-                'label' => 'Nom de l\'utilisateur *',
-                'choice_label' => 'lastname',
-                'class' => User::class,
-                'multiple' => false,
-                'expanded' => false,
-                'required' => true
-            ])
+            //->add('name', TextType::class)
+            //->add('price', IntegerType::class )
+            //->add('email', EntityType::class, ['class' => User::class])
         ;
     }
 

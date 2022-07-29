@@ -64,26 +64,20 @@
                 </div>
             </div>
     </section>
+    
     {% if is_granted('ROLE_USER') %}
     <section class="wrap-book row">
     
-    {{ form_start(form) }}
+    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+    <div id="form-book">
+        <div class="book-input ">
+            <label class="label-form-book" for="date">Votre date de réservation</label>
+            {{ form_row(form.date) }}
+        </div>
 
-        <form class="col-12 col-md-12" method="post" id="form-book">
-            <div class="book-input ">
-                <label class="label-form-book" for="date">Votre date de réservation</label>
-
-                {{ form_row(form.date)}}
-
-            </div>
-        
-            <a class="button from-center" type="submit"> Réserver
-            <input type="submit" class="hidde-btn-form ">
-            </a>
-
-        </form>
+        <button class="btn button from-center btn-log" type="submit">Réserver</button>
     {{ form_end(form) }}
-
+        </div>
     </section>
     {% else %}
 
