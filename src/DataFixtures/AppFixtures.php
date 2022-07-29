@@ -119,6 +119,23 @@ class AppFixtures extends Fixture
         $usersList[] = $userPro;
         $manager->persist($userPro);
 
+
+        //2em pro
+        $userPro= new User();
+        $userPro->setFirstname($faker->firstname());
+        $userPro->setLastname($faker->lastname());
+        $userPro->setEmail("pro2@pro.com");
+        $plaintextPassword = "pro2";
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $userPro,
+            $plaintextPassword
+        );
+        $userPro->setPassword($hashedPassword);
+        $userPro->setRoles(['ROLE_PRO']);
+        $usersList[] = $userPro;
+        $manager->persist($userPro);
+
+
         //Styles
         $stylesList = [];
         //--------japanese style-------

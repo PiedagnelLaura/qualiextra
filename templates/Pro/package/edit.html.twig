@@ -4,14 +4,12 @@
 
 {% block body %}
 
-{% include "Pro/partials/header.html.twig" %}
 
-<div class='container my-6 bloc-show'>
+<div class='container my-6'>
   <a href="{{path('app_pro_home')}}" class="button from-center float-end">Retour</a>
-  <h1 class="bloc-show-title"> Modifier mon package </h1>
+  <h1 class="title-form"> Modifier mon package </h1>
 
   {{ include('Pro/package/_form.html.twig', {'button_label': 'Modifier'}) }}
 </div>
 
-  {{ include('Pro/partials/footer.html.twig') }}
 {% endblock %}
