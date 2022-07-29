@@ -138,11 +138,6 @@ class PackageController extends AbstractController
     */
     public function bookValidate ($id, BookRepository $bookRepository, ManagerRegistry $doctrine)
     {
-        //give the book'id present in the URL
-         //$infos = $_SERVER['PATH_INFO'];
-        // dd($infos);
-        // $id= substr($infos,-2);
-       
         //we find the entity book in our BDD
         $book = $bookRepository->find($id);
         
@@ -168,9 +163,6 @@ class PackageController extends AbstractController
     */
     public function bookCancel ($id, BookRepository $bookRepository, ManagerRegistry $doctrine)
     {
-        //$infos = $_SERVER['PATH_INFO'];
-        //$id= substr($infos, -2);
-        
         //we find the entity book in our BDD
         $book = $bookRepository->find($id);
         

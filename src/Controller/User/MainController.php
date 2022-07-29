@@ -29,18 +29,21 @@ class MainController extends AbstractController
             $books = $bookRepository->findByUser($user);
             // For display the flash message to each package which are booked
             foreach ($books as $book) {
-                // we get the package associated to the reservation
-                $package = $packageRepository->findOneById($book->getId());
+                                        
                 //If the message status = 0 so we display the response from the pro
                 if ($book->isMessageStatus() === false) {
+                    // we get the package associated to the reservation
+                    $packageId = $book->getPackages()->getId();
+                    $package = $packageRepository->find($packageId);
+                    
                     //If the pro valid the book => the book is confirmed
                     if ($book->getStatus() === 1) {
                         
-                       
-                        $this->addFlash('success '.$book->getId(), 'Votre réservation pour le package "' . $package->getName() . '" a bien été confirmée');
+                        
+                        $this->addFlash('success '.$book->getId(), 'Votre réservation pour le package ' . $package->getName() . ' a bien été confirmée');
                     } //If the pro reject the book => the book is cancelled
                     else if ($book->getStatus() === 2) {
-                        $this->addFlash('danger '.$book->getId(), 'Votre reservation pour le package "' . $package->getName() . '" a été annulée ');
+                        $this->addFlash('danger '.$book->getId(), 'Votre reservation pour le package ' . $package->getName() . ' a été annulée ');
                     }
                 }
             }
