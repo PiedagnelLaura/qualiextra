@@ -38,13 +38,13 @@ set('remote_server_user','student');
 // Répertoire cible (sur le serveur distant) où le code source sera déployé
 // => le répertoire sera créé s'il n'existe pas
 // TODO
-set('remote_server_target_repository', '/var/www/html/testqualiextra');
+set('remote_server_target_repository', '/var/www/html/qualiextra');
 // Adresse du dépôt Github contenant le code source du projet 
 // TODO
 set('repository', 'git@github.com:O-clock-Curie/projet-22-qualiextra.git');
 // Nom de la branche à déployer
 // TODO branch
-set('repository_target_branch', 'firstDeploy');
+set('repository_target_branch', 'testDeploy');
 // ---------------------------------------------------------------------------
 // Autres paramètres concernant le déploiement
 // ---------------------------------------------------------------------------
