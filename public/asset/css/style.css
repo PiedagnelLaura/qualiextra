@@ -421,24 +421,6 @@ a {
     overflow-y: scroll;
 }
 
-/* ---------RESTAURANT'S DETAILS FORMATTING------- */
-
-.details {
-    margin: auto;
-    text-align: center;
-    padding: 20px;
-    background-color: #131629;
-    color: #f6f0e9;z-index: 10;
-    position: relative;
-    bottom: 0px;
-    width: 100%;   
-}
-
-.closed {
-    position: absolute;
-    right: 20px;
-    top:10px;
-}
 
 @media screen and (min-width: 1024px) {
 
@@ -459,11 +441,6 @@ a {
     #map-establishment {
         height: 80vh;
         
-    }
-
-    .details {
-        margin: 20px 0;
-        height: 80vh;
     }
 
     .filter-case {

@@ -79,29 +79,35 @@
 						<div class="closed">
 							<i id="details-close" class="fa-solid fa-xmark"></i>
 						</div>
-						<h3>{{establishment.name}}</h3>
-						<p>{{establishment.address}}</p>
 
-						<img src="{{establishment.picture}}" class="img-fluid">
-						<h4>Style :
-							{{establishment.style.name}}</h4>
-						<h4>
-							Equipements :
 
+						<div class="gp-img">
+							<img src="{{establishment.picture}}" class="img-fluid">
+							<h4 class="gp-style-establishment">
+								{{establishment.style.name}}
+							</h4>
+						</div>
+						<h3 class="gp-name">{{establishment.name}}</h3>
+						<p>{{establishment.address}}<br>{{establishment.phone}}</p>
+						<p class="gp-desc">{{establishment.description}}</p>
+						<p class="gp-tag"> Equipements :
 							{% for tag in establishment.getTags() %}
-								{{tag.name}}
+								- {{tag.name}}
 							{% endfor %}
-						</h4>
+						</p>
 
-						<p>{{establishment.description}}</p>
-						<h4>Packages proposés par l'établissement</h4>
-						{% for packages in establishment.getPackages() %}
+						{% if establishment.getPackages() |length > 0 %}
+						<div class="gp-pack">
+						<h4>Package(s)</h4>
+						{% for package in establishment.getPackages() %}
 
-							<a href="#">
-								{{packages.name}}</a>
+							<a href="{{path("app_user_package_show",{id:package.id})}}">
+								{{package.name}}</a>
 						{% endfor %}
-						<h4>Contact</h4>
-						<p>{{establishment.phone}}</p>
+						</div>
+						{% endif %}
+
+
 					</aside>
 				{% endfor %}
 				<div class="establishmentList">
@@ -109,7 +115,7 @@
 						<a class="establishment" data-long="{{establishment.longitudes}}" data-lat="{{establishment.latitudes}}" data-number="{{establishment.id}}" data-price="{{establishment.price}}" data-name="{% for tag in establishment.getTags() %}{{tag.name}} {% endfor %}{{establishment.style.name}}" href="#">
 							<div class="restaurant">
 								<h3>{{establishment.name}}</h3>
-								<p>{{establishment.address}}</p>
+								<p>{{establishment.description}}</p>
 							</div>
 						</a>
 					{% else %}
