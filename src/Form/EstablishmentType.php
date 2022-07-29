@@ -6,6 +6,8 @@ use App\Entity\Establishment;
 use App\Entity\Style;
 use App\Entity\Tag;
 use App\Entity\User;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -56,7 +58,14 @@ class EstablishmentType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'required' => true,
+                'query_builder' => function(EntityRepository $er){
+                    return $er->createQueryBuilder('u')
+                    ->andWhere('u.roles LIKE :roles')
+                    ->setParameter('roles', '%PRO%');
+                }
             ])
+
+
             ->add('style', EntityType::class, [
                 'label' => 'Style *',
                 'choice_label' => 'name',
@@ -64,8 +73,7 @@ class EstablishmentType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'required' => true
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
