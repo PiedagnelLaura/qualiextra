@@ -192,7 +192,7 @@ class AppFixtures extends Fixture
             //$package->setPicture('https://picsum.photos/id/' . mt_rand(1, 100) . '/450/300');
             $package->setPrice(rand(5, 100));
             $package->setDescription($faker->realText(100));
-            $package->setDate($faker->dateTimeBetween('-1 week', '+4 week'));
+            $package->setExpireOn($faker->dateTimeBetween('-1 week', '+4 week'));
             $package->setEstablishment($establishmentsList[mt_rand(0, count($establishmentsList) - 1)]);
 
             $n = mt_rand(1, 4);

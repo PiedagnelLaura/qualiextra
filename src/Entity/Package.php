@@ -39,7 +39,7 @@ class Package
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $date;
+    private $expireOn;
 
     /**
      * @ORM\Column(type="datetime")
@@ -123,14 +123,14 @@ class Package
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getExpireOn(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->expireOn;
     }
 
-    public function setDate(?\DateTimeInterface $date): self
+    public function setExpireOn(?\DateTimeInterface $expireOn): self
     {
-        $this->date = $date;
+        $this->expireOn = $expireOn;
 
         return $this;
     }
