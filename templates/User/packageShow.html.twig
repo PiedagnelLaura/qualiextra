@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="validity_price">
-                    <p class="col-sm-2">Valable jusqu'au : <span class="validity-span">{{package.date|date('d/m/Y')}}</span></p>
+                    <p class="col-sm-2">Valable jusqu'au : <span class="validity-span">{{package.expireOn|date('d/m/Y')}}</span></p>
                     <p class="price col-sm-2">
                         {{package.price}} €
                         
@@ -71,7 +71,7 @@
     <div id="form-book">
         <div class="book-input ">
             <label class="label-form-book" for="date">Votre date de réservation</label>
-            {{ form_row(form.date) }}
+            {{ form_row(form.expireOn) }}
         </div>
 
         <button class="btn button from-center btn-log" type="submit">Réserver</button>

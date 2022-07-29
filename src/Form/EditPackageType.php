@@ -35,7 +35,7 @@ class EditPackageType extends AbstractType
                 'disabled' => true,
             ])
 
-            ->add('date', DateType::class,[
+            ->add('expireOn', DateType::class,[
                 'label' => 'Date de validité du package',
             ])
 

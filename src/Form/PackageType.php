@@ -40,7 +40,7 @@ class PackageType extends AbstractType
                 'label' => 'Description du package'
             ])
 
-            ->add('date', DateType::class,[
+            ->add('expireOn', DateType::class,[
                 'label' => 'Date de validité du package',
             ])
 
