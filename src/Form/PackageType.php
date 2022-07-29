@@ -7,8 +7,11 @@ use App\Entity\Gallery;
 use App\Entity\Package;
 use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -26,11 +29,22 @@ class PackageType extends AbstractType
             ])
 
             ->add('galleries', FileType::class, [
-                'label' => false,
+                'label' => 'Ajoutez vos images pour le caroussel',
                 'multiple' => true,
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'help' => 'Ajoutez minimum deux images'
             ])
+            
+        //    ->add('galleries', CollectionType::class, [
+        //         // each entry in the array will be an "File" field
+        //         'entry_type' => FileType::class,
+        //         // these options are passed to each "File" type
+        //         'entry_options' => [
+        //             'attr' => ['class' => 'galleries'],
+        //         ],
+        //     ])
+
 
             ->add('price', NumberType::class, [
                 'label' => 'Prix du package',
@@ -50,6 +64,7 @@ class PackageType extends AbstractType
                 'class' => Type::class,
                 'multiple' => true,
                 'expanded' => true,
+                
             ])
 
             ->add('establishment', EntityType::class, [

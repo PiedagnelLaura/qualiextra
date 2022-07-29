@@ -6,12 +6,18 @@ class PictureProvider
 {
     
     private $picture = [
-        "e4298e91e42d8c957fe418c0b5e2fd13.jpg",
-        "ce8cb0c40ab8507c08689dabda29886e.jpg",
-        "c8fdbcf10929cbe93e37db336182d3e0.jpg",
-        "37816c8e93f5df628bdb122cbaf2e006.jpg",
-        "318aaecbfaa80de9a3c7a10cedc4d029.jpg",
-        "85b892327b9068e941978e0e9960a7bf.jpg",
+      
+        "pexels-chan-walrus-941861.jpg",
+        "pexels-chan-walrus-958545.jpg",
+        "pexels-creative-vix-370984.jpg",
+        "pexels-daria-shevtsova-704982.jpg",
+        "pexels-elevate-1267320.jpg",
+        "pexels-helena-lopes-696218.jpg",
+        "pexels-life-of-pix-67468.jpg",
+        "pexels-marcus-herzberg-1058277.jpg",
+        "pexels-pixabay-260922.jpg",
+        "pexels-pixabay-262047.jpg",
+        "pexels-pixabay-262978.jpg",
     ];
 
 

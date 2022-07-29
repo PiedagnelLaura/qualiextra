@@ -245,7 +245,7 @@ class AppFixtures extends Fixture
 
         //# Gallery
         foreach ($packagesList as $key => $package) {
-            $nbMaxpicture = mt_rand(1, 4);
+            $nbMaxpicture = mt_rand(2, 4);
             for ($n = 1; $n <= $nbMaxpicture; $n++) {
                 $gallery = new Gallery;
                 $gallery->setPicture($pictureProvider->getRandomPicture());
