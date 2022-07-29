@@ -10,7 +10,7 @@ set('composer_options', '--verbose --prefer-dist --no-progress --no-interaction 
 // ---------------------------------------------------------------------------
 // Paramètres de notre application
 // ---------------------------------------------------------------------------
-set("env_database","mysql://curie_admin:curie_Admin@127.0.0.1:3306/quali?serverVersion=mariadb-10.3.34");
+set("env_database","mysql://curie_admin:curie_Admin@127.0.0.1:3306/qualiextra?serverVersion=mariadb-10.3.34");
 // ---------------------------------------------------------------------------
 // Paramètres de connexion au serveur distant
 // ---------------------------------------------------------------------------
@@ -38,13 +38,13 @@ set('remote_server_user','student');
 // Répertoire cible (sur le serveur distant) où le code source sera déployé
 // => le répertoire sera créé s'il n'existe pas
 // TODO
-set('remote_server_target_repository', '/var/www/html/qualiextras');
+set('remote_server_target_repository', '/var/www/html/theequaliextra');
 // Adresse du dépôt Github contenant le code source du projet 
 // TODO
 set('repository', 'git@github.com:O-clock-Curie/projet-22-qualiextra.git');
 // Nom de la branche à déployer
 // TODO branch
-set('repository_target_branch', 'deployDev');
+set('repository_target_branch', 'firstDeploy');
 // ---------------------------------------------------------------------------
 // Autres paramètres concernant le déploiement
 // ---------------------------------------------------------------------------
