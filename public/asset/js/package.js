@@ -7,11 +7,11 @@ const package = {
             let latEstablishment = establishment.dataset.lat;
             let longEstablishment = establishment.dataset.long;
 
-        const map = L.map('map-establishment').setView([latEstablishment,longEstablishment], 12);
-L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
-	maxZoom: 20,
-	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-}).addTo(map);
+        const map = L.map('map-establishment').setView([latEstablishment,longEstablishment], 14);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
 
     
                             
