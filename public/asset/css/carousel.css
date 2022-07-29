@@ -1,0 +1,31 @@
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Detail package page slider*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.slider{
+    position: relative;
+    height: 100%;
+    display:flex;
+    align-items: center;
+}
+.slider-button {
+    position: absolute;
+    top: 50%; 
+    transform: translate(0%, 50% );
+    background: linear-gradient(#7A8C73, #315565 );
+    color: #F6F0E9 ;
+    border: none;
+}
+
+
+#previous {
+    
+    left: 0;
+    
+}
+#next {
+   
+    right: 0;
+   
+}

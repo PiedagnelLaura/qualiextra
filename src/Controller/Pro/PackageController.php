@@ -2,6 +2,7 @@
 
 namespace App\Controller\Pro;
 
+use App\Entity\Gallery;
 use App\Entity\Package;
 use App\Form\PackageType;
 use App\Form\EditPackageType;
@@ -35,6 +36,27 @@ class PackageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $pictures = $form->get('galleries')->getData();
+            //dd($picture);
+
+                    // On boucle sur les images
+            foreach($pictures as $picture){
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()).'.'.$picture->guessExtension();
+                
+                // On copie le fichier dans le dossier uploads
+                $picture->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                
+                // On crée l'image dans la base de données
+                $img = new Gallery();
+                $img->setPicture($fichier);
+                $package->addGallery($img);
+            }
+
             $packageRepository->add($package, true);
 
             $this->addFlash('success', 'L\'ajout du package ' . $package->getName() . ' à bien été créé');
