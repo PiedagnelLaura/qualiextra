@@ -134,13 +134,14 @@ class PackageController extends AbstractController
     * confirmed the book
     * update the entity status in the BDD 
     * 
-    * @Route("/business/books/validated/{id}", name="app_pro_update_book_validated")
+    * @Route("/business/books/validated/{id}", name="app_pro_update_book_validated", requirements={"id"="\d+"})
     */
-    public function bookValidate (BookRepository $bookRepository, ManagerRegistry $doctrine)
+    public function bookValidate ($id, BookRepository $bookRepository, ManagerRegistry $doctrine)
     {
         //give the book'id present in the URL
-         $infos = $_SERVER['PATH_INFO'];
-         $id= substr($infos,-2);
+         //$infos = $_SERVER['PATH_INFO'];
+        // dd($infos);
+        // $id= substr($infos,-2);
        
         //we find the entity book in our BDD
         $book = $bookRepository->find($id);
@@ -163,12 +164,12 @@ class PackageController extends AbstractController
     * 
     *Cancel the book
     *
-    * @Route("/business/books/cancelled/{id}", name="app_pro_update_book_cancelled")
+    * @Route("/business/books/cancelled/{id}", name="app_pro_update_book_cancelled", requirements={"id"="\d+"})
     */
-    public function bookCancel (BookRepository $bookRepository, ManagerRegistry $doctrine)
+    public function bookCancel ($id, BookRepository $bookRepository, ManagerRegistry $doctrine)
     {
-        $infos = $_SERVER['PATH_INFO'];
-        $id= substr($infos, -2);
+        //$infos = $_SERVER['PATH_INFO'];
+        //$id= substr($infos, -2);
         
         //we find the entity book in our BDD
         $book = $bookRepository->find($id);
