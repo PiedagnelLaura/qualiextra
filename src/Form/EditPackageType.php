@@ -26,11 +26,6 @@ class EditPackageType extends AbstractType
                 
             ])
 
-            ->add('picture',TextType::class, [
-                'label' => 'Ajout d\'une photo',
-                
-            ])
-
             ->add('price', NumberType::class, [
                 'label' => 'Prix du package',
             ])
@@ -40,7 +35,7 @@ class EditPackageType extends AbstractType
                 'disabled' => true,
             ])
 
-            ->add('date', DateType::class,[
+            ->add('expireOn', DateType::class,[
                 'label' => 'Date de validité du package',
             ])
 

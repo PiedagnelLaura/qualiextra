@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Establishment;
+use App\Entity\Gallery;
 use App\Entity\Package;
 use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -22,9 +23,11 @@ class PackageType extends AbstractType
                 'label' => 'Nom du package',
             ])
 
-            ->add('picture',TextType::class, [
-                'label' => 'Ajout d\'une photo',
-                
+            ->add('galleries', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false
             ])
 
             ->add('price', NumberType::class, [
@@ -35,7 +38,7 @@ class PackageType extends AbstractType
                 'label' => 'Description du package'
             ])
 
-            ->add('date', DateType::class,[
+            ->add('expireOn', DateType::class,[
                 'label' => 'Date de validité du package',
             ])
 
