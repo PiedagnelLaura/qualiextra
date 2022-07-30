@@ -5,36 +5,32 @@
 {% block body %}
 {% include "User/partials/header.html.twig" %}
 
-{#Ajout du flash message pour le client#}
-
-{% for message in app.flashes('success-book') %}
-
-    <div  class="alert alert-success">
-        {{message}}
-    </div>
-
-{% endfor %}
-
-{#Fin du flash message pour le client#}
-
+{# {{ package.galleries[0].picture}} #}
 
 <main class="container-fluid row">
 
-    <section class="wrap-img d-flex">
-        
-        <div class="col-sm-4 col-md-6">
-            <div id="map-establishment" class="map-package"></div>
-        </div>
+    <section class="wrap-img ">
 
-        <div class="col-sm-4 col-md-6 container--img">
-            <img src="{{package.picture}}"  alt="{{package.picture}}" class="package_picture">
-        </div>
+
+    <div class="slider">
+        {%for gallery in package.galleries %} 
+     
+        <section class="carousel d-none">
+     
+        <img class="image-home" src="{{asset('uploads/')}}{{gallery.picture}}" alt="">
+     
+        </section>
+        {% endfor %}
+       
+        <button class="slider-button" aria-label="previous" id="previous">&lsaquo;</button>
+        <button class="slider-button" aria-label="next" id="next">&rsaquo;</button>
+    </div>
 
     </section>
 
-    {# <div class="container--title_package establishment"data-long="{{package.establishment.longitudes}}" data-lat="{{package.establishment.latitudes}}">
+    <div class="container--title_package establishment"data-long="{{package.establishment.longitudes}}" data-lat="{{package.establishment.latitudes}}">
         <h1>{{package.name}}</h1>
-    </div> #}
+    </div>
 
     <section class="container--address row">
 
@@ -43,10 +39,14 @@
                     <h3 class="title_h3">Description</h3>
 
                     <p >{{package.description}}</p>
+
+                    <div class="col-sm-4 col-md-6">
+                        <div id="map-establishment" class="map-package"></div>
+                    </div>
                 </div>
 
                 <div class="validity_price">
-                    <p class="col-sm-2">Valable jusqu'au : <span class="validity-span">{{package.date|date('d/m/Y')}}</span></p>
+                    <p class="col-sm-2">Valable jusqu'au : <span class="validity-span">{{package.expireOn|date('d/m/Y')}}</span></p>
                     <p class="price col-sm-2">
                         {{package.price}} €
                         
@@ -64,7 +64,6 @@
                 </div>
             </div>
     </section>
-    
     {% if is_granted('ROLE_USER') %}
     <section class="wrap-book row">
     
@@ -93,5 +92,7 @@
 {% block javascripts %}
 			
 		<script src="{{ asset('asset/js/package.js') }}"></script>
+        <script src="{{ asset('asset/js/slider.js') }}"></script>
+      
 	{% endblock %}
 {% endblock %}
