@@ -3,11 +3,11 @@
 namespace App\Services;
 
 
-use Faker\Calculator\Ean;
+
 use Symfony\component\Mailer\MailerInterface;
 use Symfony\component\Mime\Email;
 use Twig\Environment;
-use App\Services\Charset;
+
 
 class MailerService
 {
@@ -15,7 +15,7 @@ class MailerService
      *
      * @var [MailerInterface]
      */
-    private $mailer;
+    private $mailerInterface;
 
     /**
      *
@@ -23,8 +23,8 @@ class MailerService
      */
     private $twig;
 
-    public function __construct(MailerInterface $mailer, Environment $twig) {
-        $this->mailer = $mailer;
+    public function __construct(MailerInterface $mailerInterface, Environment $twig) {
+        $this->mailerInterface = $mailerInterface;
         $this->twig = $twig;
 
     }
@@ -49,7 +49,7 @@ class MailerService
                 //On envoi au template
                 ->html( $this->twig->render($template, $parameters),'text/html');
         //On envoi l' Email        
-        $this->mailer->send($email);
+        $this->mailerInterface->send($email);
     }
 
 }

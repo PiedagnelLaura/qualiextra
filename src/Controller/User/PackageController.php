@@ -10,14 +10,16 @@ use App\Entity\Package;
 use App\Repository\PackageRepository;
 use App\Entity\User;
 use App\Repository\UserRepository;
-
+use App\Services\MailerService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Email;
-use App\Services\MailerService;
+use Symfony\Component\Mailer\MailerInterface;
+use Twig\Environment;
 
 
 /**
@@ -26,7 +28,7 @@ use App\Services\MailerService;
 class PackageController extends AbstractController
 {
 
- 
+
 
     /**
      * Show one package by id
@@ -35,7 +37,7 @@ class PackageController extends AbstractController
      *
      *  @param [type] $id
      */
-    public function packageShow($id,Request $request, BookRepository $bookRepository, PackageRepository $PackageRepository, UserRepository $userRepository)
+    public function packageShow($id, Request $request, BookRepository $bookRepository, PackageRepository $PackageRepository, UserRepository $userRepository,MailerInterface $mailer)
     {
 
         // show package by id
@@ -51,14 +53,14 @@ class PackageController extends AbstractController
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
 
+        
         //! Formulaire booking
         $book = new Book();
-        
+            
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $book->setStatus(0);
             $book->setUser($user);
             $book->setPackages($package);
@@ -66,7 +68,17 @@ class PackageController extends AbstractController
             //dd($book);
             $bookRepository->add($book, true);
 
+            $email = (new Email())
+            ->from('hello@example.com')
+            ->to('projet.qualiextra@gmail.com')
+            // ->cc($establishment)
+            ->subject('Nouvelle réservation')
+                // On crée le texte avec la vue
+            ->html( $this->renderView('emails/email.html.twig', compact('book', 'package'),'text/html'))
+            ;
+            //dd($email);
 
+            $mailer->send($email);
 
             //Flash Message pour le client
             $this->addFlash('success-book', 'Votre réservation est en cours de confirmation.');
@@ -76,65 +88,12 @@ class PackageController extends AbstractController
 
 
         return $this->renderForm('User/packageShow.html.twig', [
-            'package' => $package,
-            'form' => $form,
-            'book' => $book,
+        'package' => $package,
+        'form' => $form,
+        'book' => $book
         ]);
-
-
-
     }
 
-
-
-        /**
-     * Show email
-     *
-     * @Route("/email", name="app_mail", methods={"GET"})
-     *
-     *  
-     */
-    public function email($id,Request $request, MailerService $mailerService, PackageRepository $packageRepository)
-    {
-
-        $package = $packageRepository->find($id);
-
-        $book = new Book();
-
-        //Get user who is connected
-        /** @var \App\Entity\User $user */
-        $user = $this->getUser();
-
-        $form = $this->createForm(BookType::class, $book);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $dataFrom = $form->getData();
-            dd('dd de form email',$form);
-
-            //Envoi de mail au click du bouton réservation
-            $mailerService->send(
-                "nouvelle réservation",
-                "client@exemplemail.com",
-                "contact@testqualiextra.com",
-                "emails/email.html.twig'",
-                [
-                    "Nom" => $user["lastname"],
-                    "E-mail" => $user["email"],
-                    "Prix" => $package["price"],
-                    "Date de réservation" => $book["date"],
-                ]
-            );
-
-
-            //Flash Message pour le client
-            $this->addFlash('success-book', 'Votre message à bien été envoyé.');
-
-            dd('dd de mailerservice',$mailerService);
-        }
-        
-        return $this->render('emails/email.html.twig');
-    }
+    
+    
 }
-

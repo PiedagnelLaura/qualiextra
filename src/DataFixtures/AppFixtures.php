@@ -3,8 +3,10 @@
 namespace App\DataFixtures;
 
 use App\DataFixtures\Provider\AddressProvider;
+use App\DataFixtures\Provider\PictureProvider;
 use App\Entity\Book;
 use App\Entity\Establishment;
+use App\Entity\Gallery;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
@@ -54,12 +56,13 @@ class AppFixtures extends Fixture
     {
         $this->truncate();
         $addressProvider = new AddressProvider;
-       
+        $pictureProvider = new PictureProvider;
+
         $faker = Faker\Factory::create('fr_FR');
 
         $typesListEntity = [];
         $typesList = ["Expèrience hôtelière", "Dégustation de spiritueux", "Diner", "Expèrience atypique"];
-    
+
 
         foreach ($typesList as $typeName) {
             $type = new Type;
@@ -71,7 +74,7 @@ class AppFixtures extends Fixture
         }
 
         //Users
-        $usersList= [];
+        $usersList = [];
         // ------------userUser-----------
         $user = new User;
         $user->setFirstname($faker->firstname());
@@ -86,9 +89,9 @@ class AppFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $usersList[] = $user;
         $manager->persist($user);
- 
+
         // ------------userAdmin-----------
- 
+
         $userAdmin = new User();
         $userAdmin->setFirstname($faker->firstname());
         $userAdmin->setLastname($faker->lastname());
@@ -102,10 +105,10 @@ class AppFixtures extends Fixture
         $userAdmin->setRoles(['ROLE_ADMIN']);
         $usersList[] = $userAdmin;
         $manager->persist($userAdmin);
-    
+
         // ------------userPro-----------
- 
-        $userPro= new User();
+
+        $userPro = new User();
         $userPro->setFirstname($faker->firstname());
         $userPro->setLastname($faker->lastname());
         $userPro->setEmail("pro@pro.com");
@@ -118,6 +121,23 @@ class AppFixtures extends Fixture
         $userPro->setRoles(['ROLE_PRO']);
         $usersList[] = $userPro;
         $manager->persist($userPro);
+
+
+        //2em pro
+        $userPro= new User();
+        $userPro->setFirstname($faker->firstname());
+        $userPro->setLastname($faker->lastname());
+        $userPro->setEmail("pro2@pro.com");
+        $plaintextPassword = "pro2";
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $userPro,
+            $plaintextPassword
+        );
+        $userPro->setPassword($hashedPassword);
+        $userPro->setRoles(['ROLE_PRO']);
+        $usersList[] = $userPro;
+        $manager->persist($userPro);
+
 
         //Styles
         $stylesList = [];
@@ -149,98 +169,110 @@ class AppFixtures extends Fixture
 
 
         //Establishments
-        $establishmentsList= [];
-        
-for ($j=1; $j<30; $j++) {
-    $establishment = new Establishment();
-    $establishment->setName($faker->name());
-    $establishment->setAddress($addressProvider->getRandomAddress().' 75000 PARIS');
-    $establishment->setPicture('https://picsum.photos/id/'.mt_rand(1, 100).'/450/300');
-    $establishment->setPhone($faker->phoneNumber());
-    $establishment->setEmail($faker->email());
-    $establishment->setPrice(rand(5, 100));
-    $establishment->setWebsite($faker->url());
-    $style = $stylesList[mt_rand(0, count($stylesList)-1)];
-    $establishment->setStyle($style);
-    $establishment->setDescription($faker->realText(100));
-    $establishment->setUser($usersList[2]);
-    $establishmentAddress = $establishment->getAddress();
-    $coordinates = $this->geocodage->geocoding($establishmentAddress);
-    $lat = $coordinates['lat'];
-    $long = $coordinates['lng'];
-        
-    $establishment->setLatitudes($lat);
-    $establishment->setLongitudes($long);
-       
+        $establishmentsList = [];
 
+        for ($j = 1; $j < 30; $j++) {
+            $establishment = new Establishment();
+            $establishment->setName($faker->name());
+            $establishment->setAddress($addressProvider->getRandomAddress() . ' 75000 PARIS');
+            $establishment->setPicture('https://picsum.photos/id/'.mt_rand(1, 100).'/450/300');
+            $establishment->setPhone($faker->phoneNumber());
+            $establishment->setEmail($faker->email());
+            $establishment->setPrice(rand(5, 100));
+            $establishment->setWebsite($faker->url());
+            $style = $stylesList[mt_rand(0, count($stylesList) - 1)];
+            $establishment->setStyle($style);
+            $establishment->setDescription($faker->realText(100));
+            $establishment->setUser($usersList[2]);
+            $establishmentAddress = $establishment->getAddress();
+            $coordinates = $this->geocodage->geocoding($establishmentAddress);
+            $lat = $coordinates['lat'];
+            $long = $coordinates['lng'];
 
-    $establishmentsList[] = $establishment;
-             
- 
-    $manager->persist($establishment);
-}
-            //Packages
-            $packagesList = [];
-
-            for ($i = 1; $i < 30; $i++) {
-                $package = new Package();
-
-                $package->setName($faker->name());
-                $package->setPicture('https://picsum.photos/id/' . mt_rand(1, 100) . '/450/300');
-                $package->setPrice(rand(5, 100));
-                $package->setDescription($faker->realText(100));
-                $package->setDate($faker->dateTimeBetween('-1 week', '+4 week'));
-                $package->setEstablishment($establishmentsList[mt_rand(0, count($establishmentsList) - 1)]);
-
-                $n = mt_rand(1, 4);
-
-                for ($z = 1; $z <= $n; $z++) {
-                    $package->addType($typesListEntity[mt_rand(0, count($typesListEntity) - 1)]);
-                }
+            $establishment->setLatitudes($lat);
+            $establishment->setLongitudes($long);
 
 
 
-                $packagesList[] = $package;
+            $establishmentsList[] = $establishment;
 
 
-                $manager->persist($package);
-            }
-
-            // Book
-            $booksList = [];
-
-            for ($m = 1; $m < 101; $m++) {
-                $book = new Book();
-                $book->setUser($usersList[0]);
-                $book->setStatus(rand(0, 2));
-                $book->setPrice(rand(5, 100));
-                $package = $packagesList[mt_rand(0, count($packagesList) - 1)];
-                $book->setPackages($package);
-                $booksList[] = $book;
-                $manager->persist($book);
-            }
-
-            //# Tag
-
-            $tagList = [];
-
-            for ($i = 1; $i < 5; $i++) {
-                $tag = new Tag();
-                $tag->setName($faker->word());
-
-                $tagList[] = $tag;
-
-                $manager->persist($tag);
-            }
-            foreach ($establishmentsList as $key => $establishment) {
-                $nbMaxtags = mt_rand(1, 4);
-                for ($n = 1; $n <= $nbMaxtags; $n++) {
-                    $establishment->addTag($tagList[mt_rand(0, count($tagList) - 1)]);
-                    $manager->persist($establishment);
-                }
-            }
-
-
-            $manager->flush();
+            $manager->persist($establishment);
         }
+        //Packages
+        $packagesList = [];
+
+        for ($i = 1; $i < 30; $i++) {
+            $package = new Package();
+
+            $package->setName($faker->name());
+            //$package->setPicture('https://picsum.photos/id/' . mt_rand(1, 100) . '/450/300');
+            $package->setPrice(rand(5, 100));
+            $package->setDescription($faker->realText(100));
+            $package->setExpireOn($faker->dateTimeBetween('-1 week', '+4 week'));
+            $package->setEstablishment($establishmentsList[mt_rand(0, count($establishmentsList) - 1)]);
+
+            $n = mt_rand(1, 4);
+
+            for ($z = 1; $z <= $n; $z++) {
+                $package->addType($typesListEntity[mt_rand(0, count($typesListEntity) - 1)]);
+            }
+
+
+
+            $packagesList[] = $package;
+
+
+            $manager->persist($package);
+        }
+
+        // Book
+        $booksList = [];
+
+        for ($m = 1; $m < 101; $m++) {
+            $book = new Book();
+            $book->setUser($usersList[0]);
+            $book->setStatus(rand(0, 2));
+            $book->setPrice(rand(5, 100));
+            $package = $packagesList[mt_rand(0, count($packagesList) - 1)];
+            $book->setPackages($package);
+            $booksList[] = $book;
+            $manager->persist($book);
+        }
+
+        //# Tag
+
+        $tagList = [];
+
+        for ($i = 1; $i < 5; $i++) {
+            $tag = new Tag();
+            $tag->setName($faker->word());
+
+            $tagList[] = $tag;
+
+            $manager->persist($tag);
+        }
+        foreach ($establishmentsList as $key => $establishment) {
+            $nbMaxtags = mt_rand(1, 4);
+            for ($n = 1; $n <= $nbMaxtags; $n++) {
+                $establishment->addTag($tagList[mt_rand(0, count($tagList) - 1)]);
+                $manager->persist($establishment);
+            }
+        }
+
+        //# Gallery
+        foreach ($packagesList as $key => $package) {
+            $nbMaxpicture = mt_rand(2, 4);
+            for ($n = 1; $n <= $nbMaxpicture; $n++) {
+                $gallery = new Gallery;
+                $gallery->setPicture($pictureProvider->getRandomPicture());
+                $gallery->setPackage($package);
+                $manager->persist($gallery);
+            }
+        }
+
+
+        
+        $manager->flush();
     }
+}
