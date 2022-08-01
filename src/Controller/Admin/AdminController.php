@@ -69,7 +69,7 @@ class AdminController extends AbstractController
 
             $establishmentRepository->add($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à bien été créé');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a bien été créé');
 
             return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -102,7 +102,7 @@ class AdminController extends AbstractController
 
             $establishmentRepository->add($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à bien été modifié');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a bien été modifié');
 
             return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -123,7 +123,7 @@ class AdminController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $establishment->getId(), $request->request->get('_token'))) {
             $establishmentRepository->remove($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à bien été supprimé');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a bien été supprimé');
         }
 
         return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);
@@ -151,7 +151,7 @@ class AdminController extends AbstractController
 
             $userRepository->add($user, true);
 
-            $this->addFlash('success', 'Le prestataire ' . $user->getEmail() . ' à bien été créé');
+            $this->addFlash('success', 'Le prestataire ' . $user->getEmail() . ' a bien été créé');
 
             return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -172,7 +172,7 @@ class AdminController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
 
-            $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' à bien été supprimé');
+            $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a bien été supprimé');
         }
 
         return $this->redirectToRoute('app_admin_home', [], Response::HTTP_SEE_OTHER);
