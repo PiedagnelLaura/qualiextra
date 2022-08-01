@@ -481,11 +481,6 @@ a {
     text-align: center;
 }
 
-.row{
-    margin-right: 0;
-    margin-left: 0;
-
-}
 
 .container--title_package{
     display: flex;
@@ -505,15 +500,17 @@ a {
     margin-top: 4%;
     border: 6px outset #7A8C73;
     padding: 20px;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    width: 70%;
+    
 }
 
-.container--img {
-    text-align: center;
-    height: 90%;
-    padding-top: 2%;
 
+.row{
+    margin-right: 0;
+    margin-left: 0;
+    justify-content: center;
 }
 
 .map-package{
@@ -521,6 +518,9 @@ a {
     margin: auto;
 }
 
+.wrap-map{
+    margin: auto;
+}
 
 .package_picture {
     height: 100%;
