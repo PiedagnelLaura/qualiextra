@@ -105,10 +105,6 @@ task('init:fixtures', function () {
     run('yes | {{bin/console}} doctrine:fixtures:load');
 });
 
-desc("Configuration du cron");
-task('crontab -e', function () {
-    run('echo "5 17 * * * /usr/bin/php /var/www/html/qualiextra/bin/console app:package:expired"');
-});
 // TODO
 desc('écraser le .env.local PUIS écrire les paramètres de PROD');
 task('init:config:write:prod', function() {
@@ -153,8 +149,6 @@ task('first_deploy', [
 
     // on lance les fixtures
     'init:fixtures',
-
-    'crontab -e',
 
     // on écrit notre fichier .env.local
     'init:config:write:prod',
