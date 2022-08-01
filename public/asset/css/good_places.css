@@ -1,0 +1,83 @@
+/* ---------RESTAURANT'S DETAILS FORMATTING------- */
+
+.details {
+    margin: auto;
+    border: 6px outset #7A8C73;
+    text-align: center;
+    padding: 20px;
+    z-index: 10;
+    position: relative;
+    bottom: 0px;
+    width: 100%;   
+  
+}
+
+.closed {
+    position: absolute;
+    right: 20px;
+    top:10px;
+    z-index: 20;
+}
+
+.gp-img {
+    position:relative;
+    padding:30px
+}
+
+.gp-name{
+    color: #7A8C73;
+    font-weight: bold;
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+.gp-desc {
+    margin:40px 0 0 0;
+}
+.gp-style-establishment {
+    position:absolute;
+    bottom:30px;
+    right:30px;
+    color: #f6f0e9;
+    background-color: rgba(49, 85, 101, 0.9);
+    padding:5px 10px;
+    text-transform:capitalize;
+    font-size: 0.8em;
+}
+
+.gp-tag {
+    font-size: 0.8em;
+    font-style: italic;
+    margin-bottom: 200px;
+}
+
+.gp-pack{
+    padding: 5%;
+    display:flex;
+    flex-direction: column;
+    height: 150px;
+    background: linear-gradient(#7A8C73, #315565 );
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    right:0;
+}
+
+.gp-pack h4 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.gp-pack a {
+    color:#131629;
+    margin-bottom: 6px;
+}
+
+@media screen and (min-width: 1024px) {
+
+    .details {
+        margin: 20px -30px;
+        height: 80vh;
+    }
+
+}
