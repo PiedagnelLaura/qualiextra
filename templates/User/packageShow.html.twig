@@ -11,20 +11,19 @@
 
     <section class="wrap-img ">
 
-
-    <div class="slider">
-        {%for gallery in package.galleries %} 
-     
-        <section class="carousel d-none">
-     
-        <img class="image-home" src="{{asset('uploads/')}}{{gallery.picture}}" alt="">
-     
-        </section>
-        {% endfor %}
-       
-        <button class="slider-button" aria-label="previous" id="previous">&lsaquo;</button>
-        <button class="slider-button" aria-label="next" id="next">&rsaquo;</button>
-    </div>
+        <div class="slider">
+            {%for gallery in package.galleries %} 
+        
+            <section class="carousel d-none">
+        
+            <img class="image-home" src="{{asset('uploads/')}}{{gallery.picture}}" alt="">
+        
+            </section>
+            {% endfor %}
+        
+            <button class="slider-button" aria-label="previous" id="previous">&lsaquo;</button>
+            <button class="slider-button" aria-label="next" id="next">&rsaquo;</button>
+        </div>
 
     </section>
 
