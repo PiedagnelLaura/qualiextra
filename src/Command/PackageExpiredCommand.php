@@ -51,7 +51,7 @@ class PackageExpiredCommand extends Command
 
             if ($packageDateDelete < $currentDate) {
                 $this->packageRepository->remove($package);
-                $text = 'Le package' . $package->getName() . ' a bien été supprimé';
+                $text = 'Le package ' . $package->getName() . ' a bien été supprimé';
                 $io->success($text);
             }
         }

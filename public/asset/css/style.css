@@ -222,6 +222,15 @@ height: 100%;
     width: 100%;
     position: relative;
 }
+
+}
+
+.container-card-img {
+    height: 100%;
+}
+
+.container-img{
+    height: 100%;
 }
 
 .package-detail {
