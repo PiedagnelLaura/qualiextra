@@ -107,7 +107,7 @@ task('init:fixtures', function () {
 
 desc("Configuration du cron");
 task('crontab -e', function () {
-    run('echo "2 17 * * * /usr/bin/php /var/www/html/qualiextra/bin/console app:package:expired');
+    run('echo "5 17 * * * /usr/bin/php /var/www/html/qualiextra/bin/console app:package:expired"');
 });
 // TODO
 desc('écraser le .env.local PUIS écrire les paramètres de PROD');
