@@ -13,7 +13,9 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Email;
 
 
 class PackageController extends AbstractController
@@ -25,7 +27,7 @@ class PackageController extends AbstractController
      *
      *  @param [type] $id
      */
-    public function packageShow($id,Request $request, BookRepository $bookRepository, PackageRepository $PackageRepository, UserRepository $userRepository)
+    public function packageShow($id,Request $request, BookRepository $bookRepository, PackageRepository $PackageRepository, UserRepository $userRepository, MailerInterface $mailer)
     {
         // show package by id
         $package = $PackageRepository->find($id);
@@ -53,6 +55,18 @@ class PackageController extends AbstractController
             $book->setPrice($package->getPrice());
             
             $bookRepository->add($book, true);
+
+            $email = (new Email())
+            ->from('hello@example.com')
+            ->to('projet.qualiextra@gmail.com')
+            // ->cc($establishment)
+            ->subject('Nouvelle réservation')
+                // On crée le texte avec la vue
+            ->html( $this->renderView('emails/email.html.twig', compact('book', 'package'),'text/html'))
+            ;
+            //dd($email);
+
+            $mailer->send($email);
 
             //Flash Message pour le client
             $this->addFlash('success', 'Votre réservation est en cours de confirmation.');
