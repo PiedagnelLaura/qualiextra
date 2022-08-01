@@ -811,17 +811,6 @@ height: 100%;
     background-color:#F6F0E9;
 }
 
-.orange {
-    color: darksalmon;
-}
-
-.green {
-    color:#7A8C73
-}
-
-.red {
-    color:darkred
-}
 
 /* ---------ADD NEW ESTABLISHMENT------- */
 
@@ -836,9 +825,6 @@ height: 100%;
     text-align: center;
 }
 
-.admin-navbar {
-    margin-left:10px;
-}
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
