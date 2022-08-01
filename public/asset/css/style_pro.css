@@ -51,5 +51,20 @@
     justify-content: flex-end;
 }
 
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Book pro*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+.filter-list {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em;
+}
+
+.title-book {
+    margin-top: 2em;
+    font-style: italic;
+    color: #315565;
+
+}
 
