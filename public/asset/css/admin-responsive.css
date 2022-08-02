@@ -1,0 +1,41 @@
+body {
+    font-size: 1.5rem;
+}
+html, body {
+    height: 100%;
+  }
+
+  .contenu {
+    min-height: 90vh;
+    /* equal to footer height */
+    margin-bottom: -70px; 
+  }
+
+  .contenu:after {
+    content: "";
+    display: block;
+  }
+  .footer-admin, .contenu:after {
+    height: 70px;
+  }
+
+.footer-admin {
+    background-color: #121629;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+
+    .mobile {
+        display: block;
+    }
+    body {
+        font-size: 1em;
+    }
+}

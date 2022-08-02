@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Ajout d'un prestataire
 {% endblock %}
@@ -14,4 +14,5 @@
 		{{ include('admin/user/_form.html.twig') }}
 
 	</div>
+	{% include "admin/partials/footer.html.twig" %}
 {% endblock %}

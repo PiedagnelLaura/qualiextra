@@ -325,7 +325,7 @@ h2 {
 
 #map-establishment {
     margin: 20px 0;
-    height: 270px;
+    height: 450px;
     z-index: 0;
     
 }
@@ -436,9 +436,10 @@ a {
 }
 
 .establishmentList {
-    height: 50vh;
+    height: 58vh;
     overflow-y: scroll;
 }
+
 
 
 @media screen and (min-width: 1024px) {
