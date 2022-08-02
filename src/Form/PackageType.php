@@ -62,6 +62,9 @@ class PackageType extends AbstractType
 
             ->add('expireOn', DateType::class,[
                 'label' => 'Date de validité du package',
+                'required' => false,
+                'widget'   => 'single_text',
+              
             ])
 
             ->add('types', EntityType::class, [

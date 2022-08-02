@@ -198,7 +198,7 @@ class AppFixtures extends Fixture
             $style = $stylesList[mt_rand(0, count($stylesList) - 1)];
             $establishment->setStyle($style);
             $establishment->setDescription($faker->realText(100));
-            $establishment->setUser($usersList[2]);
+            $establishment->setUser($usersList[rand(2,3)]);
             $establishmentAddress = $establishment->getAddress();
             $coordinates = $this->geocodage->geocoding($establishmentAddress);
             $lat = $coordinates['lat'];
@@ -255,20 +255,37 @@ class AppFixtures extends Fixture
             $manager->persist($book);
         }
 
+       
+        
+
         //# Tag
 
         $tagList = [];
+        //--------Piscine-------
+        $tagpiscine = new Tag();
+        $tagpiscine->setName('piscine');
+        $tagList[] = $tagpiscine;
+        $manager->persist($tagpiscine);
+        //--------Rooftop-------
+        $tagrooftop = new Tag();
+        $tagrooftop->setName('rooftop');
+        $tagList[] = $tagrooftop;
+        $manager->persist($tagrooftop);
+        //--------Terasse-------
+        $tagterasse = new Tag();
+        $tagterasse->setName('terasse');
+        $tagList[] = $tagterasse;
+        $manager->persist($tagterasse);
+        //--------Piano-------
+        $tagpiano = new Tag();
+        $tagpiano->setName('piano');
+        $tagList[] = $tagpiano;
+        $manager->persist($tagpiano);
+       
 
-        for ($i = 1; $i < 5; $i++) {
-            $tag = new Tag();
-            $tag->setName($faker->word());
 
-            $tagList[] = $tag;
-
-            $manager->persist($tag);
-        }
         foreach ($establishmentsList as $key => $establishment) {
-            $nbMaxtags = mt_rand(1, 4);
+            $nbMaxtags = mt_rand(1, 3);
             for ($n = 1; $n <= $nbMaxtags; $n++) {
                 $establishment->addTag($tagList[mt_rand(0, count($tagList) - 1)]);
                 $manager->persist($establishment);

@@ -40,7 +40,7 @@ body {
 .gp-style-establishment {
     position:absolute;
     bottom:30px;
-    right:30px;
+    right:240px;
     color: #f6f0e9;
     background-color: rgba(49, 85, 101, 0.9);
     padding:5px 10px;
@@ -88,6 +88,9 @@ body {
     body {
         font-size: 1rem;
     }
-    
+
+    .gp-style-establishment {
+        right:30px;
+    }
 
 }
