@@ -346,8 +346,9 @@ a {
     margin: auto;
 }
 
-.package_picture {
-    height: 100%;
+.image-logo {
+    width: 60%;
+    margin: 8% 8%;
     
 }
 .container--description_package{
