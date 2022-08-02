@@ -1,3 +1,11 @@
+:root {
+    --linear-gradient-primary : linear-gradient(#7A8C73, #315565);
+    --linear-gradient-secondary : linear-gradient(#315565, #131629);
+    --linear-gradient-tertiary : linear-gradient(#315565, #7A8C73);
+    --color-text : #F6F0E9;
+}
+
+
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*!     /*! Button Primary  !*/   
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -24,7 +32,7 @@
 }
 
 .button:hover {
-    color:  #F6F0E9  ;
+    color: var(--color-text);
     transition-delay: .5s;
 }
 
@@ -99,7 +107,7 @@ height: 100%;
 }
 
 .home-btn:hover {
-    color:  #F6F0E9  ;
+    color: var(--color-text);
     transition-delay: .5s;
 }
 
@@ -164,13 +172,13 @@ height: 100%;
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .edit_btn {
-    background: linear-gradient(#7A8C73, #315565 );
-    color: #F6F0E9;
+    background: var(--linear-gradient-primary);
+    color: var(--color-text);
 }
 
 .edit_btn:hover {
-    background: linear-gradient(#315565, #131629);
-    color: #F6F0E9;
+    background: var(--linear-gradient-secondary);
+    color: var(--color-text);
 }
 
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -178,12 +186,36 @@ height: 100%;
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .delete_btn  {
-    background: linear-gradient(#315565, #131629 );
-    color: #F6F0E9;   
+    background: var(--linear-gradient-secondary);
+    color: var(--color-text); 
 }
 
 .delete_btn:hover {
-    background: linear-gradient(#315565, #7A8C73);
-    color: #F6F0E9;
+    background: var(--linear-gradient-tertiary);
+    color: var(--color-text);
 }
 
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!     /*! Button Book admin  !*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.orange {
+    color: darksalmon;
+}
+
+.green {
+    color:#7A8C73
+}
+
+.red {
+    color:darkred
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /*! Button connexion */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.btn-connection-color{
+    background-color: #7A8C73;
+    border-color: #7A8C73;
+}

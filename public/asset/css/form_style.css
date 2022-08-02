@@ -11,3 +11,34 @@
     text-align: center;
     margin-top: 2em;
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* booking's form  */   
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.wrap-book {
+    margin-bottom: 50px;
+    border: 6px outset #7A8C73;
+}
+
+#form-book {
+    display: flex;
+    justify-content: center;
+}
+
+.book-input {
+    display: flex;
+    align-items: center;
+    width: 70%;
+}
+
+.label-form-book {
+    margin-right: 20px;
+    width: 38%;
+    font-size: larger
+}
+
+#book_date {
+    background: linear-gradient(#7A8C73, #315565 );
+    width: 200%;
+}

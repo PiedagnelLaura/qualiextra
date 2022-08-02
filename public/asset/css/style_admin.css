@@ -18,27 +18,8 @@
     margin-top: 30px;
 }
 .head-list-admin {
-    background: linear-gradient(#7A8C73, #315565 );
+    background: linear-gradient(#7A8C73, #315565);
     width: 50%;
-    color: #F6F0E9;
-}
-
-.edit {
-    background: linear-gradient(#7A8C73, #315565 );
-    color: #F6F0E9;
-}
-
-.edit:hover {
-    background: linear-gradient(#131629 , #315565);
-    color: #F6F0E9;
-}
-.delete {
-    background: linear-gradient(#315565, #131629 );
-    color: #F6F0E9;
-}
-
-.delete:hover {
-    background: linear-gradient(#315565, #7A8C73);
     color: #F6F0E9;
 }
 
@@ -46,17 +27,6 @@
     background-color:#F6F0E9;
 }
 
-.orange {
-    color: darksalmon;
-}
-
-.green {
-    color:#7A8C73
-}
-
-.red {
-    color:darkred
-}
 
 /* ---------ADD NEW ESTABLISHMENT------- */
 
@@ -64,11 +34,6 @@
     max-width: 800px;
     color: #315565;
     margin: auto;
-    
-}
-.validate-form {
-    margin: 30px 0;
-    text-align: center;
 }
 
 .admin-navbar {

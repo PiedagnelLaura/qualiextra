@@ -1,0 +1,416 @@
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!       /*! Homepage User */   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+    /**Scroll**/
+
+
+.fixed-title {
+    display: none;
+    background: radial-gradient(black, transparent);
+    font-size: 8em;
+    color: #7A8C73;
+    z-index: 1;
+    text-align: center;
+    position: fixed;
+    top: 30%;
+}
+
+.fixed-title.active {
+    display: block;
+}
+
+    /** Nav Filtre Type **/
+    
+.icon-experience-hoteliere {
+    background: url("../icon/hotel-solid.svg") no-repeat;
+}
+
+.icon-degustation-de-spiritueux {
+    background: url("../icon/wine-glass-solid.svg") no-repeat;
+}
+
+.icon-diner {
+    background: url("../icon/utensils-solid.svg") no-repeat;
+}
+
+.icon-experience-atypique {
+    background: url("../icon/mountain-sun-solid.svg") no-repeat;
+}
+
+.bloc-icon {
+    display: block;
+    padding: 8px;
+    align-self: center;
+    margin-right: 7px;
+}
+
+.filtre-type {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1em;
+}
+
+.bloc-type {
+    color: #121629;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bloc-type:hover {
+    color: #F6F0E9;
+}
+
+@media screen and (max-width: 720px) {
+
+    .filtre {
+        display: none;
+    }
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*           /* Card Homepage */             
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.bloc-container {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 25em;
+    margin: 1em;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 540px) {
+
+.card {
+    width: 100%;
+    position: relative;
+}
+
+}
+
+.container-card-img {
+    height: 100%;
+}
+
+.container-img{
+    height: 100%;
+}
+
+.package-detail {
+    background-color: rgba(50, 85, 100, 0.8);
+    color: #F6F0E9;
+    position: absolute;
+    bottom: 0;
+    height: 35%;
+    padding: 6px; 
+}
+
+@media screen and (min-width: 720px) {
+
+    .card:hover .card-body {
+        display: block;
+    }
+
+    .card-body {
+        display: none;
+    }
+}
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!           /* Good Address */   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+main {
+    position: relative;
+}
+
+.top-section {
+    width: 100%;
+    background-color: #f6f0e9;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 10px;
+}
+
+h2 {
+    color: #315565;
+}
+
+#map-establishment {
+    margin: 20px 0;
+    height: 270px;
+    z-index: 0;
+}
+
+
+/* ---------FILTER FORMATTING------- */
+
+/* div */
+
+.filter-case {
+    padding: 15px;
+    z-index: 7;
+    position: absolute;
+    background-color: rgba(49, 85, 101, 0.9);
+    color: #f6f0e9;
+    width: 80%;
+    top:5%;
+    left: 50%;
+    transform: translate(-50%, 20%); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 5px 5px #131629;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top:10px;
+}
+
+.fa-xmark:hover {
+    color: #83907c;
+}
+
+.title-filter {
+    margin-top: 50px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.options-list {
+    text-align: left;
+}
+
+.filter-checkbox {
+    display: flex;
+}
+
+.new-filters {
+    background: linear-gradient(#7A8C73, #315565 );
+}
+
+input[type="checkbox"]:checked {
+    background-color: #131629;
+}
+
+
+input[type="radio"]:checked {
+    background-color: #131629;
+}
+
+.select-price {
+    width: 150px;
+    height: 40px;
+    margin: 20px;
+    text-align: center;
+    background: linear-gradient(#7A8C73, #315565 );
+    background-color: #83907c;
+    color: #f6f0e9;
+}
+
+
+.select-filter {
+    margin: 20px;
+    text-align: center;
+}
+
+/* ---------LIST OF RESTAURANT FORMATTING------- */
+
+.restaurant {
+    background-color:#7a8c73e8;
+    color: #f6f0e9;
+    padding: 15px;
+    margin: 15px;
+    border: 1px solid #315565;
+    box-shadow: 5px 5px 15px #131629;
+    transition: 800ms;
+}
+
+.restaurant:hover {
+    background-color: #315565;
+    color: #f6f0e9;
+}
+
+a {
+    text-decoration: none;
+}
+
+.establishmentList {
+    height: 50vh;
+    overflow-y: scroll;
+}
+
+
+@media screen and (min-width: 1024px) {
+
+    main {
+        width: 80%;
+        margin: auto;
+    }
+    .contener {
+        margin: auto;
+        display: flex;
+        flex-direction: row-reverse;   
+    }
+    .bottom-section {
+        width: 40%;
+    }
+    
+
+    #map-establishment {
+        height: 80vh;
+        
+    }
+
+    .filter-case {
+        width: 25%;
+        left: 100%;
+        transform: translate(-100%, 10%); 
+    }
+
+    .establishmentList {
+        height: 80vh;
+    }
+
+    .title-filter h2{
+        font-size: 2em;
+        font-weight: bold;
+    } 
+}
+
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*!      /*!Detail package page*/   
+/*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+
+.title_h3{
+    color: #7A8C73;
+    font-weight: bold;
+    font-size: 32px;
+    padding: 1%;
+    text-align: center;
+}
+
+
+.container--title_package{
+    display: flex;
+    justify-content: center;
+    margin: 2% 0%;
+}
+
+.container--title_package h1{
+    border-bottom: 6px outset #7A8C73;
+    color:#315565 ;  
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.wrap-img{
+    display: flex;
+    margin-top: 4%;
+    border: 6px outset #7A8C73;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.row{
+    margin-right: 0;
+    margin-left: 0;
+    justify-content: center;
+}
+
+.map-package{
+    max-height: 30vh;
+    margin: auto;
+}
+
+.wrap-map{
+    margin: auto;
+}
+
+.package_picture {
+    height: 100%;
+    
+}
+.container--description_package{
+    border: 6px outset #7A8C73;
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+}
+
+.container--description_package img{
+    width: 32px;
+    font-weight: bold;
+    height: 100%;
+}
+
+.description_package p{
+    text-align: center;
+    padding: 2%;
+}
+
+.validity_price{
+    display: flex;
+    justify-content: space-around;
+    height: 40%;
+    background: linear-gradient(#7A8C73, #315565 );
+    padding-top: 5%;
+    align-items: center;
+}
+
+.validity_price p{
+    color: #121629;
+    width: 45%;
+    text-align: center;
+}
+
+.validity-span{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.container--address{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4%;
+}
+
+.container--address_package{
+    border: 6px outset #7A8C73;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.address_package--address p{
+    margin-top: 4%;
+}
+
+

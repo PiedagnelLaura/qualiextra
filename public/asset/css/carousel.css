@@ -1,4 +1,3 @@
-
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*!      /*!Detail package page slider*/   
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -14,7 +13,6 @@
 
 .image-home{
     width: 70%;
-
 }
 
 .slider-button {
@@ -27,19 +25,14 @@
 }
 
 .carousel{
-display: flex;
-justify-content: center;
-    
+    display: flex;
+    justify-content: center;
 }
-
 
 #previous {
-    
-    left: 15%;
-    
+    left: 15%; 
 }
+
 #next {
-   
     right: 15%;
-   
 }
