@@ -34,7 +34,7 @@ class PackageController extends AbstractController
 
         // Package not found ?
         if ($package === null) {
-            return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
+            throw $this->createNotFoundException('Ce package n\'existe pas');
         }
 
         //Get user who is connected

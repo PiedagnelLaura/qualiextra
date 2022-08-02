@@ -86,25 +86,7 @@ class PackageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $pictures = $form->get('galleries')->getData();
-            dd($pictures);
-
-                // On boucle sur les images
-            foreach($pictures as $picture){
-                // On génère un nouveau nom de fichier
-                $fichier = md5(uniqid()).'.'.$picture->guessExtension();
-                
-                // On copie le fichier dans le dossier uploads
-                $picture->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
-                
-                // On crée l'image dans la base de données
-                $img = new Gallery();
-                $img->setPicture($fichier);
-                $package->addGallery($img);
-            }
+            
 
             $packageRepository->add($package, true);
 
