@@ -43,7 +43,7 @@ class MainController extends AbstractController
                         $this->addFlash('success '.$book->getId(), 'Votre réservation pour le package ' . $package->getName() . ' a bien été confirmée');
                     } //If the pro reject the book => the book is cancelled
                     else if ($book->getStatus() === 2) {
-                        $this->addFlash('danger '.$book->getId(), 'Votre reservation pour le package ' . $package->getName() . ' a été annulée ');
+                        $this->addFlash('danger '.$book->getId(), 'Votre réservation pour le package ' . $package->getName() . ' a été annulée');
                     }
                 }
             }

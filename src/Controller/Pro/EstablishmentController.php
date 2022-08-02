@@ -65,7 +65,7 @@ class EstablishmentController extends AbstractController
             
             $establishmentRepository->add($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à été crée ');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a été créé ');
 
             return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
         }
@@ -97,7 +97,7 @@ class EstablishmentController extends AbstractController
 
             $establishmentRepository->add($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à bien été modifié');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a bien été modifié');
 
             return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
         }
@@ -119,7 +119,7 @@ class EstablishmentController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$establishment->getId(), $request->request->get('_token'))) {
             $establishmentRepository->remove($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à été supprimé');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a été supprimé');
         }
 
         return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);

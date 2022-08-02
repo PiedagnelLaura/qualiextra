@@ -62,7 +62,7 @@ class PackageController extends AbstractController
 
             $packageRepository->add($package, true);
 
-            $this->addFlash('success', 'L\'ajout du package ' . $package->getName() . ' à bien été créé');
+            $this->addFlash('success', 'L\'ajout du package ' . $package->getName() . ' a bien été créé');
 
             return $this->redirectToRoute('app_pro_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -108,7 +108,7 @@ class PackageController extends AbstractController
 
             $packageRepository->add($package, true);
 
-            $this->addFlash('success', 'La modification du package ' . $package->getName() . ' à bien été prise en compte');
+            $this->addFlash('success', 'La modification du package ' . $package->getName() . ' a bien été prise en compte');
 
             return $this->redirectToRoute('app_pro_home', [], Response::HTTP_SEE_OTHER);
         }
@@ -130,7 +130,7 @@ class PackageController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$package->getId(), $request->request->get('_token'))) {
             $packageRepository->remove($package, true);
 
-            $this->addFlash('success', 'La suppression du package ' . $package->getName() . ' à bien été prise en compte');
+            $this->addFlash('success', 'La suppression du package ' . $package->getName() . ' a bien été prise en compte');
         }
 
         return $this->redirectToRoute('app_pro_home', [], Response::HTTP_SEE_OTHER);

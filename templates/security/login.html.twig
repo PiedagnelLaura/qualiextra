@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!
+{% block title %}Connexion
 {% endblock %}
 
 {% block body %}
@@ -17,7 +17,7 @@
 
 			<label for="inputEmail">Email</label>
 			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-			<label for="inputPassword">Password</label>
+			<label for="inputPassword">Mot de passe</label>
 			<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
 			<input
@@ -35,7 +35,7 @@
 			        #}
 
 			<button class="btn btn-lg button from-center btn-log" type="submit">
-				Sign in
+				Connexion
 			</button>
 		</form>
 		{% if app.user %}
