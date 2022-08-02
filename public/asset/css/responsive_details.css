@@ -1,0 +1,42 @@
+
+@media screen and (max-width: 990px) {
+
+
+    .container--address {
+        flex-direction: none;
+        justify-content: space-evenly;
+        margin-bottom: 5%;
+        display: block;
+    }
+
+    .wrap-img{
+        display: flex;
+        margin-top: 4%;
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .container--address_package{
+        border: 6px outset #7A8C73;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-top: 2%;
+    }
+
+
+    .container--address,
+    .container--address_package,
+    .wrap-book{
+
+        width: 100%;
+    }
+
+    .book-input {
+        padding: 1%;
+    }
+
+}
