@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
 
         $typesListEntity = [];
-        $typesList = ["Expèrience hôtelière", "Dégustation de spiritueux", "Diner", "Expèrience atypique"];
+        $typesList = ["Expérience hôtelière", "Dégustation de spiritueux", "Diner", "Expérience atypique"];
 
 
         foreach ($typesList as $typeName) {
@@ -129,6 +129,21 @@ class AppFixtures extends Fixture
         $userPro->setLastname($faker->lastname());
         $userPro->setEmail("pro2@pro.com");
         $plaintextPassword = "pro2";
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $userPro,
+            $plaintextPassword
+        );
+        $userPro->setPassword($hashedPassword);
+        $userPro->setRoles(['ROLE_PRO']);
+        $usersList[] = $userPro;
+        $manager->persist($userPro);
+
+        //3em pro (Coup de coeur Qualiextra)
+        $userPro= new User();
+        $userPro->setFirstname('Qualiextra');
+        $userPro->setLastname('Coup de coeur');
+        $userPro->setEmail("qualiextra@pro.com");
+        $plaintextPassword = "qualiextra";
         $hashedPassword = $this->passwordHasher->hashPassword(
             $userPro,
             $plaintextPassword
