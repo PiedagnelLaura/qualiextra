@@ -1,39 +1,8 @@
 <header>
-        {# <nav class="navbar navbar-expand-lg nav-color">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="{{path("app_admin_home")}}">
-                <img src="{{asset('asset/logo/logo.svg')}}" alt="" width="30" height="24" class="logo">
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon navbar-toggler-color"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle nav-lien" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bonjour {{app.user.firstname ?? "Mme/Mr"}} {{app.user.lastname ?? " "}} </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {% if app.user !=null %}
-                      <li><a class="dropdown-item" href="{{path("app_logout")}}">Se déconnecter</a></li>
-                    {% else %}
-                      <li><a class="dropdown-item" href="{{path("app_login")}}">Se connecter</a></li>
-                    {% endif %} 
-                    </ul>
-                  </li>
-                  <li class="nav-item admin-navbar">
-                    <a class="nav-link nav-lien" aria-current="page" href="{{path("app_admin_home")}}">Accueil</a>
-                  </li>
-                  <li class="nav-item admin-navbar">
-                    <a class="nav-link nav-lien" aria-current="page" href="{{path('app_admin_pro_new')}}">Ajouter un prestataire</a>
-                  </li>
-                  <li class="nav-item admin-navbar">
-                    <a class="nav-link nav-lien" aria-current="page" href="{{path('app_admin_establishment_new')}}">Ajouter un établissement</a>
-                  </li>
-                </ul>
-               
-            </div> #}
+   
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a href="{{path("app_admin_home")}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none header-logo">
+                <a href="{{path("app_user_home")}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none header-logo">
                     <img src="{{asset('asset/logo/logo.svg')}}" alt="" width="30" height="24" class="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -58,7 +27,7 @@
                                 <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown">
-                                    <span>Bonjour {{app.user.firstname}} {{app.user.lastname}}</span>
+                                    <span>Bonjour  {{app.user.firstname ?? "Mme/Mr"}} {{app.user.lastname ?? " "}} </span>
                                     <i class="bi bi-person-square"></i>
                                 </a>
                                 
