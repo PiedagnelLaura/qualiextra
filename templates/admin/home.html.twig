@@ -55,13 +55,13 @@
 								{{establishment.user.lastname}}</td>
 							<td>{{establishment.packages| length}}</td>
 							<td class="text-end">
-								<a href="{{path("app_admin_establishment_edit",{id:establishment.id})}}" class="btn btn-sm edit">
+								<a href="{{path("app_admin_establishment_edit",{id:establishment.id})}}" class="btn btn-sm edit_btn">
 									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 								</a>
 								<div class="btn-group">
 									<form method="post" action="{{ path('app_admin_establishment_delete', {'id': establishment.id}) }}" onsubmit="return confirm('Supprimer l\' établissement {{establishment.name}} ?');">
 										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ establishment.id) }}">
-										<button class="btn btn-sm delete">
+										<button class="btn btn-sm delete_btn">
 											<i class="fa fa-trash-o" aria-hidden="true"></i>
 										</button>
 									</form>
@@ -114,7 +114,7 @@
 								<div class="btn-group">
 									<form method="post" action="{{ path('app_admin_user_delete', {'id': pro.id}) }}" onsubmit="return confirm('Supprimer le prestataire {{pro.email}} ?');">
 										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pro.id) }}">
-										<button class="btn btn-sm delete">
+										<button class="btn btn-sm delete_btn">
 											<i class="fa fa-trash-o" aria-hidden="true"></i>
 										</button>
 									</form>
@@ -166,7 +166,7 @@
 								<div class="btn-group">
 									<form method="post" action="{{ path('app_admin_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Supprimer l\'utilisateur {{user.email}} ?');">
 										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-										<button class="btn btn-sm delete">
+										<button class="btn btn-sm delete_btn">
 											<i class="fa fa-trash-o" aria-hidden="true"></i>
 										</button>
 									</form>
