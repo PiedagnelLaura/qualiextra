@@ -68,3 +68,12 @@
 
 }
 
+@media screen and (max-width: 1024px){
+    .table , .formResp{
+        font-size: xx-large;
+        
+    }
+    
+}
+
+
