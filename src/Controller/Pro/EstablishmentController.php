@@ -11,8 +11,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
+/**
+ * 
+ * @IsGranted("ROLE_PRO")
+ * 
+ */
 class EstablishmentController extends AbstractController
 {
     /**
@@ -65,7 +70,7 @@ class EstablishmentController extends AbstractController
             
             $establishmentRepository->add($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à été crée ');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a été créé ');
 
             return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
         }
@@ -97,7 +102,7 @@ class EstablishmentController extends AbstractController
 
             $establishmentRepository->add($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à bien été modifié');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a bien été modifié');
 
             return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);
         }
@@ -119,7 +124,7 @@ class EstablishmentController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$establishment->getId(), $request->request->get('_token'))) {
             $establishmentRepository->remove($establishment, true);
 
-            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' à été supprimé');
+            $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a été supprimé');
         }
 
         return $this->redirectToRoute('app_pro_establishments', [], Response::HTTP_SEE_OTHER);

@@ -13,7 +13,9 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Email;
 
 
 class PackageController extends AbstractController
@@ -25,14 +27,14 @@ class PackageController extends AbstractController
      *
      *  @param [type] $id
      */
-    public function packageShow($id,Request $request, BookRepository $bookRepository, PackageRepository $PackageRepository, UserRepository $userRepository)
+    public function packageShow($id,Request $request, BookRepository $bookRepository, PackageRepository $PackageRepository, UserRepository $userRepository, MailerInterface $mailer)
     {
         // show package by id
         $package = $PackageRepository->find($id);
 
         // Package not found ?
         if ($package === null) {
-            return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
+            throw $this->createNotFoundException('Ce package n\'existe pas');
         }
 
         //Get user who is connected
@@ -53,6 +55,7 @@ class PackageController extends AbstractController
             $book->setPrice($package->getPrice());
             
             $bookRepository->add($book, true);
+
 
             //Flash Message pour le client
             $this->addFlash('success', 'Votre réservation est en cours de confirmation.');
