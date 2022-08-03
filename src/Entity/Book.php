@@ -21,8 +21,7 @@ class Book
 
     /**
      * @Assert\NotBlank
-     * @Assert\Type("\DateTime")
-     * @var string A "Y-m-d H:i:s" formatted value
+     * @Assert\Type("\DateTime")     
      * @Groups("normal")
      * @ORM\Column(type="datetime", nullable=true)
      */
