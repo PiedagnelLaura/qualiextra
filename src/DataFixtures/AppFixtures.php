@@ -286,11 +286,11 @@ class AppFixtures extends Fixture
         $tagrooftop->setName('rooftop');
         $tagList[] = $tagrooftop;
         $manager->persist($tagrooftop);
-        //--------Terasse-------
-        $tagterasse = new Tag();
-        $tagterasse->setName('terasse');
-        $tagList[] = $tagterasse;
-        $manager->persist($tagterasse);
+        //--------Terrasse-------
+        $tagterrasse = new Tag();
+        $tagterrasse->setName('terrasse');
+        $tagList[] = $tagterrasse;
+        $manager->persist($tagterrasse);
         //--------Piano-------
         $tagpiano = new Tag();
         $tagpiano->setName('piano');

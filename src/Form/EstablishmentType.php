@@ -6,7 +6,6 @@ use App\Entity\Establishment;
 use App\Entity\Style;
 use App\Entity\Tag;
 use App\Entity\User;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
