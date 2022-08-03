@@ -33,8 +33,9 @@ html, body {
 @media screen and (min-width: 1024px) {
 
     .mobile {
-        display:table-cell;
+      display:table-cell;
     }
+
     body {
         font-size: 1em;
     }
