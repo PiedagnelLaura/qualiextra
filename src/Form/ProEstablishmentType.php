@@ -25,22 +25,36 @@ class ProEstablishmentType extends AbstractType
             ->add('address', TextType::class,  [
                 'label' => 'Adresse *'])
             ->add('phone', TextType::class,  [
-                'label' => 'Téléphone'])
-            ->add('email', TextType::class)
+                'label' => 'Téléphone',
+                'required' => false,
+                ])
+            ->add('email', TextType::class, [
+                'required' => false,
+                ])
             ->add('website', TextType::class,  [
-                'label' => 'Site web'])
+                'label' => 'Site web',
+                'required' => false,
+                ])
             ->add('openingHour', TextType::class,  [
-                'label' => 'Horaires d\'ouverture'])
+                'label' => 'Horaires d\'ouverture',
+                'required' => false,
+                ])
             ->add('openingDay', TextType::class,  [
-                'label' => 'Jours d\'ouverture'])
+                'label' => 'Jours d\'ouverture',
+                'required' => false,
+                ])
             ->add('description', TextareaType::class,  [
                 'label' => 'Description *'])
+                
             ->add('picture', UrlType::class, [
                 'help' => 'Url de l\'image',
-                'label' => 'Photo de l\'établissement'
+                'label' => 'Photo de l\'établissement', 
+                'required' => false
             ])
             ->add('price',  NumberType::class,  [
-                'label' => 'Prix moyen proposé'])
+                'label' => 'Prix moyen proposé', 
+                'required' => false,
+                ])
             ->add('tags', EntityType::class, [
                 'label' => 'Equipement(s)',
                 'choice_label' => 'name',
