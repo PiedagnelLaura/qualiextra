@@ -53,6 +53,7 @@ a{
 .title-establishment {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 1%;
 }
 
 /*! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -78,6 +79,12 @@ a{
         
     }
     
+    .filter-list {
+        display: flex;
+        margin: 1em;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
 }
 
 
