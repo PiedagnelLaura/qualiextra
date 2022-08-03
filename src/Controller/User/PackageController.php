@@ -3,19 +3,14 @@
 namespace App\Controller\User;
 
 use App\Entity\Book;
-use App\Entity\Establishment;
-use App\Entity\Package;
-use App\Entity\User;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use App\Repository\PackageRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Mime\Email;
+
 
 
 class PackageController extends AbstractController
@@ -27,10 +22,10 @@ class PackageController extends AbstractController
      *
      *  @param [type] $id
      */
-    public function packageShow($id,Request $request, BookRepository $bookRepository, PackageRepository $PackageRepository, UserRepository $userRepository, MailerInterface $mailer)
+    public function packageShow($id,Request $request, BookRepository $bookRepository, PackageRepository $packageRepository)
     {
         // show package by id
-        $package = $PackageRepository->find($id);
+        $package = $packageRepository->find($id);
 
         // Package not found ?
         if ($package === null) {
@@ -57,7 +52,7 @@ class PackageController extends AbstractController
             $bookRepository->add($book, true);
 
 
-            //Flash Message pour le client
+            //Flash Message for the customer
             $this->addFlash('success', 'Votre réservation est en cours de confirmation.');
 
             return $this->redirectToRoute('app_user_home', [], Response::HTTP_SEE_OTHER);

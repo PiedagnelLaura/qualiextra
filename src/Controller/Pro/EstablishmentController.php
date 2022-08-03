@@ -3,7 +3,6 @@
 namespace App\Controller\Pro;
 
 use App\Entity\Establishment;
-use App\Entity\User;
 use App\Form\ProEstablishmentType;
 use App\Repository\EstablishmentRepository;
 use App\Services\Geocodage;
@@ -27,19 +26,20 @@ class EstablishmentController extends AbstractController
      */
     public function listStore(EstablishmentRepository $establishmentRepository): Response
     {
+        // We get the connected user
          /** @var \App\Entity\User $user */
-         $user = $this->getUser();
+        $user = $this->getUser();
         
         // we retrieve his establishments
         $establishment = $establishmentRepository->findByUser($user);       
-       
+
         return $this->render('Pro/establishments_list.html.twig', [
             'establishments' => $establishment
         ]);
     }
 
     /**
-     * create a new entity of establishment in the bdd
+     * create a new entity of establishment in the database
      * 
      * @Route("/business/establishments/addStore", name="app_pro_new_establishment", methods={"GET", "POST"})
      */
@@ -51,8 +51,9 @@ class EstablishmentController extends AbstractController
         //We are obliged to set user to link the establishment
 
          /** @var \App\Entity\User $user */
-         $user = $this->getUser();
+        $user = $this->getUser();
 
+        //we make link between the connected professionnal and this establishements
         $establishment->setUser($user);
 
         $form->handleRequest($request);
@@ -67,7 +68,6 @@ class EstablishmentController extends AbstractController
             $establishment->setLatitudes($lat);
             $establishment->setLongitudes($long);
 
-            
             $establishmentRepository->add($establishment, true);
 
             $this->addFlash('success', 'L\'établissement ' . $establishment->getName() . ' a été créé ');
@@ -82,7 +82,7 @@ class EstablishmentController extends AbstractController
     }
 
     /**
-     * Update the current entity of store in the BDD
+     * Update the current entity of store in the database
      * 
      * @Route("/business/establishments/{id}", name="app_pro_update_establishment", methods={"GET", "POST"})
      */

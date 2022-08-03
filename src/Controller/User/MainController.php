@@ -23,7 +23,8 @@ class MainController extends AbstractController
 
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
-      
+
+        //If the user is connected
         if ($user !== null) {
             // Get user booking with user Id
             $books = $bookRepository->findByUser($user);
@@ -32,15 +33,15 @@ class MainController extends AbstractController
                                         
                 //If the message status = 0 so we display the response from the pro
                 if ($book->isMessageStatus() === false) {
+
                     // we get the package associated to the reservation
                     $packageId = $book->getPackages()->getId();
                     $package = $packageRepository->find($packageId);
                     
                     //If the pro valid the book => the book is confirmed
                     if ($book->getStatus() === 1) {
-                        
-                        
                         $this->addFlash('success '.$book->getId(), 'Votre réservation pour le package ' . $package->getName() . ' a bien été confirmée');
+
                     } //If the pro reject the book => the book is cancelled
                     else if ($book->getStatus() === 2) {
                         $this->addFlash('danger '.$book->getId(), 'Votre réservation pour le package ' . $package->getName() . ' a été annulée');
@@ -74,14 +75,13 @@ class MainController extends AbstractController
      */
     public function flashBook ($id, BookRepository $bookRepository, ManagerRegistry $doctrine)
     {
-          
-        //we find the entity book in our BDD
+        //we find the entity book in our DB
         $book = $bookRepository->find($id);
         
         //Change bool for user message
         $book->setMessageStatus(true);
 
-        //Save in the BDD
+        //Save in the DB
         $entityManager =$doctrine->getManager();
         $entityManager->flush();
 

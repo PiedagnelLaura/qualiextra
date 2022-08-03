@@ -2,9 +2,7 @@
 
 namespace App\Controller\User;
 
-use App\Entity\Establishment;
-use App\Entity\Tag;
-use Doctrine\Persistence\ManagerRegistry;
+
 use App\Repository\EstablishmentRepository;
 use App\Repository\StyleRepository;
 use App\Repository\TagRepository;

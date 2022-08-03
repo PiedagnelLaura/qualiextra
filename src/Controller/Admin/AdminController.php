@@ -37,6 +37,7 @@ class AdminController extends AbstractController
         $usersList = $userRepository->findByRoles('USER');
         $prosList = $userRepository->findByRoles('PRO');
 
+        
         $booksList = $bookRepository->findBy([], ['status' => 'ASC', 'date' => 'DESC']);
 
         return $this->render('admin/home.html.twig', [

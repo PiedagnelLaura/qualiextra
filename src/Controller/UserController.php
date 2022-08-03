@@ -22,9 +22,6 @@ class UserController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -49,8 +46,8 @@ class UserController extends AbstractController
      */
     public function register(UserRepository $userRepository, Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
-
         $newUser = new User();
+
         $form = $this->createForm(RegisterType::class, $newUser);
         $form->handleRequest($request);
 
@@ -61,6 +58,7 @@ class UserController extends AbstractController
                 $newUser->getPassword()
             );
             $newUser->setPassword($hashedPassword);
+            
             $userRepository->add($newUser, true);
 
             return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);

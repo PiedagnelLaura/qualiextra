@@ -25,7 +25,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class PackageController extends AbstractController
 {
     /**
-     * Add a new package in the BDD
+     * Add a new package in the DB
      * 
      * @Route("/business/packages", name="app_pro_new_package", methods={"GET", "POST"})
      */
@@ -40,23 +40,23 @@ class PackageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            // We create a variable $pictures which retrieve his datas gallery
             $pictures = $form->get('galleries')->getData();
-            //dd($picture);
 
-                    // On boucle sur les images
+            // We loop on pictures
             foreach($pictures as $picture){
-                // On génère un nouveau nom de fichier
-                $fichier = md5(uniqid()).'.'.$picture->guessExtension();
+                // We create a new file
+                $file = md5(uniqid()).'.'.$picture->guessExtension();
                 
-                // On copie le fichier dans le dossier uploads
+                // We copy the file in the upload directory
                 $picture->move(
                     $this->getParameter('images_directory'),
-                    $fichier
+                    $file
                 );
                 
-                // On crée l'image dans la base de données
+                // We create the picture in the database
                 $img = new Gallery();
-                $img->setPicture($fichier);
+                $img->setPicture($file);
                 $package->addGallery($img);
             }
 
@@ -74,7 +74,7 @@ class PackageController extends AbstractController
     }
 
     /**
-     * Update a package in the BDD
+     * Update a package in the DB
      * 
      * @Route("/business/packages/{id}", name="app_pro_update_package", methods={"GET", "POST"})
      */
@@ -85,8 +85,6 @@ class PackageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            
 
             $packageRepository->add($package, true);
 
@@ -108,13 +106,11 @@ class PackageController extends AbstractController
      */
     public function deletePackage(Request $request, Package $package, PackageRepository $packageRepository): Response
     {
-
         if ($this->isCsrfTokenValid('delete'.$package->getId(), $request->request->get('_token'))) {
             $packageRepository->remove($package, true);
 
             $this->addFlash('success', 'La suppression du package ' . $package->getName() . ' a bien été prise en compte');
         }
-
         return $this->redirectToRoute('app_pro_home', [], Response::HTTP_SEE_OTHER);
     }
     
@@ -127,7 +123,7 @@ class PackageController extends AbstractController
     {
         
          /** @var \App\Entity\User $user */
-         $user = $this->getUser();
+        $user = $this->getUser();
         
         // we retrieve his establishments
         $listEstablishment = $establishmentRepository->findByUser($user);
@@ -139,13 +135,13 @@ class PackageController extends AbstractController
 
     /**
     * confirmed the book
-    * update the entity status in the BDD 
+    * update the entity status in the DB
     * 
     * @Route("/business/books/validated/{id}", name="app_pro_update_book_validated", requirements={"id"="\d+"})
     */
     public function bookValidate ($id, BookRepository $bookRepository, ManagerRegistry $doctrine)
     {
-        //we find the entity book in our BDD
+        //we find the entity book in our DB
         $book = $bookRepository->find($id);
         
         //Set new value (1=book validate)
@@ -153,7 +149,7 @@ class PackageController extends AbstractController
         //Set bool for user message
         $book->setMessageStatus(false);
 
-        //Save in the BDD
+        //Save in the DB
         $entityManager =$doctrine->getManager();
         $entityManager->flush();
 
@@ -170,7 +166,7 @@ class PackageController extends AbstractController
     */
     public function bookCancel ($id, BookRepository $bookRepository, ManagerRegistry $doctrine)
     {
-        //we find the entity book in our BDD
+        //we find the entity book in our DB
         $book = $bookRepository->find($id);
         
         //Set new value (2=book cancelled)

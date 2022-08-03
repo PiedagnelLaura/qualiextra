@@ -56,12 +56,15 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
         $homePage =  'app_user_home';
 
+        // If the user has a role pro so we redirect him to his homepage pro
         if (in_array('ROLE_PRO', $roles)) {
             $homePage = 'app_pro_home';
-        
+
+        // If the user has a role admin so we redirect him to his homepage admin
         } elseif (in_array('ROLE_ADMIN', $roles)) {
             $homePage = 'app_admin_home';
         }
+        // By default the route will be homepage user
 
         return new RedirectResponse($this->urlGenerator->generate($homePage));
     }
@@ -71,6 +74,12 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 
+    /**
+     * apach support
+     *
+     * @param Request $request
+     * @return boolean
+     */
     public function supports(Request $request): bool
     {
         return $request->isMethod('POST') && '/login' === $request->getPathInfo();
