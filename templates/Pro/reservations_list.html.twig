@@ -72,7 +72,7 @@
 </section>
 <section class="list "id="validatedList">
 
-    <h3> # Réservations validées</h3>
+    <h3 class="title-book"> # Réservations validées</h3>
 
 {% for establishment in listEstablishment %}
   {% if establishment.getPackages() is not empty%}
@@ -121,7 +121,7 @@
 </section>
 <section class="list "id="cancelledList">
 
- <h3> # Réservations annulées</h3>
+ <h3 class="title-book"> # Réservations annulées</h3>
 
 {% for establishment in listEstablishment %}
   {% if establishment.getPackages() is not empty %}
