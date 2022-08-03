@@ -33,7 +33,7 @@ html, body {
 @media screen and (min-width: 1024px) {
 
     .mobile {
-        display: block;
+        display:table-cell;
     }
     body {
         font-size: 1em;
