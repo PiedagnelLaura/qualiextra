@@ -77,7 +77,7 @@ class AppFixtures extends Fixture
         $usersList = [];
         // ------------userUser-----------
         $user = new User;
-        $user->setFirstname($faker->firstname());
+        $user->setFirstname("Sébastien");
         $user->setLastname($faker->lastname());
         $user->setEmail("user@user.com");
         $plaintextPassword = "user";
@@ -89,6 +89,21 @@ class AppFixtures extends Fixture
         $user->setRoles(['ROLE_USER']);
         $usersList[] = $user;
         $manager->persist($user);
+
+        //2eme user
+        $user2 = new User;
+        $user2->setFirstname("Vanessa");
+        $user2->setLastname($faker->lastname());
+        $user2->setEmail("vanessa@user.com");
+        $plaintextPassword = "user";
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $user2,
+            $plaintextPassword
+        );
+        $user2->setPassword($hashedPassword);
+        $user2->setRoles(['ROLE_USER']);
+        $usersList[] = $user2;
+        $manager->persist($user2);
 
         // ------------userAdmin-----------
 
@@ -109,7 +124,7 @@ class AppFixtures extends Fixture
         // ------------userPro-----------
 
         $userPro = new User();
-        $userPro->setFirstname($faker->firstname());
+        $userPro->setFirstname("Laura");
         $userPro->setLastname($faker->lastname());
         $userPro->setEmail("pro@pro.com");
         $plaintextPassword = "pro";
@@ -125,9 +140,9 @@ class AppFixtures extends Fixture
 
         //2em pro
         $userPro= new User();
-        $userPro->setFirstname($faker->firstname());
+        $userPro->setFirstname("Aurélie");
         $userPro->setLastname($faker->lastname());
-        $userPro->setEmail("pro2@pro.com");
+        $userPro->setEmail("aurelie@pro.com");
         $plaintextPassword = "pro2";
         $hashedPassword = $this->passwordHasher->hashPassword(
             $userPro,
@@ -198,7 +213,7 @@ class AppFixtures extends Fixture
             $style = $stylesList[mt_rand(0, count($stylesList) - 1)];
             $establishment->setStyle($style);
             $establishment->setDescription($faker->realText(100));
-            $establishment->setUser($usersList[rand(2,3)]);
+            $establishment->setUser($usersList[rand(3,4)]);
             $establishmentAddress = $establishment->getAddress();
             $coordinates = $this->geocodage->geocoding($establishmentAddress);
             $lat = $coordinates['lat'];
@@ -246,7 +261,7 @@ class AppFixtures extends Fixture
 
         for ($m = 1; $m < 101; $m++) {
             $book = new Book();
-            $book->setUser($usersList[0]);
+            $book->setUser($usersList[rand(0,1)]);
             $book->setStatus(rand(0, 2));
             $book->setPrice(rand(5, 100));
             $package = $packagesList[mt_rand(0, count($packagesList) - 1)];
