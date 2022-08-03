@@ -23,6 +23,7 @@ class Package
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -35,6 +36,7 @@ class Package
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $description;
 
@@ -71,6 +73,7 @@ class Package
 
     /**
      * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="package",cascade={"persist"}, orphanRemoval=true)
+     * @Assert\NotBlank
      */
     private $galleries;
 

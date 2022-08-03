@@ -20,14 +20,18 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class PackageType extends AbstractType
 {
+
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
         $user = $options['user'];
+
 
         $builder
             ->add('name', TextType::class, [
@@ -38,18 +42,11 @@ class PackageType extends AbstractType
                 'label' => 'Ajoutez vos images pour le caroussel',
                 'multiple' => true,
                 'mapped' => false,
-                'required' => false,
-                'help' => 'Ajoutez minimum deux images'
+                'required' => true,
+                'help' => 'Si vous avez plusieurs images, vous devez les ajouter en même temps',
+                'constraints' => [new NotBlank()]
             ])
             
-        //    ->add('galleries', CollectionType::class, [
-        //         // each entry in the array will be an "File" field
-        //         'entry_type' => FileType::class,
-        //         // these options are passed to each "File" type
-        //         'entry_options' => [
-        //             'attr' => ['class' => 'galleries'],
-        //         ],
-        //     ])
 
 
             ->add('price', NumberType::class, [
@@ -86,9 +83,9 @@ class PackageType extends AbstractType
                                 -> where('e.user =:user')
                                 ->setParameter('user', $user);
                     }
-
-
             ]);
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
