@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
  */
@@ -19,6 +20,9 @@ class Book
     private $id;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Type("\DateTime")
+     * @var string A "Y-m-d H:i:s" formatted value
      * @Groups("normal")
      * @ORM\Column(type="datetime", nullable=true)
      */
