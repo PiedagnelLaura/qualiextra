@@ -89,6 +89,7 @@ class AdminController extends AbstractController
     public function updateResto(Request $request, Establishment $establishment, EstablishmentRepository $establishmentRepository,  Geocodage $geocodage): Response
     {
         $form = $this->createForm(EstablishmentType::class, $establishment);
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

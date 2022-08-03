@@ -44,7 +44,7 @@ set('remote_server_target_repository', '/var/www/html/qualiextra');
 set('repository', 'git@github.com:O-clock-Curie/projet-22-qualiextra.git');
 // Nom de la branche à déployer
 // TODO branch
-set('repository_target_branch', 'dev');
+set('repository_target_branch', 'checkAdminForm');
 // ---------------------------------------------------------------------------
 // Autres paramètres concernant le déploiement
 // ---------------------------------------------------------------------------
