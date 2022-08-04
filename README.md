@@ -39,4 +39,49 @@ puis `bin/console doctrine:migration:migrate`
 
 Votre BDD est prête.
 
+## Programmer la commande de suppression
+
+Il faut dans un premier temps configurer l'automatisation de la commande via le terminal.
+
+`crontab -e`
+
+```
+no crontab for student - using an empty one
+
+Select an editor.  To change later, run 'select-editor'.
+  1. /bin/nano        <---- easiest
+  2. /usr/bin/vim.basic
+  3. /usr/bin/vim.tiny
+  4. /usr/bin/code
+  5. /bin/ed
+
+Choose 1-5 [1]: 1
+crontab: installing new crontab
+
+
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# minute heure  utilisateur/bin/php chemin/vers/le/dosser/bin/console  command
+
+0 12 * * * /usr/bin/php /var/www/html/index.html/Apotheose/projet-22-qualiextra/bin/console app:package:expired
+```
+
+Pour enregistrer CTRL +O et ENTREE
+
+Pour quitter CTRL+x
+
+
 Le projet est okay
