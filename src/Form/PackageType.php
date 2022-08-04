@@ -35,11 +35,11 @@ class PackageType extends AbstractType
 
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom du package',
+                'label' => 'Nom du package *',
             ])
 
             ->add('galleries', FileType::class, [
-                'label' => 'Ajoutez vos images pour le caroussel',
+                'label' => 'Ajoutez vos images pour le caroussel *',
                 'multiple' => true,
                 'mapped' => false,
                 'required' => true,
@@ -50,11 +50,11 @@ class PackageType extends AbstractType
 
 
             ->add('price', NumberType::class, [
-                'label' => 'Prix du package',
+                'label' => 'Prix du package *',
             ])
 
             ->add('description', TextType::class, [
-                'label' => 'Description du package'
+                'label' => 'Description du package *'
             ])
 
             ->add('expireOn', DateType::class,[
@@ -65,7 +65,7 @@ class PackageType extends AbstractType
             ])
 
             ->add('types', EntityType::class, [
-                'label' => 'Veuillez choisir un type',
+                'label' => 'Veuillez choisir un type *',
                 'choice_label' => 'name',
                 'class' => Type::class,
                 'multiple' => true,
@@ -74,7 +74,7 @@ class PackageType extends AbstractType
             ])
 
             ->add('establishment', EntityType::class, [
-                'label' => 'Le package est rattaché à quel établissement ?',
+                'label' => 'Le package est rattaché à quel établissement ? *',
                 'choice_label' => 'name',
                 'class' => Establishment::class,
                 'multiple' => false,

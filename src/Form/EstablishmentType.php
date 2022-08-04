@@ -60,7 +60,8 @@ class EstablishmentType extends AbstractType
                 'query_builder' => function(EntityRepository $er){
                     return $er->createQueryBuilder('u')
                     ->andWhere('u.roles LIKE :roles')
-                    ->setParameter('roles', '%PRO%');
+                    ->setParameter('roles', '%PRO%')
+                    ->orderBy('u.lastname', 'ASC');
                 }
             ])
 

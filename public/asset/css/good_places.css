@@ -1,7 +1,5 @@
 /* ---------RESTAURANT'S DETAILS FORMATTING------- */
-body {
-    font-size: 1.5rem;
-}
+
 .details {
     margin: auto;
     border: 6px outset #7A8C73;
@@ -85,9 +83,7 @@ body {
         margin: 20px -30px;
         height: 80vh;
     }
-    body {
-        font-size: 1rem;
-    }
+ 
 
     .gp-style-establishment {
         right:30px;

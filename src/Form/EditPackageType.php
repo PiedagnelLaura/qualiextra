@@ -28,7 +28,7 @@ class EditPackageType extends AbstractType
             ])
 
             ->add('price', NumberType::class, [
-                'label' => 'Prix du package',
+                'label' => 'Prix du package *',
             ])
 
             ->add('description', TextType::class, [
