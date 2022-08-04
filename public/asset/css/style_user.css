@@ -87,7 +87,7 @@
 }
 
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 800px) {
 
 .card {
     width: 100%;
@@ -113,7 +113,7 @@
     padding: 6px; 
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 800px) {
 
     .card:hover .card-body {
         display: block;
