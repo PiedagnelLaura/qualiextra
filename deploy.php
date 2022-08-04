@@ -10,7 +10,7 @@ set('composer_options', '--verbose --prefer-dist --no-progress --no-interaction 
 // ---------------------------------------------------------------------------
 // Paramètres de notre application
 // ---------------------------------------------------------------------------
-set("env_database","mysql://CurieSeb:JhhD7Dr4@127.0.0.1:3306/qualiextra?serverVersion=mariadb-10.3.34");
+set("env_database","mysql://curie_admin:curie_Admin@127.0.0.1:3306/qualiextra?serverVersion=mariadb-10.3.34");
 // ---------------------------------------------------------------------------
 // Paramètres de connexion au serveur distant
 // ---------------------------------------------------------------------------
