@@ -156,7 +156,7 @@ class AppFixtures extends Fixture
         //3em pro (Coup de coeur Qualiextra)
         $userPro= new User();
         $userPro->setFirstname('Qualiextra');
-        $userPro->setLastname('Coup de coeur');
+        $userPro->setLastname('1 Coup de coeur');
         $userPro->setEmail("qualiextra@pro.com");
         $plaintextPassword = "qualiextra";
         $hashedPassword = $this->passwordHasher->hashPassword(
