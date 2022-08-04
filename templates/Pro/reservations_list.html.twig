@@ -40,6 +40,7 @@
                 <tr>
                 <th scope="col">N° de réservation</th>            
                 <th scope="col">Nom du client</th>
+                <th scope="col">Prix</th>
                 <th scope="col">Date de réservation</th>
                 <th></th>
                 </tr>
@@ -52,6 +53,8 @@
                 <td>{{book.id}}</td>            
                 <td>{{book.user.lastname}} </td>
                 <td>{{package.price}}</td>
+                <td>{{book.date |date('d/m/Y')}}</td>
+
                 <td class="bloc-icon-package">
                     <a href="{{path('app_pro_update_book_validated',{id:book.id})}}" class="btn btn-sm edit_btn" role="button"><i class="fa-solid fa-check"></i></a>
                     <a href="{{path('app_pro_update_book_cancelled',{id:book.id})}}" class="btn btn-sm delete_btn" role="button"><i class="fa-solid fa-ban"></i></a>
