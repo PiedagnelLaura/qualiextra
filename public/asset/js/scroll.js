@@ -2,31 +2,33 @@
 
 function isScrolledIntoView(el) {
     const rect = el.getBoundingClientRect();
+    // Top of the section
     const elemTop = rect.top;
+    // Bottom of the section
     const elemBottom = rect.bottom;
+    // define the lenght of the block to display the title
     let isVisible = elemTop < window.innerHeight && elemBottom >= 0;
-
-
-    //Je vérifie que mon bloc est visible et qu'il n'a jamais été affiché
+    
+    // We check if the block is visible and if it never been appears
     if (isVisible && window[el.id] != true) {
-        //Je temporise pour qu'il ne s'affiche pas les uns à la suite des autres
+        //we delay so that it does not appear one after the other
         setTimeout(() =>  {
-            //Je re-vérifie que mon bloc est toujours visible
+            // We re-check if the block is visible
             isVisible = elemTop < window.innerHeight && elemBottom >= 0;
             if (isVisible) {
-                //si c'est le cas, 
+                //if it's visible, 
                 const elems = document.querySelectorAll(".fixed-title");
-                //je remove la classe active des titres pour que rien ne s'affiche
+                // We remove the active class of title for doesn't display it
                 for(let i = 0; i < packageTypes.length; i++) {
                     elems[i].classList.remove('active');
                 }
-                //je l'ajoute uniquement sur le bon titre
+                //We add the class active of the section which are scrolled
                 el.querySelector(".fixed-title").classList.add('active');
 
                 setTimeout(() =>  {
-                    //après 2sec je lui retire la classe active
+                    //we during the time of the titlte appears
                     el.querySelector(".fixed-title").classList.remove('active');
-                    //et je le signale en lui indiquant que cet élément a bien été affiché
+                    //we say to the window elmt that the title is display
                     window[el.id] = true;
                 }, 2000)
             }

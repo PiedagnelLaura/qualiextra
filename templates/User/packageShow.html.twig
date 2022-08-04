@@ -10,21 +10,16 @@
 <main class="container-fluid">
 
     <section class="wrap-img">
-
         <div class="slider">
-            {%for gallery in package.galleries %} 
-        
-            <section class="carousel d-none">
-        
-            <img class="image-home" src="{{asset('uploads/')}}{{gallery.picture}}" alt="">
-        
-            </section>
+            {% for gallery in package.galleries %} 
+                <section class="carousel d-none">
+                    <img class="image-home" src="{{asset('uploads/')}}{{gallery.picture}}" alt="">
+                </section>
             {% endfor %}
         
             <button class="slider-button" aria-label="previous" id="previous">&lsaquo;</button>
             <button class="slider-button" aria-label="next" id="next">&rsaquo;</button>
         </div>
-
     </section>
 
     <div class="container--title_package establishment"data-long="{{package.establishment.longitudes}}" data-lat="{{package.establishment.latitudes}}">
@@ -32,11 +27,9 @@
     </div>
 
     <section class="container--address ">
-
             <div class="container--description_package ">
                 <div class="description_package">
                     <h3 class="title_h3">Description</h3>
-
                     <p >{{package.description}}</p>
 
                     <div class=" wrap-map">
@@ -48,7 +41,6 @@
                     <p class="col-sm-2">Valable jusqu'au : <span class="validity-span">{{package.expireOn|date('d/m/Y')}}</span></p>
                     <p class="price col-sm-2">
                         {{package.price}} €
-                        
                     </p>
                 </div>
             </div>
@@ -57,28 +49,25 @@
                 <h3 class="title_h3">Plus d'informations</h3>
                 <div class="address_package--address">
                         <p>Vous souhaitez plus d'informations, envoyez-nous un mail</p> 
-
-                        <img class="image-logo" src="{{asset('asset/logo/logo.png')}}" alt="">
-
+                            <img class="image-logo" src="{{asset('asset/logo/logo.png')}}" alt="">
                     {# TODO: mettre l'adresse mail de l'admin Qualiextra   #}
                         <a class="address_package--address button" href="mailto:projet-qualiextra@gmail.com"><div class="button from-center">Nous contacter</div></a>
                 </div>
             </div>
     </section>
     {% if is_granted('ROLE_USER') %}
-    <section class="wrap-book">
-    
-    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
-    <div id="form-book">
-        <div class="book-input ">
-            <label class="label-form-book" for="date">Votre date de réservation</label>
-            {{ form_row(form.date) }}
-        </div>
+        <section class="wrap-book">
+            {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+            <div id="form-book">
+                <div class="book-input ">
+                    <label class="label-form-book" for="date">Votre date de réservation</label>
+                    {{ form_row(form.date) }}
+                </div>
 
-        <button class="btn button from-center btn-log" type="submit">Réserver</button>
-    {{ form_end(form) }}
-        </div>
-    </section>
+                <button class="btn button from-center btn-log" type="submit">Réserver</button>
+            {{ form_end(form) }}
+                </div>
+        </section>
     {% else %}
 
     <div class="bloc-login">
@@ -86,7 +75,6 @@
         <a class="button from-center" href="{{path("app_login")}}">Se connecter</a>
     </div>
     {% endif %}
-
 
 </main>
 {% include "User/partials/footer.html.twig" %}

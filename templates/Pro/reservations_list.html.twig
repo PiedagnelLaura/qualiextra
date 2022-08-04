@@ -27,7 +27,7 @@
 	<h3 class='title-book'> # Réservations en attente</h3>
 	
 {% for establishment in listEstablishment %}
-  {% if establishment.getPackages() is not empty %}
+    {% if establishment.getPackages() is not empty %}
     
     <div class="bloc-establishment ">
         <h2 class="head-list-establishment title">Etablissement {{establishment.name}}</h2>
@@ -35,41 +35,39 @@
             {% if package.getBooks() is not empty %}
             <div>        
             <h4>Nom du package: {{package.name}}</h3>
-            <table class="table toCheck">
-            <thead>
-                <tr>
-                <th scope="col">N° de réservation</th>            
-                <th scope="col">Nom du client</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Date de réservation</th>
-                <th></th>
-                </tr>
-                </tr>
-            </thead>
-            {% for book in package.books %}
-            <tbody >
-                <tr class='package-line' data-status={{book.status}}>
-                
-                <td>{{book.id}}</td>            
-                <td>{{book.user.lastname}} </td>
-                <td>{{package.price}}</td>
-                <td>{{book.date |date('d/m/Y')}}</td>
+                <table class="table toCheck">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° de réservation</th>            
+                            <th scope="col">Nom du client</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Date de réservation</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    {% for book in package.books %}
+                        <tbody >
+                            <tr class='package-line' data-status={{book.status}}>
+                                <td>{{book.id}}</td>            
+                                <td>{{book.user.lastname}} </td>
+                                <td>{{package.price}}</td>
+                                <td>{{book.date |date('d/m/Y')}}</td>
 
-                <td class="bloc-icon-package">
-                    <a href="{{path('app_pro_update_book_validated',{id:book.id})}}" class="btn btn-sm edit_btn" role="button"><i class="fa-solid fa-check"></i></a>
-                    <a href="{{path('app_pro_update_book_cancelled',{id:book.id})}}" class="btn btn-sm delete_btn" role="button"><i class="fa-solid fa-ban"></i></a>
-                </td>
-                </tr>
-            </tbody>
-            {% endfor %}
-            </table>
+                                <td class="bloc-icon-package">
+                                    <a href="{{path('app_pro_update_book_validated',{id:book.id})}}" class="btn btn-sm edit_btn" role="button"><i class="fa-solid fa-check"></i></a>
+                                    <a href="{{path('app_pro_update_book_cancelled',{id:book.id})}}" class="btn btn-sm delete_btn" role="button"><i class="fa-solid fa-ban"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
             </div>
-           
+
             {% endif %}
-         
+
         {% endfor %}
     </div>
-  {% endif %}
+    {% endif %}
 {% endfor %}
 </div>
 </section>
@@ -78,96 +76,98 @@
     <h3 class="title-book"> # Réservations validées</h3>
 
 {% for establishment in listEstablishment %}
-  {% if establishment.getPackages() is not empty%}
+    {% if establishment.getPackages() is not empty%}
   
-    <div class="bloc-establishment ">
-        <h2 class="head-list-establishment title">Etablissement {{establishment.name}}</h2>
-        {% for package in establishment.getPackages() %}
-            {% if package.getBooks() is not empty %}
-            <div class="bloc-package-name">        
-            <h4>Nom du package: {{package.name}}</h3>
-            <table class="table validated">
-            <thead>
-                <tr>
-                <th scope="col" class="color-primaire">N° de réservation</th>            
-                <th scope="col" class="color-primaire">Nom du client</th>
-                <th scope="col" class="color-primaire">Date de réservation</th>
-                <th></th>
-                </tr>
-                </tr>
-            </thead>
-            {% for book in package.books %}
-            <tbody >
-                <tr class='package-line' data-status={{book.status}}>
+        <div class="bloc-establishment ">
+            <h2 class="head-list-establishment title">Etablissement {{establishment.name}}</h2>
+            {% for package in establishment.getPackages() %}
+                {% if package.getBooks() is not empty %}
+                <div class="bloc-package-name">        
+                    <h4>Nom du package: {{package.name}}</h3>
+                    <table class="table validated">
+                        <thead>
+                            <tr>
+                                <th scope="col" >N° de réservation</th>            
+                                <th scope="col" >Nom du client</th>
+                                <th scope="col" >Prix</th>
+                                <th scope="col" >Date de réservation</th>
+                                <th></th>
+                            </tr>
+
+                        </thead>
+                        {% for book in package.books %}
+                        <tbody >
+                            <tr class='package-line' data-status={{book.status}}>
+                                <td>{{book.id}}</td>            
+                                <td>{{book.user.lastname}} </td>
+                                <td>{{package.price}}</td>
+                                <td>{{book.date |date('d/m/Y')}}</td>
+                                <td class="bloc-icon-package">
+                                    <i class="btn btn-sm edit_btn fa-solid fa-check"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
                 
-                <td>{{book.id}}</td>            
-                <td>{{book.user.lastname}} </td>
-                <td>{{package.price}}</td>
-                <td class="bloc-icon-package">
-                   <i class="btn btn-sm edit_btn fa-solid fa-check"></i>
-                    
-                </td>
-                </tr>
-            </tbody>
-            {% endfor %}
-            </table>
-            </div>
+                {% endif %}
             
-            {% endif %}
-         
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
     
-  {% endif %}
+    {% endif %}
 {% endfor %}
 </div>
 </section>
+
 <section class="list "id="cancelledList">
 
- <h3 class="title-book"> # Réservations annulées</h3>
+    <h3 class="title-book"> # Réservations annulées</h3>
 
 {% for establishment in listEstablishment %}
-  {% if establishment.getPackages() is not empty %}
+    {% if establishment.getPackages() is not empty %}
     
-    <div class="bloc-establishment ">
-        <h2 class="head-list-establishment title">Etablissement {{establishment.name}}</h2>
-        {% for package in establishment.getPackages() %}
-            {% if package.getBooks() is not empty %}
-            <div class="bloc-package-name">        
-            <h4>Nom du package: {{package.name}}</h3>
-            <table class="table validated">
-            <thead>
-                <tr>
-                <th scope="col" class="color-primaire">N° de réservation</th>            
-                <th scope="col" class="color-primaire">Nom du client</th>
-                <th scope="col" class="color-primaire">Date de réservation</th>
-                <th></th>
-                </tr>
-                </tr>
-            </thead>
-            {% for book in package.books %}
-            <tbody >
-                <tr class='package-line' data-status={{book.status}}>
+        <div class="bloc-establishment ">
+            <h2 class="head-list-establishment title">Etablissement {{establishment.name}}</h2>
+            {% for package in establishment.getPackages() %}
+                {% if package.getBooks() is not empty %}
+                <div class="bloc-package-name">        
+                    <h4>Nom du package: {{package.name}}</h4>
+                    <table class="table validated">
+                        <thead>
+                            <tr>
+                                <th scope="col">N° de réservation</th>            
+                                <th scope="col">Nom du client</th>
+                                <th scope="col">Prix</th>
+                                <th scope="col">Date de réservation</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        {% for book in package.books %}
+                        <tbody >
+                            <tr class='package-line' data-status={{book.status}}>
+                            
+                                <td>{{book.id}}</td>            
+                                <td>{{book.user.lastname}} </td>
+                                <td>{{package.price}}</td>
+                                <td>{{book.date |date('d/m/Y')}}</td>
+                                <td class="bloc-icon-package">
+                                    <i class="btn btn-sm delete_btn fa-solid fa-ban"></i>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
                 
-                <td>{{book.id}}</td>            
-                <td>{{book.user.lastname}} </td>
-                <td>{{package.price}}</td>
-                <td class="bloc-icon-package">
-                    <i class="btn btn-sm delete_btn fa-solid fa-ban"></i>
-                    
-                </td>
-                </tr>
-            </tbody>
-            {% endfor %}
-            </table>
-            </div>
+                {% endif %}
             
-            {% endif %}
-         
-        {% endfor %}
-    </div>
- 
-  {% endif %}
+            {% endfor %}
+        </div>
+
+    {% endif %}
 {% endfor %}
 </div>
 </section>

@@ -3,6 +3,7 @@
 {% block title %}Modifier un établissement{% endblock %}
 
 {% block body %}
+{% include "Pro/partials/header.html.twig" %}
 
 <main class="container-fluid formResp">
 
@@ -11,12 +12,8 @@
     <div class="title-establishment">
         <a class="button from-center" href="{{ path('app_pro_establishments') }}">Retour</a>
     </div>
-
-
     
     {{ include('Pro/establishment/_form.html.twig', {'button_label': 'Modifier'}) }}
-
-    
 
 </main>
 {% endblock %}

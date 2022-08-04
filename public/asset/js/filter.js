@@ -1,3 +1,6 @@
+/**
+ * To add filter 
+ */
 const filter = {
     init: function () {
         const buttonFilterElmt = document.querySelector('#filter');
@@ -12,7 +15,6 @@ const filter = {
         for (const filterCheckbox of filtersCheckboxList) {
             filterCheckbox.addEventListener('change', filter.handleChangefilter);
         }
-
 
     },
 
@@ -45,6 +47,7 @@ const filter = {
         // we get the list of filters
         const filtersCheckboxList = document.querySelectorAll('.checkbox-filters');
         let listFiltersChecked = [];
+        // We test if the checkbox is checked 
         for (const filterCheckbox of filtersCheckboxList) {
             if (filterCheckbox.checked) {
                 // if a filter is checked, it is added in a table
@@ -73,8 +76,10 @@ const filter = {
                 }
             }
 
+            // we retrieve the  array lenght of filter
             let comparator = listFiltersChecked.length
 
+            // We take the list of price filter
             const filtersPriceList = document.querySelectorAll('.price-filter');
             for (const filterPrice of filtersPriceList) {
                 if (filterPrice.selected) {

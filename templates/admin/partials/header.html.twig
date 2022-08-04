@@ -22,34 +22,26 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        
-                           
-                                <li class="nav-item dropdown">
+
+                        <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown">
-                                    <span>Bonjour  {{app.user.firstname ?? "Mme/Mr"}} {{app.user.lastname ?? " "}} </span>
+                                    <span>Bonjour  {{app.user.firstname ?? "Mme/Mr"}} {{app.user.lastname}} </span>
                                     <i class="bi bi-person-square"></i>
                                 </a>
-                                
-                                <ul class="dropdown-menu">
-                                   
-                                        
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{path("app_logout")}}">Déconnexion</a></li>
-                                </ul>
-                            </li>
-                           
-                            
-
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="{{path("app_logout")}}">Déconnexion</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
-
-                   
                 </div>
             </div>
         </nav>
-          
 </header> 
- {% for label, messages in app.flashes %}
+
+{% for label, messages in app.flashes %}
     {% for message in messages %}
 
     <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">

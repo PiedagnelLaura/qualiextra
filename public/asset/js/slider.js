@@ -1,3 +1,6 @@
+/**
+ * Carousel
+ */
 const slider = {
     count: 0,
     
@@ -10,7 +13,6 @@ const slider = {
         nextButton.addEventListener('click', slider.handleClick);
         let sectionBoard = document.querySelectorAll('.carousel');
         sectionBoard[slider.count].classList.remove('d-none');
-
 
         // we launch a timer to simulate a click on the nextArraoxElmt arrow every 5 seconds
         setInterval(function () 
@@ -32,27 +34,26 @@ const slider = {
         // if we click on button previous, we display the last image of the carousel
         if (button.id == 'previous') {
             slider.count --;
-         sectionBefore = carousel[slider.count+1];
+            sectionBefore = carousel[slider.count+1];
         }
         else {
             slider.count ++;
-         sectionBefore = carousel[slider.count-1];
+            sectionBefore = carousel[slider.count-1];
         }
 
-        
         if (slider.count < 0) {
             slider.count = 1;
-         sectionBefore = carousel[0];
+            sectionBefore = carousel[0];
         }
 
         if (slider.count > carousel.length-1) {
             slider.count = 0;
-         sectionBefore = carousel[carousel.length-1];
+            sectionBefore = carousel[carousel.length-1];
         }
         
         let sectionDisplay = carousel[slider.count];
         sectionDisplay.classList.remove('d-none');
-     sectionBefore.classList.add('d-none');  
+        sectionBefore.classList.add('d-none');  
     },
 };
 

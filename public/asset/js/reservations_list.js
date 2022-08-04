@@ -1,9 +1,14 @@
+/**
+ * system of booking page of pro space
+ */
 const reservations_list = {
     init: function () {
         const AllreservationsList = document.querySelectorAll('.package-line');
         for(const oneReservation of AllreservationsList){
             oneReservation.classList.add('d-none')
+            // apparence = for block etablishment
             oneReservation.classList.remove('apparence')
+            // packager = for block package
             oneReservation.classList.remove('packager')
         }
 
@@ -22,11 +27,11 @@ const reservations_list = {
     browseToCheck: function() {
         //we retrieve the element to browse the reservations to check
         const elementsToCheck= document.querySelectorAll('.toCheck'); 
-      
+
         for(const table of elementsToCheck){
             //we retrieve all the reservations line
             const reservationsList = table.querySelectorAll('.package-line');
-                 
+
             //we get the status of each reservation and we show these reservation
             for (const reservation of reservationsList){
                 let statusReservation = reservation.dataset.status
@@ -85,10 +90,10 @@ const reservations_list = {
         }
 
     },
-   
+
     hidePackage: function(){
         const packagesList= document.querySelectorAll('.bloc-establishment');
-       
+
         //for each etablishment block, we test if there is at least one book to browse
         for (const packageBlock of packagesList){
             const line = packageBlock.querySelectorAll('.packager');
@@ -101,7 +106,7 @@ const reservations_list = {
 
     hideEstablishment: function(){
         const establishmentsList= document.querySelectorAll('.bloc-package-name');
-       
+
         //for each etablishment block, we test if there is at least one book to browse
         for (const establishmentBlock of establishmentsList){
             const line = establishmentBlock.querySelectorAll('.apparence');
