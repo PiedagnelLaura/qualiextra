@@ -5,7 +5,11 @@ Qualiextra a pour but de vendre des expériences personnalisées aux épicuriens
 
 Expériences hôtelières (nuitée + activité) ou expériences gustatives (menu à l’aveugle, dégustation de spiritueux) etc à des particuliers (B to C).
 Ces packages seront accessibles 100% en ligne aux clients depuis une application web.
-La société référence aussi une sélection d’établissements qui ne proposent pas    d’expériences afin de proposer des lieux atypiques aux visiteurs de la plateforme.
+La société référence aussi une sélection d’établissements qui ne proposent pas d’expériences afin de proposer des lieux atypiques aux visiteurs de la plateforme.
+
+## Technologies
+
+Le site a été réalisé avec Symfony côté Back et Front. Javascript a également été utilisé pour quelques fonctionnalités.
 
 ## Installation
 
@@ -17,24 +21,24 @@ Afin d'installer le projet, nous vous proposons de suivre le processus suivant :
 
 Cette commande permet d'installer, les bundles en fonction de ce que nous avons dans le fichier composer.json.
 
-2. Création du lien avec la base de donnée (BDD)
+2. Création du lien avec la base de données (BDD)
 
-Dans votre outils de gestion de base de donnée (adminer, phpmyadmin,..) créer un utilisateur.
+Dans votre outil de gestion de bases de données (adminer, phpmyadmin,..) créer un utilisateur.
 
 Dupliquer le fichier env.test et le renommer en env.local
 
-Vérifier votre version de mysql ou mariadb en éxécutant cette commande : `mysql -V`
+Vérifier votre version de mysql ou mariadb en exécutant cette commande : `mysql -V`
 
-Insérer cette ligne : 
+Insérer cette ligne :
 `DATABASE_URL="mysql://identifiant:motdepasse@127.0.0.1:3306/qualiextra?serverVersion=mariadb-10.3.25&charset=utf8mb4'
 
-Changer l'identifiant et le mot de passe avec les vôtres de la chaîne de connection .
+Changer l'identifiant et le mot de passe avec les vôtres de la chaîne de connexion .
 
-3. Exécuter cette commande dans le terminal qui permet de créer la base de donnée
-    `bin/console doctrine:database:create`
+3. Exécuter cette commande dans le terminal qui permet de créer la base de données
+`bin/console doctrine:database:create`
 
-4. Afin de générer les table excuter ces commandes dans le terminal :
-   `bin/console make:migration`
+4. Afin de générer les tables, exécutez ces commandes dans le terminal :
+`bin/console make:migration`
 puis `bin/console doctrine:migration:migrate`
 
 Votre BDD est prête.
@@ -48,12 +52,12 @@ Il faut dans un premier temps configurer l'automatisation de la commande via le 
 ```
 no crontab for student - using an empty one
 
-Select an editor.  To change later, run 'select-editor'.
-  1. /bin/nano        <---- easiest
-  2. /usr/bin/vim.basic
-  3. /usr/bin/vim.tiny
-  4. /usr/bin/code
-  5. /bin/ed
+Select an editor. To change later, run 'select-editor'.
+1. /bin/nano <---- easiest
+2. /usr/bin/vim.basic
+3. /usr/bin/vim.tiny
+4. /usr/bin/code
+5. /bin/ed
 
 Choose 1-5 [1]: 1
 crontab: installing new crontab
@@ -61,20 +65,20 @@ crontab: installing new crontab
 
 # minute (m), hour (h), day of month (dom), month (mon),
 # and day of week (dow) or use '*' in these fields (for 'any').
-# 
+#
 # Notice that tasks will be started based on the cron's system
 # daemon's notion of time and timezones.
-# 
+#
 # Output of the crontab jobs (including errors) is sent through
 # email to the user the crontab file belongs to (unless redirected).
-# 
+#
 # For example, you can run a backup of all your user accounts
 # at 5 a.m every week with:
 # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
-# 
+#
 # For more information see the manual pages of crontab(5) and cron(8)
-# 
-# minute heure  utilisateur/bin/php chemin/vers/le/dosser/bin/console  command
+#
+# minute heure utilisateur/bin/php chemin/vers/le/dosser/bin/console command
 
 0 12 * * * /usr/bin/php /var/www/html/index.html/Apotheose/projet-22-qualiextra/bin/console app:package:expired
 ```
@@ -84,4 +88,4 @@ Pour enregistrer CTRL +O et ENTREE
 Pour quitter CTRL+x
 
 
-Le projet est okay
+Le projet est prêt ! :tada:
